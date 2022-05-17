@@ -15,9 +15,9 @@
         {{-- font roboto light regular bold and extrabold --}}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        @yield('styles')
 
         <!-- Scripts -->
-        @yield('styles')
         @yield('scripts')
         
     </head>
