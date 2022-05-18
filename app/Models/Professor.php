@@ -8,9 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Student extends Authenticatable
+class Professor extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    protected $guard = 'professor';
 
     /**
      * The attributes that are mass assignable.
@@ -18,18 +20,9 @@ class Student extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'status',
         'name',
         'email',
         'password',
-        'phone',
-        'semester_origin',
-        'attended_count_tcc',
-        'state',
-        'city',
-        'district',
-        'street',
-        'zipcode',
     ];
 
     /**

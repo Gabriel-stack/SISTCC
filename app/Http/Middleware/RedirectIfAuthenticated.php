@@ -23,10 +23,16 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return redirect(RouteServiceProvider::STUDENT_HOME);
+            }
+            if ($guard == 'professor' && Auth::guard($guard)->check()) {
+                return redirect(RouteServiceProvider::PROFESSOR_HOME);
             }
         }
 
         return $next($request);
+        // return $next($request)->header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
+        //                         ->header('Pragma', 'no-cache')
+        //                         ->header('Expires', 'Sat 01 jan 1990 00:00:00 GMT');
     }
 }

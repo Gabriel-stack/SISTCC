@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('phone');
-            $table->string('semestre_origem');
-            $table->integer('quant_cursou_tcc');
+            $table->string('semester_origin');
+            $table->integer('attended_count_tcc');
             $table->string('state');
             $table->string('city');
             $table->string('district');

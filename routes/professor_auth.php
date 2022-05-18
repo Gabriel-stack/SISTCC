@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ProfessorAuth\AuthenticatedSessionController;
+use App\Http\Controllers\ProfessorAuth\ConfirmablePasswordController;
+use App\Http\Controllers\ProfessorAuth\EmailVerificationNotificationController;
+use App\Http\Controllers\ProfessorAuth\EmailVerificationPromptController;
+use App\Http\Controllers\ProfessorAuth\NewPasswordController;
+use App\Http\Controllers\ProfessorAuth\PasswordResetLinkController;
+use App\Http\Controllers\ProfessorAuth\RegisteredUserController;
+use App\Http\Controllers\ProfessorAuth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function () {
+Route::middleware('guest:professor')->prefix('professor')->name('professor.')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
@@ -34,7 +34,7 @@ Route::middleware('guest')->group(function () {
                 ->name('password.update');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:professor')->prefix('professor')->name('professor.')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 
