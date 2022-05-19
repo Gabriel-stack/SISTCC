@@ -12,16 +12,17 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
+        {{-- font roboto light regular bold and extrabold --}}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <!-- Scripts -->
         @yield('styles')
+
+        <!-- Scripts -->
         @yield('scripts')
     </head>
     <body>
         <main>
             @yield('content')
-            {{ $slot }}
         </main>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> 
