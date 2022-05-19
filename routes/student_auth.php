@@ -26,12 +26,12 @@ Route::middleware('guest')->prefix('student')->name('student.')->group(function 
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
                 ->name('password.email');
 
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-                ->name('password.reset');
-
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.update');
 });
+
+Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+            ->name('password.reset');
 
 Route::middleware('auth')->prefix('student')->name('student.')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])

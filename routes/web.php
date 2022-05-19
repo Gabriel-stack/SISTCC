@@ -20,9 +20,9 @@ Route::get('/', function () {
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/student/dashboard', function () {
+    return view('student.dashboard');
+})->middleware(['auth'])->name('student.dashboard');
 
 require __DIR__.'/student_auth.php';
 
@@ -30,6 +30,6 @@ require __DIR__.'/student_auth.php';
 
 Route::get('/professor/dashboard', function () {
     return view('professor.dashboard');
-})->middleware(['auth:professor'])->name('dashboard');
+})->middleware(['auth:professor'])->name('professor.dashboard');
 
 require __DIR__.'/professor_auth.php';
