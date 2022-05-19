@@ -25,9 +25,22 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:professors'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:professors', 'ends_with:@ifsertao-pe.edu.br'],
             'password' => ['required', 'confirmed', Password::defaults()],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'regex' => 'O nome deve conter apenas letras',
+            'required' => 'O campo :attribute é obrigatório',
+            'max' => 'O campo :attribute deve ter no máximo :max caracteres',
+            'unique' => 'O campo :attribute já está cadastrado',
+            'email' => 'O campo :attribute deve ser um email válido',
+            'email.ends_with' => 'O email deve terminar com "@ifsertao-pe.edu.br"', 
+            'confimed' => 'As senhas não conferem.'           
         ];
     }
 }

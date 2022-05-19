@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
-            // $table->string('phone');
+            $table->string('phone');
             // $table->string('semester_origin');
             // $table->integer('attended_count_tcc');
             // $table->string('state');
