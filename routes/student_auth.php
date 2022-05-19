@@ -10,7 +10,7 @@ use App\Http\Controllers\StudentAuth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->prefix('student')->name('student.')->group(function () {
-    Route::get('student', function () {
+    Route::get('/', function () {
         return redirect()->route('student.login');
     });
     Route::get('register', [RegisteredUserController::class, 'create'])

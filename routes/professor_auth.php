@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfessorAuth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:professor')->prefix('professor')->name('professor.')->group(function () {
-    Route::get('/', function () {
+    Route::get('/', function(){
         return redirect()->route('professor.login');
     });
     Route::get('register', [RegisteredUserController::class, 'create'])
