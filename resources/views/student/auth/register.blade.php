@@ -1,8 +1,12 @@
 @extends('layouts.guest')
 
+@section('title', 'Cadastro')
 @section('content')
 <div class="p-3">
     <div class="bg-white container rounded d-flex flex-column p-4 my-md-5">
+        @if($errors->any())
+            @include('components.auth-validation-errors')
+        @endif
         <a href="/"></a>
 
         <h3 class="text-center fw-bold my-4">Cadastro de Aluno</h3>
@@ -99,7 +103,7 @@
                 <hr>
 
                 <div class="text-center">
-                    <a class="btn btn-success text-decoration-none" href="{{ route('student.register') }}">Cadastrar</a>
+                    <button class="btn btn-success text-decoration-none" type="submit">Cadastrar</button> 
                 </div>
             </div>
         </form>

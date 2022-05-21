@@ -26,7 +26,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:students', 'ends_with:@aluno.ifsertao-pe.edu.br'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:students', 'ends_with:@aluno.ifsertao-pe.edu.br,@ifsertao-pe.edu.br'],
             'password' => ['required', 'confirmed', Password::defaults()],
             'phone' => ['required', 'string', 'max:12', 'regex:/^[0-9]+$/'],
             'semester_origin' => ['required', 'string', 'max:255'],
