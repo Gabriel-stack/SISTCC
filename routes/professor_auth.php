@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Professor\SubjectController;
 use App\Http\Controllers\ProfessorAuth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfessorAuth\ConfirmablePasswordController;
 use App\Http\Controllers\ProfessorAuth\EmailVerificationNotificationController;
@@ -32,11 +33,6 @@ Route::middleware('guest:professor')->prefix('professor')->name('professor.')->g
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.update');
-
-
-
-    Route::get('subjects', [SubjectController::class, 'create'])
-                ->name('subject');
 });
 
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
@@ -61,4 +57,31 @@ Route::middleware('auth:professor')->prefix('professor')->name('professor.')->gr
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+
+
+    // Perfil
+
+    Route::get('profile', [RegisteredUserController::class, 'edit'])
+                ->name('profile');
+
+    Route::post('profile/update', [RegisteredUserController::class, 'update'])
+                ->name('profile.update');
+
+
+    // Turmas
+
+    Route::get('subjects', [SubjectController::class, 'create'])
+                ->name('subject');
+
+    Route::get('subjects/search', [SubjectController::class, 'search'])
+                ->name('subject.search');
+
+    Route::post('subjects/store', [SubjectController::class, 'store'])
+                ->name('subject.store');
+
+    Route::post('subjects/update', [SubjectController::class, 'update'])
+                ->name('subject.update');
+
+    Route::post('subjects/destroy', [SubjectController::class, 'destroy'])
+                ->name('subject.destroy');
 });

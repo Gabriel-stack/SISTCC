@@ -44,4 +44,23 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::PROFESSOR_HOME);
     }
+
+    public function edit()
+    {
+        return view('professor.profile');
+    }
+
+    public function update(RegisterRequest $request)
+    {
+        $professor = Professor::bind(Auth::guard('professor')->user()->id);
+
+        $professor->update($request->all());
+
+        if ($professor) {
+            return redirect()->back()->with('success', 'Os dados de perfil foram alterados com sucesso!');
+        }
+
+        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados de perfil!');
+    }
+
 }

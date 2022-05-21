@@ -16,7 +16,9 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('professor.subject');
+        $subjects = Subject::paginate();
+
+        return view('professor.subject', ['subjects' => $subjects]);
     }
 
     /**
@@ -82,7 +84,7 @@ class SubjectController extends Controller
     public function search(Request $request)
     {
         if ($request->has('filter')) {
-            $subject = Subject::where('name', 'LIKE', '%' . $request->filter . '%')->paginate(10);
+            $subject = Subject::where('name', 'LIKE', '%' . $request->filter . '%')->paginate();
         }
 
         $filters = $request->except('_token');
