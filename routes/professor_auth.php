@@ -32,6 +32,11 @@ Route::middleware('guest:professor')->prefix('professor')->name('professor.')->g
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.update');
+
+
+
+    Route::get('subjects', [SubjectController::class, 'create'])
+                ->name('subject');
 });
 
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
