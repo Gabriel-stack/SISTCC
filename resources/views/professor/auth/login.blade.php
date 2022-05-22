@@ -32,7 +32,7 @@
             <div class="d-flex align-items-center justify-content-between mt-4">
                 <a class="text-decoration-none" href="{{ route('professor.password.request') }}">Recuperar senha?</a>
 
-                <a class="text-decoration-none" href="{{ route('professor.register') }}">Cadastre-se</a>
+                {{-- <a class="text-decoration-none" href="{{ route('professor.register') }}">Cadastre-se</a> --}}
             </div>
 
             <hr>
@@ -42,7 +42,7 @@
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
 
-                    <span class="ms-2">Lembrar</span>
+                    <span class="ms-2">Lembrar-me</span>
                 </label>
             </div>
 

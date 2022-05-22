@@ -1,8 +1,3 @@
-<!-- Button trigger modal -->
-{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Launch static backdrop modal
-</button> --}}
-
 <!-- Modal -->
 <div class="modal fade" id="modal-store-subject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -15,6 +10,7 @@
                 </div>
                 <div class="modal-body row">
                     @csrf
+
                     <div class="col-8 my-2">
                         <label class="form-label">TURMA</label>
                         <input class="form-control" type="text" name="semester" required>

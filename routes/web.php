@@ -17,18 +17,8 @@ Route::group(['middleware' => 'prevent-back-history'],function (){
     Route::get('/', function () {
         return redirect()->route('student.login');
     });
-
-    Route::get('/student/dashboard', function () {
-        return view('student.dashboard');
-    })->middleware(['auth'])->name('student.dashboard');
-
-    require __DIR__.'/student_auth.php';
-
-
-
-    Route::get('/professor/dashboard', function () {
-        return view('professor.dashboard');
-    })->middleware(['auth:professor'])->name('professor.dashboard');
-
-    require __DIR__.'/professor_auth.php';
 });
+
+require __DIR__.'/student_auth.php';
+
+require __DIR__.'/professor_auth.php';

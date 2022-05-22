@@ -67,6 +67,7 @@ class RegisteredUserController extends Controller
 
         return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados de perfil!');
     }
+
     public function updatePassword(Request $request)
     {
         $request->validate([
@@ -84,8 +85,8 @@ class RegisteredUserController extends Controller
             if ($professor) {
                 return redirect()->back()->with('success', 'A senha foi alterada com sucesso!');
             }
+
             return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar alterar a senha!');
         }
     }
-
 }

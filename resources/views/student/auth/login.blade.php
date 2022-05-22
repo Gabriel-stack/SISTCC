@@ -42,7 +42,7 @@
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
 
-                    <span class="ms-2">Lembrar</span>
+                    <span class="ms-2">Lembrar-me</span>
                 </label>
             </div>
 

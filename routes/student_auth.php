@@ -1,12 +1,18 @@
 <?php
-use App\Http\Controllers\StudentAuth\AuthenticatedSessionController;
-use App\Http\Controllers\StudentAuth\ConfirmablePasswordController;
-use App\Http\Controllers\StudentAuth\EmailVerificationNotificationController;
-use App\Http\Controllers\StudentAuth\EmailVerificationPromptController;
-use App\Http\Controllers\StudentAuth\NewPasswordController;
-use App\Http\Controllers\StudentAuth\PasswordResetLinkController;
-use App\Http\Controllers\StudentAuth\RegisteredUserController;
-use App\Http\Controllers\StudentAuth\VerifyEmailController;
+
+use App\Http\Controllers\Student\{
+    DashboardController,
+};
+use App\Http\Controllers\StudentAuth\{
+    AuthenticatedSessionController,
+    ConfirmablePasswordController,
+    EmailVerificationNotificationController,
+    EmailVerificationPromptController,
+    NewPasswordController,
+    PasswordResetLinkController,
+    RegisteredUserController,
+    VerifyEmailController,
+};
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest', 'prevent-back-history'])->prefix('student')->name('student.')->group(function () {
@@ -55,4 +61,27 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+
+
+
+    // Painel de Controle
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('dashboard', 'index')->name('dashboard');
+    });
+
+
+    // Perfil
+    Route::prefix('profile')->controller(RegisteredUserController::class)->group(function () {
+        Route::get('', 'edit')->name('profile');
+
+        Route::name('profile.')->group(function () {
+            Route::post('update_personal_data', 'updatePersonalData')->name('update');
+
+            Route::post('update_endereco', 'updateEndereco')->name('update_endereco');
+
+            Route::post('update_tcc', 'updateTcc')->name('update_tcc');
+
+            Route::post('update_password', 'updatePassword')->name('update_password');
+        });
+    });
 });

@@ -25,23 +25,23 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:students', 'ends_with:@aluno.ifsertao-pe.edu.br,@ifsertao-pe.edu.br'],
-            'password' => ['required', 'confirmed', Password::defaults()],
-            'phone' => ['required', 'string', 'max:12', 'regex:/^[0-9]+$/'],
-            'semester_origin' => ['required', 'string', 'max:255'],
-            'attended_count_tcc' => ['required', 'integer', 'max:255'],
-            'state' => ['required', 'string', 'max:2'],
-            'city' => ['required', 'string', 'max:255'],
-            'district' => ['required', 'string', 'max:255'],
-            'street' => ['required', 'string', 'max:255'],
-            'zipcode' => ['required', 'string', 'max:255'],
+            // 'name' => ['required', 'string', 'max:255'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:students', 'ends_with:@aluno.ifsertao-pe.edu.br,@ifsertao-pe.edu.br'],
+            // 'password' => ['required', 'confirmed', Password::defaults()],
+            // 'phone' => ['required', 'string', 'max:12', 'regex:/^[0-9]+$/'],
+            // 'semester_origin' => ['required', 'string', 'max:255'],
+            // 'attended_count_tcc' => ['required', 'integer', 'max:255'],
+            // 'state' => ['required', 'string', 'max:2'],
+            // 'city' => ['required', 'string', 'max:255'],
+            // 'district' => ['required', 'string', 'max:255'],
+            // 'street' => ['required', 'string', 'max:255'],
+            // 'zip_code' => ['required', 'string', 'max:255'],
         ];
     }
 
     public function messages()
     {
-        return [ 
+        return [
             'regex' => 'O nome deve conter apenas letras',
             'required' => 'O campo :attribute é obrigatório',
             'max' => 'O campo :attribute deve ter no máximo :max caracteres',
@@ -53,4 +53,3 @@ class RegisterRequest extends FormRequest
         ];
     }
 }
-

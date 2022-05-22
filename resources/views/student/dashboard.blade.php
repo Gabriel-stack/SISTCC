@@ -1,13 +1,12 @@
-@extends('layouts.app')
+@extends('student.templates.panel')
 
-@section('content')
-    <div>
-        <p>{{ Auth::user()->name }}</p>
-        <p>{{ Auth::user()->email }}</p>
-    </div>
+@section('title', 'PÁGINA PRINCIPAL')
 
-    <form action="{{ route('student.logout') }}" method="post">
-        @csrf
-        <button class="btn btn-danger" type="submit">Sair</button>
-    </form>
+@section('container')
+
+    @include('components.success')
+    @include('components.fail')
+    @include('components.auth-validation-errors')
+
+
 @endsection

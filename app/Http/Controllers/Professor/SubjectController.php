@@ -18,7 +18,7 @@ class SubjectController extends Controller
     {
         $subjects = Subject::paginate();
 
-        return view('professor.subject', ['subjects' => $subjects]);
+        return view('professor.subject', compact('subjects'));
     }
 
     /**
@@ -88,7 +88,7 @@ class SubjectController extends Controller
         }
 
         $filters = $request->except('_token');
-        
+
         return view('professor.subject', compact('subjects', 'filters'));
     }
 }

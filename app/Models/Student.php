@@ -29,7 +29,7 @@ class Student extends Authenticatable
         'city',
         'district',
         'street',
-        'zipcode',
+        'zip_code',
     ];
 
     /**

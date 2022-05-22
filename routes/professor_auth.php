@@ -1,14 +1,20 @@
 <?php
 
-use App\Http\Controllers\Professor\SubjectController;
-use App\Http\Controllers\ProfessorAuth\AuthenticatedSessionController;
-use App\Http\Controllers\ProfessorAuth\ConfirmablePasswordController;
-use App\Http\Controllers\ProfessorAuth\EmailVerificationNotificationController;
-use App\Http\Controllers\ProfessorAuth\EmailVerificationPromptController;
-use App\Http\Controllers\ProfessorAuth\NewPasswordController;
-use App\Http\Controllers\ProfessorAuth\PasswordResetLinkController;
-use App\Http\Controllers\ProfessorAuth\RegisteredUserController;
-use App\Http\Controllers\ProfessorAuth\VerifyEmailController;
+use App\Http\Controllers\Professor\{
+    AdvisorController,
+    DashboardController,
+    SubjectController,
+};
+use App\Http\Controllers\ProfessorAuth\{
+    AuthenticatedSessionController,
+    ConfirmablePasswordController,
+    EmailVerificationNotificationController,
+    EmailVerificationPromptController,
+    NewPasswordController,
+    PasswordResetLinkController,
+    RegisteredUserController,
+    VerifyEmailController,
+};
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest:professor', 'prevent-back-history'])->prefix('professor')->name('professor.')->group(function () {
@@ -59,32 +65,65 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
                 ->name('logout');
 
 
+
+    // Painel de Controle
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('dashboard', 'index')->name('dashboard');
+
+
+        // Alunos
+        Route::prefix('students')->name('student.')->group(function () {
+            Route::get('search', 'search')->name('search');
+
+            // Route::post('disable', 'disable')->name('disable');
+
+            // Route::post('active', 'active')->name('active');
+        });
+    });
+
+
     // Perfil
+    Route::prefix('profile')->controller(RegisteredUserController::class)->group(function () {
+        Route::get('', 'edit')->name('profile');
 
-    Route::get('profile', [RegisteredUserController::class, 'edit'])
-                ->name('profile');
+        Route::name('profile.')->group(function () {
+            Route::post('update_personal_data', 'updatePersonalData')->name('update');
 
-    Route::post('profile/update_personal_data', [RegisteredUserController::class, 'updatePersonalData'])
-                ->name('profile.update');
-                
-    Route::post('profile/update_password', [RegisteredUserController::class, 'updatePassword'])
-                ->name('profile.update_password');
+            Route::post('update_password', 'updatePassword')->name('update_password');
+        });
+    });
 
 
     // Turmas
+    Route::prefix('subjects')->controller(SubjectController::class)->group(function () {
+        Route::get('', 'create')->name('subject');
 
-    Route::get('subjects', [SubjectController::class, 'create'])
-                ->name('subject');
+        Route::name('subject.')->group(function () {
+            Route::get('search', 'search')->name('search');
 
-    Route::get('subjects/search', [SubjectController::class, 'search'])
-                ->name('subject.search');
+            Route::post('store', 'store')->name('store');
 
-    Route::post('subjects/store', [SubjectController::class, 'store'])
-                ->name('subject.store');
+            Route::post('update', 'update')->name('update');
 
-    Route::post('subjects/update', [SubjectController::class, 'update'])
-                ->name('subject.update');
+            Route::post('destroy', 'destroy')->name('destroy');
+        });
+    });
 
-    Route::post('subjects/destroy', [SubjectController::class, 'destroy'])
-                ->name('subject.destroy');
+
+    // Orientadores
+    Route::prefix('advisors')->controller(AdvisorController::class)->group(function () {
+        Route::get('', 'create')->name('advisor');
+
+        Route::name('advisor.')->group(function () {
+            Route::get('search', 'search')->name('search');
+
+            Route::post('store', 'store')->name('store');
+
+            Route::post('update', 'update')->name('update');
+
+            Route::post('disable', 'disable')->name('disable');
+
+            Route::post('active', 'active')->name('active');
+        });
+    });
 });
