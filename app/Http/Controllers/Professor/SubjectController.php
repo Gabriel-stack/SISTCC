@@ -45,9 +45,9 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $subject = Subject::findOrFail($id);
+        $subject = Subject::findOrFail($request->id);
 
         $subject->update($request->all());
 
@@ -64,9 +64,9 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $subject = Subject::findOrFail($id);
+        $subject = Subject::findOrFail($request->id);
 
         if (now()->gte($subject->end_date)) { // Regra de exclusão de turma.
             return redirect()->back()->with('fail', 'A turma não pode ser excluída porque o semestre já está em andamento!');
@@ -83,12 +83,12 @@ class SubjectController extends Controller
 
     public function search(Request $request)
     {
-        if ($request->has('filter')) {
-            $subject = Subject::where('name', 'LIKE', '%' . $request->filter . '%')->paginate();
+        if ($request->has('search')) {
+            $subjects = Subject::where('semester', 'LIKE', '%' . $request->search . '%')->paginate();
         }
 
         $filters = $request->except('_token');
-
-        return redirect()->back()->with(['subject' => $subject, 'filters' => $filters]);
+        
+        return view('professor.subject', compact('subjects', 'filters'));
     }
 }

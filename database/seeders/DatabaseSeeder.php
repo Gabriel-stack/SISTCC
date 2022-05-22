@@ -4,9 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\Professor;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
+use Mockery\Matcher\Subset;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,10 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Professor::create([
-            'name' => 'Professor 1',
-            'email' => 'gabriel.alves@ifsertao-pe.edu.br',
-            'password' => Hash::make('12345678'),
-        ]);
+    //    Subject::factory()->count(30)->create();
+        Schema::drop('subjects');
     }
 }

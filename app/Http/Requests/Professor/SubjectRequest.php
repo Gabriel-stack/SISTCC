@@ -27,7 +27,7 @@ class SubjectRequest extends FormRequest
             'semester' => ['required'],
             'key' => ['required'],
             'start_date' => ['required'],
-            'start_end' => ['required'],
+            'end_date' => ['required'],
         ];
     }
 

@@ -1,15 +1,11 @@
-@extends('layouts.app')
+@extends('professor.templates.panel')
 
-@section('content')
+@section('dashboard', 'active')
+
+@section('title', 'PÁGINA PRINCIPAL')
+
+@section('container')
     <div class="container d-flex justify-content-center">
-        <div>
-            <p>{{ Auth::guard('professor')->user()->name }}</p>
-            <p>{{ Auth::guard('professor')->user()->email }}</p>
-        </div>
 
-        <form action="{{ route('professor.logout') }}" method="post">
-            @csrf
-            <button class="btn btn-danger" type="submit">Sair</button>
-        </form>
     </div>
 @endsection

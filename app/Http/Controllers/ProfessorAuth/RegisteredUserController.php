@@ -7,6 +7,7 @@ use App\Http\Requests\ProfessorAuth\RegisterRequest;
 use App\Models\Professor;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -50,9 +51,13 @@ class RegisteredUserController extends Controller
         return view('professor.profile');
     }
 
-    public function update(RegisterRequest $request)
+    public function updatePersonalData(Request $request)
     {
-        $professor = Professor::bind(Auth::guard('professor')->user()->id);
+        $request->validate([
+            'name' => ['required', 'string', 'max:255, regex:/^[a-zA-Z\s]+$/'],
+        ],);
+
+        $professor = Professor::find(Auth::guard('professor')->user()->id);
 
         $professor->update($request->all());
 
@@ -61,6 +66,26 @@ class RegisteredUserController extends Controller
         }
 
         return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados de perfil!');
+    }
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'string', 'min:8'],
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $professor = Professor::find(Auth::guard('professor')->user()->id);
+
+        if (Hash::check($request->password, $professor->password)) {
+            $professor->update([
+                'password' => Hash::make($request->new_password),
+            ]);
+
+            if ($professor) {
+                return redirect()->back()->with('success', 'A senha foi alterada com sucesso!');
+            }
+            return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar alterar a senha!');
+        }
     }
 
 }

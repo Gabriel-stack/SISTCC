@@ -9,7 +9,7 @@
         @endif
         <a href="/"></a>
 
-        <h3 class="text-center fw-bold my-4">Login de professor</h3>
+        <h3 class="text-center fw-bold my-4">Login de Professor</h3>
 
         <form action="{{ route('professor.login') }}" method="post">
             @csrf

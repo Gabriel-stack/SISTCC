@@ -9,7 +9,7 @@ use App\Http\Controllers\StudentAuth\RegisteredUserController;
 use App\Http\Controllers\StudentAuth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->prefix('student')->name('student.')->group(function () {
+Route::middleware(['guest', 'prevent-back-history'])->prefix('student')->name('student.')->group(function () {
     Route::get('/', function () {
         return redirect()->route('student.login');
     });
@@ -36,7 +36,7 @@ Route::middleware('guest')->prefix('student')->name('student.')->group(function 
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
             ->name('password.reset');
 
-Route::middleware('auth')->prefix('student')->name('student.')->group(function () {
+Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('student.')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 

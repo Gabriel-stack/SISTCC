@@ -1,4 +1,6 @@
-<div>
+@if($errors->any())
+
+<div class="alert alert-danger">
     <div class="fw-bold text-danger">
         {{ __('Algo deu errado') }}
     </div>
@@ -9,3 +11,4 @@
         @endforeach
     </ul>
 </div>
+@endif

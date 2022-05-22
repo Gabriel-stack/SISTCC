@@ -8,6 +8,7 @@
             Esqueceu sua senha? Não tem problema. Basta nos informar seu e-mail e nós lhe enviaremos um link para
             redefinir sua senha.
         </div>
+        @include('components.auth-session-status')
         @if($errors->any())
         <div class="alert alert-danger">
             <ul class="list-disc list-inside small text-danger">

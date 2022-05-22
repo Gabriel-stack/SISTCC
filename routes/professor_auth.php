@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfessorAuth\RegisteredUserController;
 use App\Http\Controllers\ProfessorAuth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest:professor')->prefix('professor')->name('professor.')->group(function () {
+Route::middleware(['guest:professor', 'prevent-back-history'])->prefix('professor')->name('professor.')->group(function () {
     Route::get('/', function(){
         return redirect()->route('professor.login');
     });
@@ -38,7 +38,7 @@ Route::middleware('guest:professor')->prefix('professor')->name('professor.')->g
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
 ->name('password.reset');
 
-Route::middleware('auth:professor')->prefix('professor')->name('professor.')->group(function () {
+Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor')->name('professor.')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 
@@ -64,8 +64,11 @@ Route::middleware('auth:professor')->prefix('professor')->name('professor.')->gr
     Route::get('profile', [RegisteredUserController::class, 'edit'])
                 ->name('profile');
 
-    Route::post('profile/update', [RegisteredUserController::class, 'update'])
+    Route::post('profile/update_personal_data', [RegisteredUserController::class, 'updatePersonalData'])
                 ->name('profile.update');
+                
+    Route::post('profile/update_password', [RegisteredUserController::class, 'updatePassword'])
+                ->name('profile.update_password');
 
 
     // Turmas
