@@ -9,7 +9,7 @@
             </button>
             <div class="dropdown-center">
                 <button class="btn dropdown-toggle" type="button" id="user" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i style="font-size: 24px" class="bi bi-person-circle"></i>
+                    <i style="font-size: 24px; color: rgba(255, 255, 255, 0.897)" class="bi bi-person-circle"></i>
                 </button>
 
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user">
@@ -36,8 +36,7 @@
             </div>
         </div>
     </nav>
-
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 80px">
         <h4 class="title">
             @yield('title')
         </h4>

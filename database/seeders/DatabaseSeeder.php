@@ -6,6 +6,7 @@ use App\Models\Professor;
 use App\Models\Student;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +17,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Professor::factory()->count(1)->create();
-        Student::factory()->count(1)->create();
+        Professor::create([
+            'name' => 'Professor 1',
+            'email' => 'gabriel.alves@ifsertao-pe.edu.br',
+            'password' => Hash::make('12345678'),
+        ]);
     }
 }
