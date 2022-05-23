@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,13 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'prevent-back-history'],function (){
+    Route::get('/', function () {
+        return redirect()->route('student.login');
+    });
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+require __DIR__.'/student_auth.php';
 
-require __DIR__.'/auth.php';
+require __DIR__.'/professor_auth.php';
