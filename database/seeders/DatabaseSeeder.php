@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    //    Subject::factory()->count(30)->create();
-        Schema::drop('subjects');
+       Subject::factory()->count(30)->create();
+        Student::factory()->count(30)->create();
     }
 }
+

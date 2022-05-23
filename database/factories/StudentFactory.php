@@ -19,11 +19,22 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
+            'active' => true,
+            'status' => true,
             'name' => $this->faker->name(),
-            'email' => 'gabriel.alvesmartins98@gmail.com',
+            'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // password
             'remember_token' => Str::random(10),
+            'phone' => $this->faker->phoneNumber,
+            'semester_origin' => $this->faker->numberBetween(1, 10),
+            'attended_count_tcc' => $this->faker->numberBetween(1, 10),
+            'missing_subjects'=> $this->faker->sentence(3),
+            'street'=> $this->faker->streetName,
+            'district'=> $this->faker->city,
+            'city'=> $this->faker->city,
+            'state'=> $this->faker->state,
+            'zip_code'=> $this->faker->postcode,
         ];
     }
 

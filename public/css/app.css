@@ -6,3 +6,16 @@
 html, body {
   height: 100%;
 }
+
+
+/* Menu lateral */
+
+.offcanvas {
+    width: 300px;
+}
+
+@media screen and (min-width: 560px) {
+    .offcanvas {
+        width: 400px;
+    }
+}

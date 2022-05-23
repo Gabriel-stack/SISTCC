@@ -18,6 +18,7 @@ class Student extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'active',
         'status',
         'name',
         'email',
@@ -25,6 +26,7 @@ class Student extends Authenticatable
         'phone',
         'semester_origin',
         'attended_count_tcc',
+        'missing_subjects',
         'state',
         'city',
         'district',

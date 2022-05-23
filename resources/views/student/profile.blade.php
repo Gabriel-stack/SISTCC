@@ -25,8 +25,8 @@
                                         value="{{ Auth::user()->name }}">
                                 </div>
                                 <div class="col-5 mt-4">
-                                    <label for="">Telefone</label>
-                                    <input type="text" class="form-control" id="" name="" required> {{-- Inserir o name --}}
+                                    <label for="phone">Telefone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" value="{{Auth::user()->phone}}" required>
                                 </div>
                             </div>
                             <div class="mt-4">
@@ -35,13 +35,13 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-6 col-sm-5 col-md-4 mt-4">
-                                    <label for="">Semestre de Origem</label>
-                                    <input type="text" class="form-control" id="" name="" required> {{-- Inserir o name --}}
+                                    <label for="semester_origin">Semestre de Origem</label>
+                                    <input type="text" class="form-control" id="semester_origin" name="semester_origin" value="{{Auth::user()->semester_origin}}" required>
                                 </div>
-                                <div class="col-6 col-sm-5 col-md-4 mt-4">
+                                {{-- <div class="col-6 col-sm-5 col-md-4 mt-4">
                                     <label for="">Ano</label>
-                                    <input type="text" class="form-control" id="" name="" required> {{-- Inserir o name --}}
-                                </div>
+                                    <input type="text" class="form-control" id="" name="" required>
+                                </div> --}}
                             </div>
                             <div class="mt-4 text-center">
                                 <button type="submit" class="btn btn-success">ALTERAR</button>
@@ -61,27 +61,27 @@
                         @csrf
                         <div class="form-group">
                             <div class="mt-4">
-                                <label for="">Rua, Nº</label>
-                                <input type="text" class="form-control" id="" name=""> {{-- Inserir o name --}}
+                                <label for="street">Rua, Nº</label>
+                                <input type="text" class="form-control" id="street" name="street" value="{{Auth::user()->street}}" required>
                             </div>
                             <div class="row">
                                 <div class="col-6 mt-4">
-                                    <label for="">Bairro</label>
-                                    <input type="text" class="form-control" id="" name="" required> {{-- Inserir o name --}}
+                                    <label for="district">Bairro</label>
+                                    <input type="text" class="form-control" id="district" name="district"value="{{Auth::user()->district}}" required>
                                 </div>
                                 <div class="col-6 mt-4">
-                                    <label for="">Cidade</label>
-                                    <input type="text" class="form-control" id="" name="" required> {{-- Inserir o name --}}
+                                    <label for="city">Cidade</label>
+                                    <input type="text" class="form-control" id="city" name="city" value="{{Auth::user()->city}}" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6 mt-4">
-                                    <label for="">Estado</label>
-                                    <input type="text" class="form-control" id="" name="" required> {{-- Inserir o name --}}
+                                    <label for="state">Estado</label>
+                                    <input type="text" class="form-control" id="state" name="state" value="{{Auth::user()->state}}" required>
                                 </div>
                                 <div class="col-6 mt-4">
-                                    <label for="">CEP</label>
-                                    <input type="text" class="form-control" id="" name="" required> {{-- Inserir o name --}}
+                                    <label for="zip_code">CEP</label>
+                                    <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{Auth::user()->zip_code}}" required>
                                 </div>
                             </div>
                             <div class="text-center mt-4">
@@ -102,12 +102,13 @@
                         @csrf
                         <div class="form-group">
                             <div class="mt-4">
-                                <label for="">Vezes Que Cursou TCC</label>
-                                <input type="number" class="form-control w-auto" id="" name=""> {{-- Inserir o name --}}
+                                <label for="attended_count_tcc">Vezes Que Cursou TCC</label>
+                                <input type="number" class="form-control w-auto" id="attended_count_tcc" name="attended_count_tcc"
+                                    value="{{Auth::user()->attended_count_tcc}}" required>
                             </div>
                             <div class="mt-4">
-                                <label for="">Disciplinas Pendentes</label>
-                                <textarea class="form-control" id="" name="" cols="30" rows="5"></textarea> {{-- Inserir o name --}}
+                                <label for="missing_subjects">Disciplinas Pendentes</label>
+                                <textarea class="form-control" id="missing_subjects" name="missing_subjects" cols="30" rows="5">{{Auth::user()->missing_subjects}}"</textarea>
                             </div>
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn btn-success">ALTERAR</button>

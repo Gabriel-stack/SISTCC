@@ -38,27 +38,27 @@
                             <a class="nav-link @yield('dashboard')" aria-current="page"
                                 href="{{ route('professor.dashboard') }}">
                                 <i class="bi bi-house-door fs-4"></i>
-                                PAINEL INICIAL
+                                GESTÃO DE ALUNOS
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @yield('subject')" href="{{ route('professor.subject') }}">
+                            <a class="nav-link @yield('subject')" href="{{ route('professor.subjects') }}">
                                 <i class="bi bi-bookmarks fs-4"></i>
                                 GESTÃO DE TURMAS
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @yield('advisor')" href="{{ route('professor.advisor') }}">
+                            <a class="nav-link @yield('advisor')" href="{{ route('professor.advisors') }}">
                                 <i class="bi bi-person-video3 fs-4"></i>
                                 GESTÃO DE ORIENTADORES
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                        <a class="nav-link @yield('advisor')" href="{{ route('professor.teacher') }}">
-                            <i class="bi bi-person-workspace fs-4"></i>
-                            GESTÃO DE PROFESSORES
-                        </a>
-                    </li> --}}
+                        <li class="nav-item">
+                            <a class="nav-link @yield('professor')" href="{{ route('professor.professors') }}">
+                                <i class="bi bi-person-workspace fs-4"></i>
+                                GESTÃO DE PROFESSORES
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

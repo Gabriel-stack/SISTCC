@@ -16,9 +16,9 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        $subjects = Subject::paginate();
+        $subjects = Subject::paginate(10);
 
-        return view('professor.subject', compact('subjects'));
+        return view('professor.subjects', compact('subjects'));
     }
 
     /**
@@ -89,6 +89,6 @@ class SubjectController extends Controller
 
         $filters = $request->except('_token');
 
-        return view('professor.subject', compact('subjects', 'filters'));
+        return view('professor.subjects', compact('subjects', 'filters'));
     }
 }

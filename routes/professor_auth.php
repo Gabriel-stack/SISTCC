@@ -3,6 +3,7 @@
 use App\Http\Controllers\Professor\{
     AdvisorController,
     DashboardController,
+    ProfessorController,
     SubjectController,
 };
 use App\Http\Controllers\ProfessorAuth\{
@@ -18,51 +19,51 @@ use App\Http\Controllers\ProfessorAuth\{
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest:professor', 'prevent-back-history'])->prefix('professor')->name('professor.')->group(function () {
-    Route::get('/', function(){
+    Route::get('/', function () {
         return redirect()->route('professor.login');
     });
     Route::get('register', [RegisteredUserController::class, 'create'])
-                ->name('register');
+        ->name('register');
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
-                ->name('login');
+        ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-                ->name('password.request');
+        ->name('password.request');
 
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-                ->name('password.email');
+        ->name('password.email');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.update');
+        ->name('password.update');
 });
 
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-->name('password.reset');
+    ->name('password.reset');
 
 Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor')->name('professor.')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
-                ->name('verification.notice');
+        ->name('verification.notice');
 
     Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-                ->middleware(['signed', 'throttle:6,1'])
-                ->name('verification.verify');
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verification.verify');
 
     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-                ->middleware('throttle:6,1')
-                ->name('verification.send');
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
 
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
-                ->name('password.confirm');
+        ->name('password.confirm');
 
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+        ->name('logout');
 
 
 
@@ -75,9 +76,13 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
         Route::prefix('students')->name('student.')->group(function () {
             Route::get('search', 'search')->name('search');
 
-            // Route::post('disable', 'disable')->name('disable');
+            Route::post('destroy', 'destroy')->name('destroy');
 
-            // Route::post('active', 'active')->name('active');
+            Route::post('disable', 'disable')->name('disable');
+
+            Route::post('active', 'active')->name('active');
+
+            Route::post('show', 'show')->name('show');
         });
     });
 
@@ -96,7 +101,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
     // Turmas
     Route::prefix('subjects')->controller(SubjectController::class)->group(function () {
-        Route::get('', 'create')->name('subject');
+        Route::get('', 'create')->name('subjects');
 
         Route::name('subject.')->group(function () {
             Route::get('search', 'search')->name('search');
@@ -112,7 +117,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
     // Orientadores
     Route::prefix('advisors')->controller(AdvisorController::class)->group(function () {
-        Route::get('', 'create')->name('advisor');
+        Route::get('', 'create')->name('advisors');
 
         Route::name('advisor.')->group(function () {
             Route::get('search', 'search')->name('search');
@@ -120,6 +125,28 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
             Route::post('store', 'store')->name('store');
 
             Route::post('update', 'update')->name('update');
+
+            Route::post('destroy', 'destroy')->name('destroy');
+
+            Route::post('disable', 'disable')->name('disable');
+
+            Route::post('active', 'active')->name('active');
+        });
+    });
+
+
+    // Professores
+    Route::prefix('professors')->controller(ProfessorController::class)->group(function () {
+        Route::get('', 'create')->name('professors');
+
+        Route::name('professor.')->group(function () {
+            Route::get('search', 'search')->name('search');
+
+            Route::post('store', 'store')->name('store');
+
+            Route::post('update', 'update')->name('update');
+
+            Route::post('destroy', 'destroy')->name('destroy');
 
             Route::post('disable', 'disable')->name('disable');
 

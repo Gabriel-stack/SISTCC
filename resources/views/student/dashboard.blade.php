@@ -1,6 +1,6 @@
 @extends('student.templates.panel')
 
-@section('title', 'PÁGINA PRINCIPAL')
+@section('title', 'PAINEL')
 
 @section('container')
 

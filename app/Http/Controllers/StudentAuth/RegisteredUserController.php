@@ -36,6 +36,7 @@ class RegisteredUserController extends Controller
     {
         $data = $request->all();
         $data['password'] = Hash::make($request->password);
+        $data['active'] = true;
         $data['status'] = 'Cadastrado';
 
         $user = Student::create($data);

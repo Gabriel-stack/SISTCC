@@ -16,9 +16,9 @@ class AdvisorController extends Controller
      */
     public function create()
     {
-        $advisors = Advisor::paginate();
+        $advisors = Advisor::paginate(10);
 
-        return view('professor.advisor', compact('advisors'));
+        return view('professor.advisors', compact('advisors'));
     }
 
     /**
@@ -61,6 +61,23 @@ class AdvisorController extends Controller
         return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados do orientador!');
     }
 
+    public function destroy(Request $request)
+    {
+        $advisor = Advisor::findOrFail($request->id);
+
+        // if (Tcc::where('advisor_id', $advisor->id)->first()) { // Regra de exclusão de orientador.
+        //     return redirect()->back()->with('fail', 'O orientador não pode ser excluído porque está associado à algum reistro de aluno!');
+        // }
+
+        $advisor->delete();
+
+        if ($advisor) {
+            return redirect()->back()->with('success', 'O orientador foi excluído com sucesso!');
+        }
+
+        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar exlui o orientador!');
+    }
+
     public function disable(Request $request)
     {
         $advisor = Advisor::findOrFail($request->id);
@@ -99,6 +116,6 @@ class AdvisorController extends Controller
 
         $filters = $request->except('_token');
 
-        return view('professor.advisor', compact('advisors', 'filters'));
+        return view('professor.advisors', compact('advisors', 'filters'));
     }
 }
