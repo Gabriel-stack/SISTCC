@@ -58,11 +58,10 @@
                                     data-bs-target="#modal-destroy-student" data-student="{{ $student }}">
                                     <i class="bi bi-trash"></i>
                                 </button>
-                                <form action="{{ route('professor.student.show') }}" method="post">
-                                    @csrf
-                                    <input class="d-none" type="hidden" name="id" value="{{ $student->id }}">
+                                    {{-- <input class="d-none" type="hidden" name="id" value="{{ $student->id }}"> --}}
+
                                     <button class="btn btn-info" type="submit">
-                                        <i class="bi bi-eye"></i>
+                                        <a href="{{route('professor.student.show', ['student' => $student])}}"><i class="bi bi-eye"></i></a>
                                     </button>
                                 </form>
                             </td>

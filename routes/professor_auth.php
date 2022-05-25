@@ -82,7 +82,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
             Route::post('active', 'active')->name('active');
 
-            Route::post('show', 'show')->name('show');
+            Route::get('show/{student}', 'show')->name('show');
         });
     });
 

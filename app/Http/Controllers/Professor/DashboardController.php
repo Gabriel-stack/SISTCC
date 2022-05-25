@@ -49,7 +49,7 @@ class DashboardController extends Controller
      */
     public function show(Request $request)
     {
-        $student = Student::findOrFail($request->id);
+        $student = Student::findOrFail($request->student);
 
         return view('professor.progress', compact('student'));
     }

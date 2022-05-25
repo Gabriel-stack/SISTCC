@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <nav class="navbar navbar-dark bg-success fixed-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -64,11 +65,13 @@
             </div>
         </div>
     </nav>
-    <div class="container" style="padding-top: 80px">
+ <div class="bg-panel">
+    <div class="container" style="padding-top: 80px;">
         <h4 class="title">
             @yield('title')
         </h4>
 
         @yield('container')
+    </div>
     </div>
 @endsection

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->string('status');
             $table->string('name');
             $table->string('email');
