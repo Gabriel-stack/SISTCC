@@ -4,13 +4,13 @@
 @section('content')
     <div class="p-3">
         <div class="bg-white container rounded d-flex flex-column p-4 my-md-5">
+            @include('components.application-logo')
             @if ($errors->any())
                 @include('components.auth-validation-errors')
             @endif
             @include('components.fail')
             <a href="/"></a>
 
-            <h3 class="text-center fw-bold my-4">Cadastro de Aluno</h3>
 
             <form action="{{ route('student.register') }}" method="post">
                 @csrf

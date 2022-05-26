@@ -4,6 +4,7 @@
 @section('content')
 <div class="d-flex h-100 flex-column justify-content-center align-items-center">
     <div class="p-4 m-2 rounded bg-white">
+        @include('components.application-logo')
         <div class="mb-4 small">
             Esqueceu sua senha? Não tem problema. Basta nos informar seu e-mail e nós lhe enviaremos um link para
             redefinir sua senha.
