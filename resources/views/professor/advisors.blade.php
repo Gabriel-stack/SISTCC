@@ -56,18 +56,6 @@
                                     data-bs-target="#modal-update-advisor" data-advisor="{{ $advisor }}">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                @if ($advisor->active)
-                                    <button type="button" class="btn" style="background-color: #fd7e14;"
-                                        data-bs-toggle="modal" data-bs-target="#modal-disable-advisor"
-                                        data-advisor="{{ $advisor }}">
-                                        <i class="bi bi-person-dash"></i>
-                                    </button>
-                                @else
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#modal-active-advisor" data-advisor="{{ $advisor }}">
-                                        <i class="bi bi-person-check"></i>
-                                    </button>
-                                @endif
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#modal-destroy-advisor"data-advisor="{{ $advisor }}">
                                     <i class="bi bi-trash"></i>
@@ -77,8 +65,6 @@
                     @endforeach
                     @include('professor.components.advisor.modal_update_advisor')
                     @include('professor.components.advisor.modal_destroy_advisor')
-                    @include('professor.components.advisor.modal_disable_advisor')
-                    @include('professor.components.advisor.modal_active_advisor')
                 @elseif (isset($filters))
                     <tr>
                         <td class="text-center" colspan="7">NENHUM ORIENTADOR ENCONTRADO!</td>

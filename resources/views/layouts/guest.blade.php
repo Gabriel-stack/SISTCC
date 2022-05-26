@@ -24,7 +24,7 @@
 
 </head>
 
-<body class="bg-success">
+<body style="background-color: #18B644;">
     @yield('content')
     @isset($slot)
         {{ $slot }}

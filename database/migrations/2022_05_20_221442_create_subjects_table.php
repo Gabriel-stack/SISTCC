@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('semester');
-            $table->string('key');
+            $table->string('class');
+            $table->string('class_code');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();

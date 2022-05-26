@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Student\{
     DashboardController,
+    TccController,
 };
 use App\Http\Controllers\StudentAuth\{
     AuthenticatedSessionController,
@@ -67,6 +68,15 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
     // Painel de Controle
     Route::controller(DashboardController::class)->group(function () {
         Route::get('dashboard', 'index')->name('dashboard');
+    });
+
+    // painel de progresso
+    Route::controller(TccController::class)->group(function () {
+        Route::get('progress', 'index')->name('progress');
+        Route::get('progress/tcc', 'create')->name('progress.tcc');
+        Route::post('progress/tcc', 'store')->name('progress.tcc.store');
+        Route::get('progress/requirement', 'requirement')->name('progress.requirement');
+        Route::post('progress/requirement', 'requirementStore')->name('progress.requirement.store');
     });
 
 

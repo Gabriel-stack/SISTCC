@@ -34,7 +34,7 @@
                 <tr>
                     <th class="col-1">#</th>
                     <th class="col-2">TURMA</th>
-                    <th class="col-2">CHAVE</th>
+                    <th class="col-2">CÓDIGO</th>
                     <th class="col-3">DATA DE INÍCIO</th>
                     <th class="col-3">DATA DE TÉRMINO</th>
                     <th class="col-1">AÇÕES</th>

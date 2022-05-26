@@ -96,49 +96,10 @@ class ProfessorController extends Controller
         return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar exlui o professor!');
     }
 
-    public function disable(Request $request)
-    {
-        $professor = Professor::findOrFail($request->id);
-
-        // if () { // Regra de desativação de professor.
-        //     return redirect()->back()->with('fail', 'O professor não pode ser desativado porque ...!');
-        // }
-
-        $professor->update(['active' => false]);
-
-        if ($professor->id == Auth::guard('professor')->user()->id) {
-            Auth::guard('professor')->logout();
-
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-
-            return redirect()->route('professor.login');
-        }
-
-        if ($professor) {
-            return redirect()->back()->with('success', 'A conta do professor foi desativada com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar desativar a conta do professor!');
-    }
-
-    public function active(Request $request)
-    {
-        $professor = Professor::findOrFail($request->id);
-
-        $professor->update(['active' => true]);
-
-        if ($professor) {
-            return redirect()->back()->with('success', 'A conta do professor foi ativada com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar ativar a conta do professor!');
-    }
-
     public function search(Request $request)
     {
         if ($request->has('search')) {
-            $professors = Professor::where('name', 'LIKE', '%' . $request->search . '%')->paginate();
+            $professors = Professor::where('name', 'LIKE', '%' . $request->search . '%')->paginate(10);
         }
 
         $filters = $request->except('_token');

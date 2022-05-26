@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <nav class="navbar navbar-dark bg-success fixed-top">
+    <nav class="navbar navbar-dark fixed-top" style="background-color: #18B644;">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
@@ -26,40 +25,40 @@
                     </li>
                 </ul>
             </div>
-            <div class="offcanvas offcanvas-start bg-success" tabindex="-1" id="offcanvasNavbar"
+            <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header text-light">
+                <div class="offcanvas-header text-dark">
                     <h5 class="offcanvas-title text-center w-100" id="offcanvasNavbarLabel">SISTCC</h5>
-                    <button type="button" class="btn bi bi-x-lg fs-4 text-light" data-bs-dismiss="offcanvas"
+                    <button type="button" class="btn bi bi-x-lg fs-4 text-dark" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link @yield('dashboard')" aria-current="page"
+                            <a class="nav-link @yield('dashboard') text-dark" aria-current="page"
                                 href="{{ route('professor.dashboard') }}">
                                 <i class="bi bi-house-door fs-4"></i>
                                 GESTÃO DE ALUNOS
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @yield('subject')" href="{{ route('professor.subjects') }}">
+                            <a class="nav-link @yield('subject') text-dark" href="{{ route('professor.subjects') }}">
                                 <i class="bi bi-bookmarks fs-4"></i>
                                 GESTÃO DE TURMAS
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @yield('advisor')" href="{{ route('professor.advisors') }}">
+                            <a class="nav-link @yield('advisor') text-dark" href="{{ route('professor.advisors') }}">
                                 <i class="bi bi-person-video3 fs-4"></i>
                                 GESTÃO DE ORIENTADORES
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link @yield('professor')" href="{{ route('professor.professors') }}">
+                        {{-- <li class="nav-item">
+                            <a class="nav-link @yield('professor') text-dark" href="{{ route('professor.professors') }}">
                                 <i class="bi bi-person-workspace fs-4"></i>
                                 GESTÃO DE PROFESSORES
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>

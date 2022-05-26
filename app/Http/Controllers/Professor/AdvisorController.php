@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Professor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Professor\AdvisorRequest;
 use App\Models\Advisor;
+use App\Models\Tcc;
 use Illuminate\Http\Request;
 
 class AdvisorController extends Controller
@@ -65,9 +66,9 @@ class AdvisorController extends Controller
     {
         $advisor = Advisor::findOrFail($request->id);
 
-        // if (Tcc::where('advisor_id', $advisor->id)->first()) { // Regra de exclusão de orientador.
-        //     return redirect()->back()->with('fail', 'O orientador não pode ser excluído porque está associado à algum reistro de aluno!');
-        // }
+        if (Tcc::where('advisor_id', $advisor->id)->first()) { // Regra de exclusão de orientador.
+            return redirect()->back()->with('fail', 'O orientador não pode ser excluído porque está associado à algum reistro de aluno!');
+        }
 
         $advisor->delete();
 
@@ -78,40 +79,10 @@ class AdvisorController extends Controller
         return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar exlui o orientador!');
     }
 
-    public function disable(Request $request)
-    {
-        $advisor = Advisor::findOrFail($request->id);
-
-        // if (Tcc::where('advisor_id', $advisor->id)->first()) { // Regra de desativação de orientador.
-        //     return redirect()->back()->with('fail', 'O orientador não pode ser desativado porque está orientando algum aluno!');
-        // }
-
-        $advisor->update(['active' => false]);
-
-        if ($advisor) {
-            return redirect()->back()->with('success', 'O orientador foi desativado com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar desativar o orientador!');
-    }
-
-    public function active(Request $request)
-    {
-        $advisor = Advisor::findOrFail($request->id);
-
-        $advisor->update(['active' => true]);
-
-        if ($advisor) {
-            return redirect()->back()->with('success', 'O orientador foi ativado com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar ativar o orientador!');
-    }
-
     public function search(Request $request)
     {
         if ($request->has('search')) {
-            $advisors = Advisor::where('name', 'LIKE', '%' . $request->search . '%')->paginate();
+            $advisors = Advisor::where('name', 'LIKE', '%' . $request->search . '%')->paginate(10);
         }
 
         $filters = $request->except('_token');

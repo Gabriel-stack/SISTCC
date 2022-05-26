@@ -15,20 +15,20 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->boolean('active')->default(true);
-            $table->string('status');
-            $table->string('name');
-            $table->string('email');
-            $table->string('password');
-            $table->string('phone');
-            $table->text('missing_subjects');
-            $table->string('semester_origin');
-            $table->integer('attended_count_tcc');
-            $table->string('state');
-            $table->string('city');
-            $table->string('district');
-            $table->string('street');
-            $table->string('zip_code');
+            $table->boolean('active')->default(true); // Ativo - status do usuário no sistema
+            $table->string('status'); // Situação do usuário no sistema - cursando, reprovado, aprovado ...
+            $table->string('name'); // Nome
+            $table->string('email'); // E-mail
+            $table->string('password'); // Senha
+            $table->string('phone'); // Telefone
+            $table->text('missing_subjects'); // Disciplinas pendentes
+            $table->string('semester_origin'); // Semestre de origem
+            $table->integer('attended_count_tcc'); // Quantas vezes cursou TCC
+            $table->string('state'); // Estado
+            $table->string('city'); // Cidade
+            $table->string('district'); // Bairro
+            $table->string('street'); // Rua
+            $table->string('zip_code'); // CEP
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('student_histories', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_id');
-            $table->integer('subject_id');
-            $table->string('situation');
+            $table->foreignId('student_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('subject_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('stage')->default('Etapa 1'); // Etapa
+            $table->string('class_code')->nullable(); // Código de turma
             $table->timestamps();
         });
     }

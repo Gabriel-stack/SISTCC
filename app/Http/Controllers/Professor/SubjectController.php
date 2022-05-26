@@ -68,7 +68,7 @@ class SubjectController extends Controller
     {
         $subject = Subject::findOrFail($request->id);
 
-        if (now()->gte($subject->end_date)) { // Regra de exclusão de turma.
+        if (now()->gte($subject->start_date)) { // Regra de exclusão de turma.
             return redirect()->back()->with('fail', 'A turma não pode ser excluída porque o semestre já está em andamento!');
         }
 
@@ -84,7 +84,7 @@ class SubjectController extends Controller
     public function search(Request $request)
     {
         if ($request->has('search')) {
-            $subjects = Subject::where('semester', 'LIKE', '%' . $request->search . '%')->paginate();
+            $subjects = Subject::where('semester', 'LIKE', '%' . $request->search . '%')->paginate(10);
         }
 
         $filters = $request->except('_token');

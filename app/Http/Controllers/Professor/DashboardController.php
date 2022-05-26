@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Professor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use App\Models\StudentHistory;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,7 +16,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $students = Student::paginate();
+        $students = Student::paginate(10);
 
         return view('professor.dashboard', compact('students'));
     }
@@ -77,55 +78,25 @@ class DashboardController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
+    public function remove(Request $request)
     {
-        $student = Student::findOrFail($request->id);
+        $studentHistory = StudentHistory::where('subject_id', $request->subject_id)
+                                            ->where('student_id', $request->student_id)
+                                            ->first();
 
-        $student->delete();
+        $studentHistory->delete();
 
-        if ($student) {
-            return redirect()->back()->with('success', 'O aluno foi excluído com sucesso!');
+        if ($studentHistory) {
+            return redirect()->back()->with('success', 'A conta do aluno foi removido com sucesso!');
         }
 
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar excluir o aluno!');
-    }
-
-    public function disable(Request $request)
-    {
-        $student = Student::findOrFail($request->id);
-
-        $student->update(['active' => false]);
-
-        if ($student) {
-            return redirect()->back()->with('success', 'A conta do aluno foi desativado com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar desativar a conta do aluno!');
-    }
-
-    public function active(Request $request)
-    {
-        $student = Student::findOrFail($request->id);
-
-        $student->update(['active' => true]);
-
-        if ($student) {
-            return redirect()->back()->with('success', 'A conta do aluno foi ativada com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar ativar a conta do aluno!');
+        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar remover a conta do aluno!');
     }
 
     public function search(Request $request)
     {
         if ($request->has('search')) {
-            $students = Student::where('name', 'LIKE', '%' . $request->search . '%')->paginate();
+            $students = Student::where('name', 'LIKE', '%' . $request->search . '%')->paginate(10);
         }
 
         $filters = $request->except('_token');

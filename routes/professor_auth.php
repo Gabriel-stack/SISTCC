@@ -76,11 +76,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
         Route::prefix('students')->name('student.')->group(function () {
             Route::get('search', 'search')->name('search');
 
-            Route::post('destroy', 'destroy')->name('destroy');
-
-            Route::post('disable', 'disable')->name('disable');
-
-            Route::post('active', 'active')->name('active');
+            Route::post('remove', 'remove')->name('remove');
 
             Route::get('show/{student}', 'show')->name('show');
         });
@@ -127,10 +123,6 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
             Route::post('update', 'update')->name('update');
 
             Route::post('destroy', 'destroy')->name('destroy');
-
-            Route::post('disable', 'disable')->name('disable');
-
-            Route::post('active', 'active')->name('active');
         });
     });
 
@@ -147,10 +139,6 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
             Route::post('update', 'update')->name('update');
 
             Route::post('destroy', 'destroy')->name('destroy');
-
-            Route::post('disable', 'disable')->name('disable');
-
-            Route::post('active', 'active')->name('active');
         });
     });
 });

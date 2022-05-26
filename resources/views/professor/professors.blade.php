@@ -50,18 +50,6 @@
                                     data-bs-target="#modal-update-professor" data-professor="{{ $professor }}">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                @if ($professor->active)
-                                    <button type="button" class="btn" style="background-color: #fd7e14;"
-                                        data-bs-toggle="modal" data-bs-target="#modal-disable-professor"
-                                        data-professor="{{ $professor }}">
-                                        <i class="bi bi-person-dash"></i>
-                                    </button>
-                                @else
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#modal-active-professor" data-professor="{{ $professor }}">
-                                        <i class="bi bi-person-check"></i>
-                                    </button>
-                                @endif
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#modal-destroy-professor" data-professor="{{ $professor }}">
                                     <i class="bi bi-trash"></i>
@@ -71,8 +59,6 @@
                     @endforeach
                     @include('professor.components.professor.modal_update_professor')
                     @include('professor.components.professor.modal_destroy_professor')
-                    @include('professor.components.professor.modal_disable_professor')
-                    @include('professor.components.professor.modal_active_professor')
                 @elseif (isset($filters))
                     <tr>
                         <td class="text-center" colspan="7">NENHUM ORIENTADOR ENCONTRADO!</td>

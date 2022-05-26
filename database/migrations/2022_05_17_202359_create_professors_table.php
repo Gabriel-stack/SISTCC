@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('professors', function (Blueprint $table) {
             $table->id();
             $table->boolean('active')->default(true);
+            $table->integer('subject_id')->nullable();
             $table->string('name');
             $table->string('email');
             $table->string('password');
