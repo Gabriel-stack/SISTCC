@@ -35,7 +35,7 @@
                     <th class="col-1">#</th>
                     <th class="col-3">NOME</th>
                     <th class="col">E-MAIL</th>
-                    <th class="col-2">AÇÕES</th>
+                    <th class="col-1">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
