@@ -4,9 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\Professor;
 use App\Models\Student;
+use App\Models\StudentHistory;
 use App\Models\Subject;
+use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use Mockery\Matcher\Subset;
@@ -43,7 +46,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
         ]);
        Subject::factory()->count(30)->create();
-        Student::factory()->count(30)->create();
+       Student::factory()->count(30)->create();
+        StudentHistory::factory()->count(30)->create();
+       
     }
 }
 

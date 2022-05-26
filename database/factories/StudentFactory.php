@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -20,7 +21,7 @@ class StudentFactory extends Factory
     {
         return [
             'active' => true,
-            'status' => true,
+            'status' => Arr::random(['cursando', 'aprovado', 'reprovado']),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),

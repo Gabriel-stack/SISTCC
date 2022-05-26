@@ -84,7 +84,7 @@ class SubjectController extends Controller
     public function search(Request $request)
     {
         if ($request->has('search')) {
-            $subjects = Subject::where('semester', 'LIKE', '%' . $request->search . '%')->paginate(10);
+            $subjects = Subject::where('class', 'LIKE', '%' . $request->search . '%')->paginate(10);
         }
 
         $filters = $request->except('_token');

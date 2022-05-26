@@ -8,7 +8,7 @@
     @include('components.fail')
     @include('components.auth-validation-errors')
 
-    <div class="row p-3 g-0 bg-white" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+    <div class="row p-3 g-0 bg-white box-shadow">
         <div class="col-12 col-sm-6 col-md-3 mt-2">
             <span>Nome</span>
             <span class="form-control">{{ $student->name }}</span>

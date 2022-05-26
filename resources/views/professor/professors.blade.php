@@ -10,7 +10,7 @@
     @include('components.fail')
     @include('components.auth-validation-errors')
 
-    <div class="my-5 row justify-content-between align-items-center">
+    <div class="my-5 py-4 row bg-white rounded-2 box-shadow justify-content-between align-items-center">
         <form class="d-flex col" role="search" action="{{ route('professor.professor.search') }}" method="get">
 
             <input class="form-control w-auto me-2" type="search" name="search" placeholder="Search" aria-label="Search">

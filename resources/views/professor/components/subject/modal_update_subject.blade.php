@@ -48,8 +48,8 @@
         let button = $(event.relatedTarget);
         let subject = button.data('subject');
         document.querySelector('#update-id').value = subject.id;
-        document.querySelector('#update-semester').value = subject.semester;
-        document.querySelector('#update-key').value = subject.key;
+        document.querySelector('#update-semester').value = subject.class;
+        document.querySelector('#update-key').value = subject.class_code;
         document.querySelector('#update-start_date').value = subject.start_date;
         document.querySelector('#update-end_date').value = subject.end_date;
     });
