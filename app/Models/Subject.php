@@ -15,8 +15,8 @@ class Subject extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'semester',
-        'key',
+        'class',
+        'class_code',
         'start_date',
         'end_date',
     ];
