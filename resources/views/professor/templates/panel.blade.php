@@ -64,7 +64,7 @@
         </div>
     </div>
 </nav>
-<div class="bg-panel h-100">
+<div class="bg-gray h-100">
     <div class="container" style="padding-top: 80px;">
         <h4 class="title">
             @yield('title')
