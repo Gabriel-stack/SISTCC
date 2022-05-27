@@ -15,12 +15,12 @@
 
                     <div class="col-8 my-2">
                         <label class="form-label">TURMA</label>
-                        <input class="form-control" id="update-semester" type="text" name="semester" required>
+                        <input class="form-control" id="update-class" type="text" name="class" required>
                     </div>
 
                     <div class="col-4 my-2">
                         <label class="form-label">CHAVE</label>
-                        <input class="form-control" id="update-key" type="text" name="key" required>
+                        <input class="form-control" id="update-class_code" type="text" name="class_code" required>
                     </div>
 
                     <div class="col-6 my-2">
@@ -48,8 +48,8 @@
         let button = $(event.relatedTarget);
         let subject = button.data('subject');
         document.querySelector('#update-id').value = subject.id;
-        document.querySelector('#update-semester').value = subject.class;
-        document.querySelector('#update-key').value = subject.class_code;
+        document.querySelector('#update-class').value = subject.class;
+        document.querySelector('#update-class_code').value = subject.class_code;
         document.querySelector('#update-start_date').value = subject.start_date;
         document.querySelector('#update-end_date').value = subject.end_date;
     });

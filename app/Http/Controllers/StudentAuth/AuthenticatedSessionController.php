@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\StudentAuth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StudentAuth\LoginRequest;
+use App\Http\Requests\Student\LoginRequest;
 use App\Models\Student;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;

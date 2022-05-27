@@ -24,8 +24,8 @@ class SubjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'semester' => ['required'],
-            'key' => ['required'],
+            'class' => ['required'],
+            'class_code' => ['required'],
             'start_date' => ['required'],
             'end_date' => ['required'],
         ];

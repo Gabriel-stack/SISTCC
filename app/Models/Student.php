@@ -52,4 +52,14 @@ class Student extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function tccs(){
+        return $this->belongsToMany(Tcc::class);
+    }
+
+    public function studentHistory()
+    {
+        return $this->hasMany(StudentHistory::class);
+    }
 }

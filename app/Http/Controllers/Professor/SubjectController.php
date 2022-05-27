@@ -29,13 +29,16 @@ class SubjectController extends Controller
      */
     public function store(SubjectRequest $request)
     {
-        $subject = Subject::create($request->all());
-
-        if ($subject) {
-            return redirect()->back()->with('success', 'A turma foi criada com sucesso!');
+        if (Subject::where('active', '1')->first()) {
+            return back()->with('fail', 'Você já possui uma turma ativa!');
         }
+        
+        $data = $request->all();
+        $subject = Subject::create($data);
 
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar criar a turma!');
+        return $subject ? back()->with('success', 'A turma foi criada com sucesso!') 
+                : back()->with('fail', 'Ocorreu algum problema ao tentar criar a turma!');
+         
     }
 
     /**
@@ -51,11 +54,8 @@ class SubjectController extends Controller
 
         $subject->update($request->all());
 
-        if ($subject) {
-            return redirect()->back()->with('success', 'Os dados da turma foram alterados com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados da turma!');
+        return $subject? back()->with('success', 'Os dados da turma foram alterados com sucesso!')
+            :back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados da turma!');
     }
 
     /**
@@ -74,11 +74,8 @@ class SubjectController extends Controller
 
         $subject->delete();
 
-        if ($subject) {
-            return redirect()->back()->with('success', 'A turma foi excluída com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar excluir a turma!');
+        return $subject ? back()->with('success', 'A turma foi excluída com sucesso!')
+                        : back()->with('fail', 'Ocorreu algum problema ao tentar excluir a turma!');
     }
 
     public function search(Request $request)

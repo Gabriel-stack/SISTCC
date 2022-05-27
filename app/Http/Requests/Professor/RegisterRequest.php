@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\ProfessorAuth;
+namespace App\Http\Requests\Professor;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;

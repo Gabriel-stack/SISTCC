@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\ProfessorAuth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProfessorAuth\RegisterRequest;
+use App\Http\Requests\Professor\RegisterRequest;
 use App\Models\Professor;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;

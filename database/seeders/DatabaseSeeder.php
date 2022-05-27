@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'gabriel.alves@ifsertao-pe.edu.br',
             'password' => Hash::make('12345678'),
         ]);
-       Subject::factory()->count(30)->create();
+       Subject::factory()->count(1)->create();
        Student::factory()->count(30)->create();
         StudentHistory::factory()->count(30)->create();
         Advisor::factory()->count(30)->create();

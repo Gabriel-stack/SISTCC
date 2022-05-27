@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Professor;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProfessorAuth\RegisterRequest;
+use App\Http\Requests\Professor\RegisterRequest;
 use App\Models\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,16 +30,12 @@ class ProfessorController extends Controller
      */
     public function store(RegisterRequest $request)
     {
+        
         $data = $request->all();
-        $data['active'] = true;
-
         $professor = Professor::create($data);
 
-        if ($professor) {
-            return redirect()->back()->with('success', 'O professor foi cadastrado com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar cadastrar o professor!');
+        return $professor ? back()->with('success', 'O professor foi cadastrado com sucesso!')
+                        : back()->with('fail', 'Ocorreu algum problema ao tentar cadastrar o professor!');
     }
 
     /**
@@ -55,11 +51,8 @@ class ProfessorController extends Controller
 
         $professor->update($request->all());
 
-        if ($professor) {
-            return redirect()->back()->with('success', 'Os dados do professor foram alterados com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados do professor!');
+        return $professor ? back()->with('success', 'Os dados do professor foram alterados com sucesso!')
+                        : back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados do professor!');
     }
 
     /**
@@ -89,11 +82,8 @@ class ProfessorController extends Controller
             return redirect()->route('professor.login');
         }
 
-        if ($professor) {
-            return redirect()->back()->with('success', 'O professor foi excluído com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar exlui o professor!');
+        return $professor ? back()->with('success', 'O professor foi excluído com sucesso!')
+                        : back()->with('fail', 'Ocorreu algum problema ao tentar exlui o professor!');
     }
 
     public function search(Request $request)

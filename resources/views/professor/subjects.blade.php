@@ -31,12 +31,13 @@
 <div class="overflow-auto my-5">
     <table class="table table-light">
         <thead class="table-success">
-            <tr>
+            <tr class="text-start">
                 <th class="col-1">#</th>
                 <th class="col-2">TURMA</th>
                 <th class="col-2">CÓDIGO</th>
                 <th class="col-3">DATA DE INÍCIO</th>
                 <th class="col-3">DATA DE TÉRMINO</th>
+                <th class="col-3">SITUAÇÃO</th>
                 <th class="col-1">AÇÕES</th>
             </tr>
         </thead>
@@ -49,6 +50,7 @@
                 <td>{{ $subject->class_code }}</td>
                 <td>{{ @datebr($subject->start_date)}}</td>
                 <td>{{ @datebr($subject->end_date) }}</td>
+                <td>{{ $subject->situation }}</td>
                 <td class="d-flex gap-1">
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                         data-bs-target="#modal-update-subject" data-subject="{{ $subject }}">

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('class_code');
             $table->date('start_date');
             $table->date('end_date');
+            $table->enum('situation', ['ativa', 'encerrada'])->default('ativa');
             $table->timestamps();
         });
     }

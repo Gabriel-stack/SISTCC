@@ -19,5 +19,18 @@ class Subject extends Model
         'class_code',
         'start_date',
         'end_date',
+        'situation',
     ];
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function studentHistories()
+    {
+        return $this->belongsToMany(StudentHistory::class);
+    }
+
+
 }

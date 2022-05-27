@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Student\TccRequest;
 use App\Models\Advisor;
+use App\Models\Student;
+use App\Models\StudentHistory;
 use App\Models\Tcc;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TccController extends Controller
 {
@@ -36,21 +40,16 @@ class TccController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TccRequest $request)
     {
-        $tcc = Tcc::create([
-            'student_id' => auth()->user()->id,
-            'advisor_id' => $request->advisor,
-            'subject' => 1,
-            'theme' => $request->theme,
-            'title' => $request->title,
-            'ethics_committee' => $request->ethics_committee,
-            'term_commitment' => $request->file('term_commitment')
-                ->store('tccs/' . auth()->user()->id),
-            'date_claim' => $request->date_claim,
-            'file_tcc' => $request->file('file_tcc')
-                ->store('tccs/' . auth()->user()->id),
-        ]);
+        $data = $request->all();
+        $data['advisor_id'] = $request->advisor;
+        $data['student_id'] = Auth::user()->id;
+        $data['subject_id'] = StudentHistory::query(function($query){
+            $query->where('student_id', Auth::user()->id)->pluck('subject_id');
+        })->first();
+        dd($data);
+        $tcc = Tcc::create($data);
 
         if (!$tcc) {
             return redirect()->back()->with('fail', 'Erro ao cadastrar TCC');
@@ -58,6 +57,11 @@ class TccController extends Controller
         return redirect()->back()->with('success', 'TCC cadastrado com sucesso!');
     }
 
+
+
+    public function requirement(){
+        return view('student.tcc.requirement');
+    }
     /**
      * Display the specified resource.
      *

@@ -30,4 +30,20 @@ class Tcc extends Model
         'file_tcc',
         'members',
     ];
+
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+
+    public function advisor()
+    {
+        return $this->hasOne(Advisor::class);
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 }

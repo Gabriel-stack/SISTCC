@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@section('styles')
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
+</style>
+@endsection
 
 @section('content')
 <nav class="navbar navbar-dark fixed-top" style="background-color: #18B644;">
@@ -64,13 +71,12 @@
         </div>
     </div>
 </nav>
-<div class="bg-gray h-100">
-    <div class="container" style="padding-top: 80px;">
-        <h4 class="title">
-            @yield('title')
-        </h4>
+<div class="container" style="padding-top: 80px;">
+    <h4 class="title">
+        @yield('title')
+    </h4>
 
-        @yield('container')
-    </div>
+    @yield('container')
 </div>
+
 @endsection

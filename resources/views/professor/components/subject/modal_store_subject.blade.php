@@ -13,12 +13,12 @@
 
                     <div class="col-8 my-2">
                         <label class="form-label">TURMA</label>
-                        <input class="form-control" type="text" name="semester" required>
+                        <input class="form-control" type="text" name="class" required>
                     </div>
 
                     <div class="col-4 my-2">
                         <label class="form-label">CHAVE</label>
-                        <input class="form-control" type="text" name="key" required>
+                        <input class="form-control" type="text" name="class_code" required>
                     </div>
 
                     <div class="col-6 my-2">

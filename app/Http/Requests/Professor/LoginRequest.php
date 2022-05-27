@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\ProfessorAuth;
+namespace App\Http\Requests\Professor;
 
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;

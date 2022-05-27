@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\StudentAuth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StudentAuth\RegisterRequest;
+use App\Http\Requests\Student\RegisterRequest;
 use App\Models\Student;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -36,9 +36,6 @@ class RegisteredUserController extends Controller
     {
         $data = $request->all();
         $data['password'] = Hash::make($request->password);
-        $data['active'] = true;
-        $data['status'] = 'Cadastrado';
-
         $user = Student::create($data);
 
         event(new Registered($user));

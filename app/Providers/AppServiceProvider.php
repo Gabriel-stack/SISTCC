@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+        
         Blade::directive('datebr', function ($expression) {
             return "(new DateTime($expression))->format('d/m/Y')";
         });

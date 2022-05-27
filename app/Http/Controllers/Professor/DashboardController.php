@@ -81,16 +81,13 @@ class DashboardController extends Controller
     public function remove(Request $request)
     {
         $studentHistory = StudentHistory::where('subject_id', $request->subject_id)
-                                            ->where('student_id', $request->student_id)
-                                            ->first();
+                                        ->where('student_id', $request->student_id)
+                                        ->first();
 
         $studentHistory->delete();
 
-        if ($studentHistory) {
-            return redirect()->back()->with('success', 'A conta do aluno foi removido com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar remover a conta do aluno!');
+        return $studentHistory ? back()->with('success', 'A conta do aluno foi removido com sucesso!')
+                            : back()->with('fail', 'Ocorreu algum problema ao tentar remover a conta do aluno!');
     }
 
     public function search(Request $request)

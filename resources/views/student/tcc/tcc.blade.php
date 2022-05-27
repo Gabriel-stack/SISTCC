@@ -4,8 +4,8 @@
 
 @section('container')
 @include('components.success')
-    @include('components.fail')
-    @include('components.auth-validation-errors')
+@include('components.fail')
+@include('components.auth-validation-errors')
 
 <form class="container" action="{{ route('student.progress.tcc.store') }}" method="POST" enctype="multipart/form-data">
     @csrf

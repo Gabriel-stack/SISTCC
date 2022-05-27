@@ -23,6 +23,7 @@ class SubjectFactory extends Factory
             'class_code' => Str::random(5), 
             'start_date' => now(),
             'end_date' => $this->faker->dateTimeBetween('+4 months', '+5 months'),
+            'situation' => $this->faker->randomElement(['ativa', 'encerrada']),
         ];
     }
 

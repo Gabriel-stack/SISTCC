@@ -22,4 +22,8 @@ class Advisor extends Model
         'titration',
         'organ',
     ];
+
+
+   
+
 }

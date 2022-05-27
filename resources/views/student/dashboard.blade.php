@@ -16,7 +16,7 @@
 <div class="my-3">
     <h3 class="d-inline fw-bold">Turmas disponíveis</h3>
     <div class="d-flex py-3">
-        <div class="card student-subjects">
+        <div class="card student-subjects box-shadow">
             <div class="card-body">
                 <h3 class="card-title">2022.1</h3>
                 <p class="card-text">cursando</p>
@@ -31,7 +31,7 @@
 <div class="my-3">
     <h3 class="d-inline fw-bold">Turmas passadas</h3>
     <div class="d-flex py-3">
-        <div class="card student-subjects">
+        <div class="card student-subjects box-shadow">
             <div class="card-body">
                 <h3 class="card-title">2022.1</h3>
                 <p class="card-text">cursando</p>
