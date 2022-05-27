@@ -28,7 +28,6 @@
     <h4 class="title">
         @yield('title')
     </h4>
-
     @yield('container')
 </div>
 @endsection

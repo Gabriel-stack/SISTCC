@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advisor;
+use App\Models\Tcc;
 use Illuminate\Http\Request;
 
 class TccController extends Controller
@@ -24,7 +26,8 @@ class TccController extends Controller
      */
     public function create()
     {
-        return view('student.tcc.tcc');
+        $advisors = Advisor::all();
+        return view('student.tcc.tcc', compact('advisors'));
     }
 
     /**
@@ -35,7 +38,24 @@ class TccController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $tcc = Tcc::create([
+            'student_id' => auth()->user()->id,
+            'advisor_id' => $request->advisor,
+            'subject' => 1,
+            'theme' => $request->theme,
+            'title' => $request->title,
+            'ethics_committee' => $request->ethics_committee,
+            'term_commitment' => $request->file('term_commitment')
+                ->store('tccs/' . auth()->user()->id),
+            'date_claim' => $request->date_claim,
+            'file_tcc' => $request->file('file_tcc')
+                ->store('tccs/' . auth()->user()->id),
+        ]);
+
+        if (!$tcc) {
+            return redirect()->back()->with('fail', 'Erro ao cadastrar TCC');
+        }
+        return redirect()->back()->with('success', 'TCC cadastrado com sucesso!');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Advisor;
 use App\Models\Professor;
 use App\Models\Student;
 use App\Models\StudentHistory;
@@ -48,6 +49,7 @@ class DatabaseSeeder extends Seeder
        Subject::factory()->count(30)->create();
        Student::factory()->count(30)->create();
         StudentHistory::factory()->count(30)->create();
+        Advisor::factory()->count(30)->create();
        
     }
 }
