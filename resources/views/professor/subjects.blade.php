@@ -47,8 +47,8 @@
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $subject->class }}</td>
                 <td>{{ $subject->class_code }}</td>
-                <td>{{ date('d/m/Y', strtotime($subject->start_date)), }}</td>
-                <td>{{ date('d/m/Y', strtotime($subject->end_date)) }}</td>
+                <td>{{ @datebr($subject->start_date)}}</td>
+                <td>{{ @datebr($subject->end_date) }}</td>
                 <td class="d-flex gap-1">
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                         data-bs-target="#modal-update-subject" data-subject="{{ $subject }}">

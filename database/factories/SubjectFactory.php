@@ -20,9 +20,9 @@ class SubjectFactory extends Factory
     {
         return [
             'class' => $this->faker->word(),
-            'class_code' => Str::random(5),
-            'start_date' => $this->faker->dateTimeBetween('now', '+1 year'),
-            'end_date' => $this->faker->dateTimeBetween('now', '+1 year'),
+            'class_code' => Str::random(5), 
+            'start_date' => now(),
+            'end_date' => $this->faker->dateTimeBetween('+4 months', '+5 months'),
         ];
     }
 
