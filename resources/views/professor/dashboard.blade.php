@@ -76,7 +76,7 @@
                 <td>{{ $student->email }}</td>
                 <td></td>
                 <td>{{ $student->status }}</td>
-                <td>{{$student->tccs->stage}}</td>
+                {{-- <td>{{$student->tccs->stage}}</td> --}}
                 <td class="d-flex gap-1">
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                         data-bs-target="#modal-remove-student"

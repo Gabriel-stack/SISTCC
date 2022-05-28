@@ -17,7 +17,7 @@ class StudentHistory extends Model
     protected $fillable = [
         'student_id',
         'subject_id',
-        'situation',
+        'tcc_id',
     ];
 
     public function student()

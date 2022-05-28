@@ -19,7 +19,8 @@ class Subject extends Model
         'class_code',
         'start_date',
         'end_date',
-        'situation',
+        'close_date',
+        'is_active',
     ];
 
     public function tcc(){

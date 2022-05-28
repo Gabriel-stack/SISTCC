@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->boolean('active')->default(true); // Ativo - status do usuário no sistema
-            $table->string('status'); // Situação do usuário no sistema - cursando, reprovado, aprovado ...
             $table->string('name'); // Nome
             $table->string('email'); // E-mail
             $table->string('password'); // Senha

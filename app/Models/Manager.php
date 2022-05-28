@@ -8,28 +8,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Student extends Authenticatable
+class Manager extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $guard = 'professor';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'professor_id',
+        'user_type',
         'password',
-        'phone',
-        'semester_origin',
-        'attended_count_tcc',
-        'missing_subjects',
-        'state',
-        'city',
-        'district',
-        'street',
-        'zip_code',
     ];
 
     /**
@@ -50,14 +42,4 @@ class Student extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-
-    public function tccs(){
-        return $this->hasMany(Tcc::class);
-    }
-
-    public function studentHistory()
-    {
-        return $this->hasMany(StudentHistory::class);
-    }
 }

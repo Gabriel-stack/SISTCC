@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('tccs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do estudante
-            $table->foreignId('advisor_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do orientador
-            $table->foreignId('subject_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id da turma
-            $table->enum('stage',['etapa 1', 'etapa 2', 'etapa 3'])->default('etapa 1'); // Etapa do TCC
+            $table->foreignId('professor_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do orientador
+            $table->enum('stage',['Etapa 1', 'Etapa 2', 'Etapa 3'])->default('Etapa 1'); // Etapa do TCC
+            $table->enum('situation',['Cursando', 'Em análise', 'Devolvido', 'Aprovado', 'Reprovado'])->default('Cursando'); // Status do TCC
             $table->string('theme'); // Tema
             $table->string('title'); // Título
             $table->boolean('ethics_committee'); // Comitê de ética

@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
+            // $table->foreignId('course_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('class');
             $table->string('class_code');
             $table->date('start_date');
             $table->date('end_date');
-            $table->enum('situation', ['ativa', 'encerrada'])->default('ativa');
+            $table->date('close_date');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

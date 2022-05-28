@@ -10,9 +10,8 @@ class Tcc extends Model
     use HasFactory;
 
     protected $fillable = [
-        'student_id',
-        'advisor_id',
-        'subject_id',
+        'professor_id',
+        'situation',
         'stage',
         'theme',
         'title',

@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('advisors', function (Blueprint $table) {
+        Schema::create('managers', function (Blueprint $table) {
             $table->id();
-            $table->boolean('active')->default(true);
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('titration');
-            $table->string('organ');
+            $table->foreignId('professor_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->enum('user_type',['professor', 'coordinator']);
+            $table->string('password');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('advisors');
+        Schema::dropIfExists('managers');
     }
 };

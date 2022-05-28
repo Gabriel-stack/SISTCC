@@ -19,7 +19,6 @@ class DashboardController extends Controller
     public function index()
     {
         $students = Student::with('tccs')->where('status', 'cursando')->paginate(10);
-        dd($students[0]);
         $advisors = Advisor::all();
         return view('professor.dashboard', compact('students', 'advisors'));
     }
