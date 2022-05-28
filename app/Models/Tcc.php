@@ -39,7 +39,7 @@ class Tcc extends Model
 
     public function advisor()
     {
-        return $this->hasOne(Advisor::class);
+        return $this->belongsTo(Advisor::class);
     }
 
     public function subject()

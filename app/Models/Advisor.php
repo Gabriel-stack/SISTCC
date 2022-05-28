@@ -23,7 +23,9 @@ class Advisor extends Model
         'organ',
     ];
 
-
+    public function tcc(){
+        return $this->belongsToMany(Tcc::class);
+    }
    
 
 }

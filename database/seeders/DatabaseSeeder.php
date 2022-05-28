@@ -7,13 +7,9 @@ use App\Models\Professor;
 use App\Models\Student;
 use App\Models\StudentHistory;
 use App\Models\Subject;
-use Faker\Factory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Tcc;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Schema;
-use Mockery\Matcher\Subset;
 
 class DatabaseSeeder extends Seeder
 {
@@ -68,11 +64,26 @@ class DatabaseSeeder extends Seeder
             'email' => 'yslandio.souza@aluno.ifsertao-pe.edu.br',
             'password' => Hash::make('12345678'),
         ]);
-       Subject::factory()->count(1)->create();
-       Student::factory()->count(30)->create();
-        StudentHistory::factory()->count(30)->create();
-        Advisor::factory()->count(30)->create();
-       
+       $subject = Subject::factory()->count(1)->create();
+       $student = Student::factory()->count(30)->create();
+        $advisor = Advisor::factory()->count(30)->create();
+       $studentHistory =  StudentHistory::factory(30)->make()->each(function($history) use ($student, $subject) {
+            $history->student_id = $student->random()->id;
+            $history->subject_id = $subject->random()->id;
+        });
+
+        StudentHistory::insert($studentHistory->toArray());
+
+        $tcc = Tcc::factory(5)->make()->each(function($tcc) use ($student, $advisor, $subject) {
+            $tcc->student_id = $student->random()->id;
+            $tcc->advisor_id = $advisor->random()->id;
+            $tcc->subject_id = $subject->random()->id;
+        });
+
+        $tcc->each(function($tcc) {
+             Tcc::create($tcc->toArray());
+        });
+        
     }
 }
 

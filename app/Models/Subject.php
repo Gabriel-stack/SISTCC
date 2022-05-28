@@ -22,9 +22,8 @@ class Subject extends Model
         'situation',
     ];
 
-    public function students()
-    {
-        return $this->hasMany(Student::class);
+    public function tcc(){
+        return $this->belongsToMany(Tcc::class);
     }
 
     public function studentHistories()

@@ -22,8 +22,7 @@ class StudentHistoryFactory extends Factory
     public function definition()
     {
         return [
-            'subject_id' => $this->faker->randomElement(Subject::pluck('id')),
-            'student_id' => $this->faker->randomElement(Student::pluck('id')),
+
         ];
     }
 

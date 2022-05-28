@@ -18,7 +18,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $students = Student::paginate(10);
+        $students = Student::with('tccs')->where('status', 'cursando')->paginate(10);
+        dd($students[0]);
         $advisors = Advisor::all();
         return view('professor.dashboard', compact('students', 'advisors'));
     }
@@ -94,9 +95,9 @@ class DashboardController extends Controller
 
     public function search(Request $request)
     {
-        $students::DB
-        $filters = $request->except('_token');
-        $advisors = Advisor::all();
-        return view('professor.dashboard', compact('students', 'filters', 'advisors'));
+        // $students::DB
+        // $filters = $request->except('_token');
+        // $advisors = Advisor::all();
+        // return view('professor.dashboard', compact('students', 'filters', 'advisors'));
     }
 }

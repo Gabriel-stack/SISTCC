@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do estudante
             $table->foreignId('advisor_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do orientador
             $table->foreignId('subject_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id da turma
-            $table->enum('stage',['etapa 1', 'etapa 2', 'etapa 3', 'etapa 4'])->default('etapa 1'); // Etapa do TCC
+            $table->enum('stage',['etapa 1', 'etapa 2', 'etapa 3'])->default('etapa 1'); // Etapa do TCC
             $table->string('theme'); // Tema
             $table->string('title'); // Título
             $table->boolean('ethics_committee'); // Comitê de ética
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('result_ethic_committee')->nullable(); // Parecer do comitê de ética
             $table->string('proof_article_submission')->nullable(); // Comprovante de submissão de artigo
             $table->string('consent_advisor')->nullable(); // Anuência do orientador
-            $table->string('file_tcc'); // TCC
+            $table->string('file_tcc')->nullable(); // TCC
             $table->json('members')->nullable(); // Membros da banca
             $table->timestamps();
         });
