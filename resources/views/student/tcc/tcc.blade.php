@@ -1,6 +1,6 @@
 @extends('student.templates.panel')
 
-@section('title', 'Cadastro de TCC')
+@section('title', 'CADASTRO DE TCC')
 
 @section('container')
 @include('components.success')
@@ -18,13 +18,19 @@
                     @forelse ($advisors as $advisor)
                     <option value="{{ $advisor->id }}">{{ $advisor->name }}</option>
                     @empty
-                     <option disabled>Nenhum professor cadastrado</option>   
-                  @endforelse
+                    <option disabled>Nenhum professor cadastrado</option>
+                    @endforelse
                 </select>
             </div>
             <div class="my-3">
                 <label for="co_advisor" class="form-label">Co-orientador</label>
                 <select name="co_advisor" id="co_advisor" class="form-select">
+                    <option selected>Selecione</option>
+                    @forelse ($advisors as $advisor)
+                    <option value="{{ $advisor->id }}">{{ $advisor->name }}</option>
+                    @empty
+                    <option disabled>Nenhum professor cadastrado</option>
+                    @endforelse
                 </select>
             </div>
         </div>
@@ -38,8 +44,16 @@
                 <input class="form-control" type="text" id="title" name="title" placeholder="Título do TCC">
             </div>
         </div>
-        <div class="d-flex justify-content-between align-items-center flex-wrap col-12">
-            <div class="d-flex flex-column gap-1 my-3">
+        <div class="row">
+            <div class="my-3 col-12 col-sm-6 col-md-4 col-lg-4">
+                <label for="file_tcc" class="form-label">Pré projeto defendido na disciplina pré-TCC</label>
+                <input class="form-control" type="file" name="file_tcc" id="file_tcc">
+            </div>
+            <div class="my-3 col-12 col-sm-6 col-md-4 col-lg-4">
+                <label for="term_commitment" class="form-label">Termo de Compromisso de Orientação Assinado</label>
+                <input class="form-control" type="file" name="term_commitment" id="term_commitment">
+            </div>
+            <div class="d-flex flex-column gap-1 my-3 col-12 col-sm-6 col-md-4 col-lg-2">
                 <label for="ethics_committee">Submetido ao comitê de ética</label>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-secondary">
@@ -50,23 +64,14 @@
                     </label>
                 </div>
             </div>
-            <div class="my-3">
-                <label for="file_tcc" class="form-label">Pré projeto defendido na disciplina pré-TCC</label>
-                <input class="form-control" type="file" name="file_tcc" id="file_tcc">
-            </div>
-            <div class="my-3">
-                <label for="term_commitment"  class="form-label">Termo de Compromisso de Orientação Assinado</label>
-                <input class="form-control" type="file" name="term_commitment" id="term_commitment">
-            </div>
-            <div class="my-3">
+            <div class="my-3 col-12 col-sm-6 col-md-4 col-lg-2">
                 <label for="date_claim">Data pretendida</label>
                 <input class="form-control" type="date" name="date_claim" id="date_claim">
             </div>
         </div>
     </div>
     <div class="my-3 text-end">
-        <button class="btn btn-success">CADASTRAR</button>
+        <button class="btn btn-success" type="submit">CADASTRAR</button>
     </div>
-</div>
-
+</form>
 @endsection

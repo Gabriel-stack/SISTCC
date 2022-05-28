@@ -24,7 +24,6 @@ class StudentHistoryFactory extends Factory
         return [
             'subject_id' => $this->faker->randomElement(Subject::pluck('id')),
             'student_id' => $this->faker->randomElement(Student::pluck('id')),
-            'stage' => Arr::random(['pendente', 'em andamento', 'concluído']),
         ];
     }
 

@@ -30,7 +30,24 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
             // fill all the missing fields with the faker data
             'phone' => '11999999999',
-            'missing_subjects' => '',
+            'missing_subjects' => 'missfagaeerqef fwer erqe',
+            'semester_origin' => '1',
+            'attended_count_tcc' => '0',
+            'state' => 'SP',
+            'city' => 'São Paulo',
+            'district' => 'Vila Mariana',
+            'street' => 'Rua dos Bobos',
+            'zip_code' => '01234567',
+            'status' => 'cursando',
+
+        ]);
+        Student::updateOrcreate([
+            'name' => 'ysladio',
+            'email' => 'yslandio.souza@aluno.ifsertao-pe.edu.br',
+            'password' => Hash::make('12345678'),
+            // fill all the missing fields with the faker data
+            'phone' => '11999999999',
+            'missing_subjects' => 'faf aarererqerq rqerqerqrq',
             'semester_origin' => '1',
             'attended_count_tcc' => '0',
             'state' => 'SP',
@@ -44,6 +61,11 @@ class DatabaseSeeder extends Seeder
         Professor::updateOrcreate([
             'name' => 'Gabriel',
             'email' => 'gabriel.alves@ifsertao-pe.edu.br',
+            'password' => Hash::make('12345678'),
+        ]);
+        Professor::updateOrcreate([
+            'name' => 'yslandio',
+            'email' => 'yslandio.souza@aluno.ifsertao-pe.edu.br',
             'password' => Hash::make('12345678'),
         ]);
        Subject::factory()->count(1)->create();

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do estudante
             $table->foreignId('advisor_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do orientador
             $table->foreignId('subject_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id da turma
+            $table->enum('stage',['etapa 1', 'etapa 2', 'etapa 3', 'etapa 4'])->default('etapa 1'); // Etapa do TCC
             $table->string('theme'); // Tema
             $table->string('title'); // Título
             $table->boolean('ethics_committee'); // Comitê de ética

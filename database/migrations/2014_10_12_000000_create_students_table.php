@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email'); // E-mail
             $table->string('password'); // Senha
             $table->string('phone'); // Telefone
-            $table->text('missing_subjects'); // Disciplinas pendentes
+            $table->text('missing_subjects')->nullable(); // Disciplinas pendentes
             $table->string('semester_origin'); // Semestre de origem
             $table->integer('attended_count_tcc'); // Quantas vezes cursou TCC
             $table->string('state'); // Estado

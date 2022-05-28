@@ -11,43 +11,47 @@
 @include('components.auth-validation-errors')
 
 <div class="my-5 py-4 row bg-white rounded-2 box-shadow justify-content-between align-items-center">
-    <form class="d-flex justify-content-between flex-wrap col-3" role="search" action="{{ route('professor.student.search') }}"
-        method="GET">
-        <div class="d-block">
+    <form class="row mx-0 align-items-center col-12" role="search"
+        action="{{ route('professor.student.search') }}" method="GET">
+        <div class="d-block col-3">
             <label for="student_search">Aluno</label>
-            <input class="form-control w-auto me-2" type="search" id="student_search" name="student_search"
+            <input class="form-control w-auto me-2" type="search" id="student_search" name="student"
                 placeholder="Pesquisar" aria-label="Search">
         </div>
-        <div class="align-self-end">
+        <div class="col-2">
+            <label for="status_search">Status</label>
+            <select name="status" id="status_search" class="form-select">
+                <option >Selecione</option>
+                <option value="1">Cursando</option>
+                <option value="2">Análise</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <label for="stage_search">Etapa</label>
+            <select name="stage" id="stage_search" class="form-select">
+                <option>Selecione</option>
+                <option value="1">Etapa 1</option>
+                <option value="2">Etapa 2</option>
+                <option value="3">Etapa 3</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <label for="advisor_search">Orientador</label>
+            <select name="advisor" id="advisor_search" class="form-select">
+                <option >Selecione</option>
+                @forelse($advisors as $advisor)
+                <option value="{{ $advisor->id }}">{{ $advisor->name }}</option>
+                @empty
+                <option >Nenhum orientador cadastrado</option>
+                @endforelse
+            </select>
+        </div>
+        <div class="col-2 align-self-end">
             <button class="btn btn-outline-dark" type="submit">
                 <i class="bi bi-search"></i>
             </button>
         </div>
     </form>
-    <div class="col-3">
-        <label for="status_search">Status</label>
-        <select name="status_search" id="status_search" class="form-select">
-            <option value="">1</option>
-            <option value="1">2</option>
-            <option value="0">3</option>
-        </select>
-    </div>
-    <div class="col-3">
-        <label for="situation_search">Situação</label>
-        <select name="situation_search" id="situation_search" class="form-select">
-            <option value="">1</option>
-            <option value="1">2</option>
-            <option value="0">3</option>
-        </select>
-    </div>
-    <div class="col-3">
-        <label for="advisor_search">Orientador</label>
-        <select name="advisor_search" id="advisor_search" class="form-select">
-            <option value="">1</option>
-            <option value="1">2</option>
-            <option value="0">3</option>
-        </select>
-    </div>
 </div>
 
 <div class="overflow-auto mt-4">
@@ -93,7 +97,7 @@
             </tr>
             @else
             <tr>
-                <td class="text-center" colspan="7">NENHUM ALUNO CADASTRADO!</td>
+                <td class="text-center" colspan="7">NENHUM ALUNO ENCONTRADO!</td>
             </tr>
             @endif
         </tbody>

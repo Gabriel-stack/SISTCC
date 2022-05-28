@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('subject_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('stage')->default('Etapa 1'); // Etapa
             $table->timestamps();
         });
     }

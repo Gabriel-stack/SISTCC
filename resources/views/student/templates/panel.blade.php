@@ -24,7 +24,7 @@
         </div>
     </div>
 </nav>
-<div class="container" style="padding-top: 80px">
+<div class="container pb-4" style="padding-top: 80px">
     <h4 class="title">
         @yield('title')
     </h4>

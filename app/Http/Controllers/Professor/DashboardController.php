@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Professor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advisor;
 use App\Models\Student;
 use App\Models\StudentHistory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -17,8 +19,8 @@ class DashboardController extends Controller
     public function index()
     {
         $students = Student::paginate(10);
-
-        return view('professor.dashboard', compact('students'));
+        $advisors = Advisor::all();
+        return view('professor.dashboard', compact('students', 'advisors'));
     }
 
     /**
@@ -92,12 +94,9 @@ class DashboardController extends Controller
 
     public function search(Request $request)
     {
-        if ($request->has('search')) {
-            $students = Student::where('name', 'LIKE', '%' . $request->search . '%')->paginate(10);
-        }
-
+        $students::DB
         $filters = $request->except('_token');
-
-        return view('professor.dashboard', compact('students', 'filters'));
+        $advisors = Advisor::all();
+        return view('professor.dashboard', compact('students', 'filters', 'advisors'));
     }
 }

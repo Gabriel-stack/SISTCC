@@ -57,7 +57,7 @@
                     <h5 class="card-title">ENDEREÇO</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('student.profile.update_endereco') }}" method="POST">
+                    <form action="{{ route('student.profile.update_address') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <div class="mt-4">
@@ -108,7 +108,7 @@
                             </div>
                             <div class="mt-4">
                                 <label for="missing_subjects">Disciplinas Pendentes</label>
-                                <textarea class="form-control" id="missing_subjects" name="missing_subjects" cols="30" rows="5">{{Auth::user()->missing_subjects}}"</textarea>
+                                <textarea class="form-control" id="missing_subjects" name="missing_subjects" cols="30" rows="5">{{Auth::user()->missing_subjects}}</textarea>
                             </div>
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn btn-success">ALTERAR</button>

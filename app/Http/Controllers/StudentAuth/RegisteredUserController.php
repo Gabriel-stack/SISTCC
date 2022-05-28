@@ -67,7 +67,7 @@ class RegisteredUserController extends Controller
         return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados de perfil!');
     }
 
-    public function updateEndereco(Request $request)
+    public function updateAddress(Request $request)
     {
         // $request->validate([
         //     'name' => ['required', 'string', 'max:255, regex:/^[a-zA-Z\s]+$/'],

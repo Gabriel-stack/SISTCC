@@ -87,7 +87,7 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
         Route::name('profile.')->group(function () {
             Route::post('update_personal_data', 'updatePersonalData')->name('update');
 
-            Route::post('update_endereco', 'updateEndereco')->name('update_endereco');
+            Route::post('update_address', 'updateAddress')->name('update_address');
 
             Route::post('update_tcc', 'updateTcc')->name('update_tcc');
 
