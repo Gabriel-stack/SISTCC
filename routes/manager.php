@@ -22,6 +22,7 @@ Route::middleware(['guest:professor', 'prevent-back-history'])->prefix('professo
     Route::get('/', function () {
         return redirect()->route('manager.login');
     });
+
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -46,6 +47,10 @@ Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
     ->name('password.reset');
 
 Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor')->name('manager.')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('manager.dashboard');
+    });
+
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
         ->name('verification.notice');
 

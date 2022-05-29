@@ -20,6 +20,7 @@ Route::middleware(['guest', 'prevent-back-history'])->prefix('student')->name('s
     Route::get('/', function () {
         return redirect()->route('student.login');
     });
+
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
@@ -44,6 +45,10 @@ Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
             ->name('password.reset');
 
 Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('student.')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('student.dashboard');
+    });
+
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 
@@ -82,7 +87,7 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
 
     // Perfil
     Route::prefix('profile')->controller(RegisteredUserController::class)->group(function () {
-        Route::get('', 'edit')->name('profile');
+        Route::get('/', 'edit')->name('profile');
 
         Route::name('profile.')->group(function () {
             Route::post('update_personal_data', 'updatePersonalData')->name('update');

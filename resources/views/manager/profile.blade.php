@@ -21,11 +21,11 @@
                             <div class="mt-4">
                                 <label for="name">Nome</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    value="{{ Auth::guard('professor')->user()->name }}">
+                                    value="{{ Helper::manager()->name }}">
                             </div>
                             <div class="mt-4">
                                 <label for="email">Email</label>
-                                <p class="form-control disabled">{{ Auth::guard('professor')->user()->email }}</p>
+                                <p class="form-control disabled">{{ Helper::manager()->email }}</p>
                             </div>
                             <div class="mt-4 text-center">
                                 <button type="submit" class="btn btn-success">ALTERAR</button>

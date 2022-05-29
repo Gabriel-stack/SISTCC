@@ -21,7 +21,7 @@
             </button>
 
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user">
-                <li class="dropdown-item text-center bg-secondary text-light">{{ Auth::guard('professor')->user()->name }}</li>
+                <li class="dropdown-item text-center bg-secondary text-light">{{ Helper::manager()->name }}</li>
                 <li><a class="dropdown-item" href="{{ route('manager.profile') }}">Perfil</a></li>
                 <li>
                     <form action="{{ route('manager.logout') }}" method="post">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manager;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Professor;
 use App\Models\Student;
@@ -23,7 +24,6 @@ class DashboardController extends Controller
         $students = Student::paginate(10);
         $professors = Professor::all();
         $subject = Subject::where('manager_id', Auth::guard('professor')->user()->id)->first();
-        Auth::guard('professor')->user()->name = Professor::find(Auth::guard('professor')->user()->id)->name;
 
         return view('manager.dashboard', compact('students', 'professors', 'subject'));
     }
