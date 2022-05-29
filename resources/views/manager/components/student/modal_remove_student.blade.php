@@ -30,7 +30,7 @@
     modalremove.addEventListener('shown.bs.modal', (event) => {
         let button = $(event.relatedTarget);
         let studentId = button.data('student-id');
-        let classCode = button.data('subject-id');
+        let subjectId = button.data('subject-id');
         document.querySelector('#student-id').value = studentId;
         document.querySelector('#subject-id').value = subjectId;
     });

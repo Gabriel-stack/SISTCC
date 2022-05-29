@@ -47,9 +47,9 @@ Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
     ->name('password.reset');
 
 Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor')->name('manager.')->group(function () {
-    Route::get('/', function () {
-        return redirect()->route('manager.dashboard');
-    });
+    // Route::get('/', function () {
+    //     return redirect()->route('manager.dashboard');
+    // });
 
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
         ->name('verification.notice');
@@ -72,18 +72,20 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
 
 
-    // Painel de Controle
+    // Painel de Controle - Gerenciamento de Turmas
     Route::controller(DashboardController::class)->group(function () {
         Route::get('dashboard', 'index')->name('dashboard');
 
-
-        // Alunos
-        Route::prefix('students')->name('student.')->group(function () {
+        Route::name('subject.')->group(function () {
             Route::get('search', 'search')->name('search');
 
-            Route::post('remove', 'remove')->name('remove');
+            Route::post('store', 'store')->name('store');
 
-            Route::get('show/{student}', 'show')->name('show');
+            Route::post('update', 'update')->name('update');
+
+            Route::post('destroy', 'destroy')->name('destroy');
+
+            Route::post('close', 'close')->name('close');
         });
     });
 
@@ -100,18 +102,17 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
     });
 
 
-    // Turmas
+    // Turma
     Route::prefix('subjects')->controller(SubjectController::class)->group(function () {
-        Route::get('/', 'create')->name('subjects');
+        Route::get('/{id}', 'index')->name('subject');
 
-        Route::name('subject.')->group(function () {
+        // Alunos
+        Route::prefix('students')->name('student.')->group(function () {
             Route::get('search', 'search')->name('search');
 
-            Route::post('store', 'store')->name('store');
+            Route::post('remove', 'remove')->name('remove');
 
-            Route::post('update', 'update')->name('update');
-
-            Route::post('destroy', 'destroy')->name('destroy');
+            Route::get('show/{student}', 'show')->name('show');
         });
     });
 

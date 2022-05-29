@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('class_code');
             $table->date('start_date');
             $table->date('end_date');
-            $table->date('close_date');
+            $table->date('close_date')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

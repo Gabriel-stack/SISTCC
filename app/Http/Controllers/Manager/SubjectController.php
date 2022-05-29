@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Professor\SubjectRequest;
+use App\Models\Professor;
+use App\Models\Student;
+use App\Models\StudentHistory;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
@@ -14,11 +17,23 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index($id)
+    {
+        $students = Student::paginate(10);
+        $professors = Professor::all();
+        $subject = Subject::findOrFail($id);
+
+        return view('manager.subject', compact('students', 'professors', 'subject'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        $subjects = Subject::paginate(10);
-
-        return view('manager.subjects', compact('subjects'));
+        //
     }
 
     /**
@@ -27,18 +42,33 @@ class SubjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SubjectRequest $request)
+    public function store(Request $request)
     {
-        if (Subject::where('active', '1')->first()) {
-            return back()->with('fail', 'Você já possui uma turma ativa!');
-        }
+        //
+    }
 
-        $data = $request->all();
-        $subject = Subject::create($data);
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        $student = Student::findOrFail($request->student);
 
-        return $subject ? back()->with('success', 'A turma foi criada com sucesso!')
-                : back()->with('fail', 'Ocorreu algum problema ao tentar criar a turma!');
+        return view('manager.progress', compact('student'));
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request)
+    {
+        //
     }
 
     /**
@@ -50,42 +80,26 @@ class SubjectController extends Controller
      */
     public function update(Request $request)
     {
-        $subject = Subject::findOrFail($request->id);
-
-        $subject->update($request->all());
-
-        return $subject? back()->with('success', 'Os dados da turma foram alterados com sucesso!')
-            :back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados da turma!');
+        //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
+    public function remove(Request $request)
     {
-        $subject = Subject::findOrFail($request->id);
+        $studentHistory = StudentHistory::where('subject_id', $request->subject_id)
+                                        ->where('student_id', $request->student_id)
+                                        ->first();
 
-        if (now()->gte($subject->start_date)) { // Regra de exclusão de turma.
-            return redirect()->back()->with('fail', 'A turma não pode ser excluída porque o semestre já está em andamento!');
-        }
+        $studentHistory->delete();
 
-        $subject->delete();
-
-        return $subject ? back()->with('success', 'A turma foi excluída com sucesso!')
-                        : back()->with('fail', 'Ocorreu algum problema ao tentar excluir a turma!');
+        return $studentHistory ? back()->with('success', 'O aluno foi removido da turma com sucesso!')
+                            : back()->with('fail', 'Ocorreu algum problema ao tentar remover o aluno da turma!');
     }
 
     public function search(Request $request)
     {
-        if ($request->has('search')) {
-            $subjects = Subject::where('class', 'LIKE', '%' . $request->search . '%')->paginate(10);
-        }
-
-        $filters = $request->except('_token');
-
-        return view('manager.subjects', compact('subjects', 'filters'));
+        // $students::DB
+        // $filters = $request->except('_token');
+        // $professors = Professor::all();
+        // return view('manager.dashboard', compact('students', 'filters', 'professors'));
     }
 }

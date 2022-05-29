@@ -1,6 +1,6 @@
 @extends('manager.templates.panel')
 
-@section('professor', 'active')
+@section('professor', 'bg-info')
 
 @section('title', 'GESTÃO DE ORIENTADORES')
 

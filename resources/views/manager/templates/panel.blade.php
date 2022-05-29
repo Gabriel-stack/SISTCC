@@ -44,12 +44,6 @@
                         <a class="nav-link @yield('dashboard') text-dark" aria-current="page"
                             href="{{ route('manager.dashboard') }}">
                             <i class="bi bi-house-door fs-4"></i>
-                            GESTÃO DE ALUNOS
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @yield('subject') text-dark" href="{{ route('manager.subjects') }}">
-                            <i class="bi bi-bookmarks fs-4"></i>
                             GESTÃO DE TURMAS
                         </a>
                     </li>
