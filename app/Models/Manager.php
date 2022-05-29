@@ -19,6 +19,7 @@ class Manager extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'email',
         'professor_id',
         'user_type',
         'password',
@@ -42,4 +43,9 @@ class Manager extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function professor()
+    {
+        return $this->hasOne(Professor::class);
+    }
 }

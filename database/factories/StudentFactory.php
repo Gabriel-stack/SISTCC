@@ -20,8 +20,6 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
-            'active' => true,
-            'status' => Arr::random(['cursando', 'aprovado', 'reprovado']),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),

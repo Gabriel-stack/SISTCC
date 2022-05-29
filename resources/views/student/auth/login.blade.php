@@ -44,7 +44,7 @@
                         <span class="ms-2">Lembrar-me</span>
                     </label>
 
-                    <a class="text-decoration-none" href="{{ route('professor.login') }}">Acesso de Professor</a>
+                    <a class="text-decoration-none" href="{{ route('manager.login') }}">Acesso de Professor</a>
                 </div>
 
                 <div class="text-center">

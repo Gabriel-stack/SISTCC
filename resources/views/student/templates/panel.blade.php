@@ -10,8 +10,7 @@
             </button>
 
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user">
-                <li class="dropdown-item text-center bg-secondary text-light">{{
-                    Auth::user()->name }}</li>
+                <li class="dropdown-item text-center bg-secondary text-light">{{ Auth::user()->name }}</li>
                 <li><a class="dropdown-item" href="{{ route('student.dashboard') }}">Painel</a></li>
                 <li><a class="dropdown-item" href="{{ route('student.profile') }}">Perfil</a></li>
                 <li>

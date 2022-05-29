@@ -36,9 +36,9 @@ class Tcc extends Model
         return $this->belongsTo(Student::class);
     }
 
-    public function advisor()
+    public function professor()
     {
-        return $this->belongsTo(Advisor::class);
+        return $this->belongsTo(Professor::class);
     }
 
     public function subject()

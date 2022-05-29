@@ -15,6 +15,7 @@ class Subject extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'manager_id',
         'class',
         'class_code',
         'start_date',

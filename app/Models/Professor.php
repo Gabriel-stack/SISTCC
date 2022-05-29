@@ -22,9 +22,13 @@ class Professor extends Model
         'organ',
     ];
 
-    public function tcc(){
+    public function tcc()
+    {
         return $this->belongsToMany(Tcc::class);
     }
 
-
+    public function manager()
+    {
+        return $this->belongsTo(Manager::class);
+    }
 }

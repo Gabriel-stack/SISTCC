@@ -3,11 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
 class ProfessorFactory extends Factory
 {
@@ -19,25 +17,11 @@ class ProfessorFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => 'gabriel.alves@ifsertao-pe.edu.br',
-            'email_verified_at' => now(),
-            'password' => Hash::make('12345678'), // password
-            'remember_token' => Str::random(10),
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'phone' => $this->faker->phoneNumber,
+            'titration' => $this->faker->randomElement(['Mestrado', 'Doutorado']),
+            'organ' => 'Universidade Federal de Minas Gerais',
         ];
-    }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     *
-     * @return static
-     */
-    public function unverified()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'email_verified_at' => null,
-            ];
-        });
     }
 }

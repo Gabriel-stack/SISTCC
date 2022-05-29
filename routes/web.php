@@ -19,6 +19,6 @@ Route::group(['middleware' => 'prevent-back-history'],function (){
     });
 });
 
-require __DIR__.'/student_auth.php';
+require __DIR__.'/student.php';
 
-require __DIR__.'/professor_auth.php';
+require __DIR__.'/manager.php';

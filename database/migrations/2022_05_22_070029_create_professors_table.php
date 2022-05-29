@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('professors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('phone');
             $table->string('titration');
             $table->string('organ');

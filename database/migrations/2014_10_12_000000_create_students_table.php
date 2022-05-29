@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name'); // Nome
-            $table->string('email'); // E-mail
+            $table->string('email')->unique(); // E-mail
             $table->string('password'); // Senha
             $table->string('phone'); // Telefone
             $table->text('missing_subjects')->nullable(); // Disciplinas pendentes
