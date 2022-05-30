@@ -23,7 +23,8 @@ class SubjectController extends Controller
         $professors = Professor::all();
         $subject = Subject::findOrFail($id);
 
-        return view('manager.subject', compact('students', 'professors', 'subject'));
+        // return view('manager.subject', compact('students', 'professors', 'subject'));
+        return view('manager.subject');
     }
 
     /**

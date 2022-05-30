@@ -30,7 +30,7 @@ class Subject extends Model
 
     public function studentHistories()
     {
-        return $this->belongsToMany(StudentHistory::class);
+        return $this->hasMany(StudentHistory::class);
     }
 
 

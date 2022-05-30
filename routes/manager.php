@@ -16,6 +16,7 @@ use App\Http\Controllers\Manager\Auth\{
     RegisteredUserController,
     VerifyEmailController,
 };
+use App\Http\Livewire\Subject;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest:professor', 'prevent-back-history'])->prefix('professor')->name('manager.')->group(function () {
@@ -83,7 +84,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
             Route::post('update', 'update')->name('update');
 
-            Route::post('destroy', 'destroy')->name('destroy');
+            // Route::post('destroy', 'destroy')->name('destroy');
 
             Route::post('close', 'close')->name('close');
         });
