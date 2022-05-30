@@ -10,10 +10,9 @@
 
     <div class="my-5 py-4 row bg-white rounded-2 box-shadow justify-content-between align-items-center">
         <div class="row mx-0 align-items-center">
-            <form class="col d-flex align-items-center" action="{{ route('manager.student.search') }}" method="GET">
                 <div class="col-4">
                     <label for="student_search">Aluno</label>
-                    <input wire:model="search_name" class="form-control w-auto me-2" type="search" id="student_search"
+                    <input wire:model.debounce.500ms="search_name" wire:change="searchByName" class="form-control w-auto me-2" type="search" id="student_search"
                         name="student" placeholder="Pesquisar" aria-label="Search">
                 </div>
                 <div class="col-2">
@@ -45,7 +44,6 @@
                         @endforelse
                     </select>
                 </div>
-            </form>
         </div>
     </div>
 

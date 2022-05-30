@@ -51,13 +51,10 @@ class Student extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    
 
-    public function tccs(){
-        return $this->hasMany(Tcc::class);
-    }
-
-    public function studentHistory()
+    public function tcc()
     {
-        return $this->hasMany(StudentHistory::class);
+        return $this->hasManyThrough(StudentHistory::class, Tcc::class);
     }
 }

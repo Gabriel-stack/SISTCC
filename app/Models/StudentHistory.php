@@ -29,4 +29,8 @@ class StudentHistory extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+    public function tcc()
+    {
+        return $this->belongsTo(Tcc::class);
+    }
 }

@@ -31,18 +31,13 @@ class Tcc extends Model
     ];
 
 
-    public function student()
-    {
-        return $this->belongsTo(Student::class);
-    }
 
     public function professor()
     {
-        return $this->belongsTo(Professor::class);
+        return $this->belongsTo(Manager::class);
     }
-
-    public function subject()
+    public function students()
     {
-        return $this->belongsTo(Subject::class);
+        return $this->hasMany(StudentHistory::class);
     }
 }
