@@ -104,16 +104,16 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
 
     // Turma
-    Route::prefix('subjects')->controller(SubjectController::class)->group(function () {
-        Route::get('/{id}', 'index')->name('subject');
+    Route::prefix('subjects')->group(function () {
+        Route::get('/{id}', Subject::class)->name('subject');
 
         // Alunos
         Route::prefix('students')->name('student.')->group(function () {
-            Route::get('search', 'search')->name('search');
+            Route::get('search', [Subject::class,'search'])->name('search');
 
-            Route::post('remove', 'remove')->name('remove');
+            Route::post('remove', [Subject::class,'remove'])->name('remove');
 
-            Route::get('show/{student}', 'show')->name('show');
+            Route::get('show/{student}', [Subject::class,'show'])->name('show');
         });
     });
 

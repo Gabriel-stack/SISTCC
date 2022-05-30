@@ -68,8 +68,12 @@
     <div class="container pb-4" style="padding-top: 80px;">
         <h4 class="title">
             @yield('title')
-        </h4>
-
-        @yield('container')
+        </h4>  
+        @if (isset($slot))
+            {{$slot}}
+        @else
+            @yield('container')
+            
+        @endif
     </div>
 @endsection
