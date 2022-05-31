@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('tccs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('subject_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('professor_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do orientador
             $table->enum('stage',['Etapa 1', 'Etapa 2', 'Etapa 3'])->default('Etapa 1'); // Etapa do TCC
             $table->enum('situation',['Cursando', 'Em análise', 'Devolvido', 'Aprovado', 'Reprovado'])->default('Cursando'); // Status do TCC

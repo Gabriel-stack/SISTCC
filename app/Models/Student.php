@@ -55,6 +55,6 @@ class Student extends Authenticatable
 
     public function tcc()
     {
-        return $this->hasManyThrough(StudentHistory::class, Tcc::class);
+        return $this->hasMany(Tcc::class);
     }
 }

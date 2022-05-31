@@ -69,11 +69,10 @@
         <h4 class="title">
             @yield('title')
         </h4>  
-        @if (isset($slot))
-            {{$slot}}
-        @else
-            @yield('container')
-            
-        @endif
+        @isset($slot)
+            {{ $slot }}
+        @endisset
+        
+        @yield('container')
     </div>
 @endsection

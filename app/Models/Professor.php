@@ -24,7 +24,7 @@ class Professor extends Model
 
     public function tcc()
     {
-        return $this->belongsToMany(Tcc::class);
+        return $this->hasMany(Tcc::class);
     }
 
     public function manager()

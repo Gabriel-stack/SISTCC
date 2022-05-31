@@ -16,22 +16,23 @@ class Subject extends Model
      */
     protected $fillable = [
         'manager_id',
+        'is_active',
         'class',
         'class_code',
         'start_date',
         'end_date',
         'close_date',
-        'is_active',
     ];
 
     public function tcc(){
         return $this->belongsToMany(Tcc::class);
     }
 
-    public function studentHistories()
-    {
-        return $this->hasMany(StudentHistory::class);
+    public function manager(){
+        return $this->hasOne(Manager::class);
     }
-
+    // public function course(){
+    //     return $this->hasOne(Course::class);
+    // }
 
 }

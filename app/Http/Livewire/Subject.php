@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\Professor;
 use App\Models\Student;
-use App\Models\StudentHistory;
 use App\Models\Subject as ModelsSubject;
 use App\Models\Tcc;
 use Illuminate\Http\Request;
@@ -20,46 +19,56 @@ class Subject extends Component
         'page' => ['except' => 1],
     ];
     public $subject;
+    public $professor;
 
-
-    public $teste = 'teste';
     public $search_name;
     public $select_situation;
     public $select_stage;
     public $select_professor;
-    
 
-    
+
     public function mount(Request $request)
     {
-        $this->subject = ModelsSubject::findOrFail($request->id);
-        
+        $this->subject = ModelsSubject::findOrFail($request->subject);
+        $this->professor = Professor::all();
     }
 
     public function render()
     {
-        return view('livewire.subject',[
-                    'students' => Student::paginate(10),
-                    'professors' => Professor::all(), 
-                    'subject' => $this->subject,
+        $tccs = Tcc::when($this->search_name, function ($query) {
+            return $query->whereHas('student', function ($query) {
+                return $query->where('name', 'like', '%' . $this->search_name . '%');
+            });
+        })->when($this->select_situation, function ($query) {
+            return $query->where('situation', 'like', '%' . $this->select_situation . '%');
+        })->when($this->select_stage, function ($query) {
+            return $query->where('stage', 'like', '%' . $this->select_stage . '%');
+        })->when($this->select_professor, function ($query) {
+            return $query->where('professor_id', 'like', '%' . $this->select_professor . '%');
+        })->paginate(10);
 
-                ]);
+        return view('livewire.subject', [
+            'tccs' => $tccs,
+            'professors' => $this->professor,
+            'subject' => $this->subject,
+        ]);
     }
 
 
-    public function searchByName()
+    private $tcc_id;
+
+    public function tccId($tcc_id)
     {
-        $student = $this->students->when($this->search_name, function ($query) {
-            return $query->where('name', 'like', "%{$this->search_name}%");
-        });
-        $this->students = $student;
+        $this->tcc_id = $tcc_id;
     }
 
-    public function show($student)
+    public function remove()
     {
-        dd($student);
-        // $student = Student::findOrFail($student);
+        $tcc = Tcc::findOrFail($this->tcc_id);
+        dd($tcc);
+        $tcc->delete();
 
-        return view('manager.progress', compact('student'));
+        return $tcc ? back()->with('success', 'O aluno foi removido da turma com sucesso!')
+            : back()->with('fail', 'Ocorreu algum problema ao tentar remover o aluno da turma!');
     }
 }

@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Student\TccRequest;
-use App\Models\Advisor;
+use App\Models\Professor;
 use App\Models\Student;
-use App\Models\StudentHistory;
 use App\Models\Tcc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,8 +29,8 @@ class TccController extends Controller
      */
     public function create()
     {
-        $advisors = Advisor::all();
-        return view('student.tcc.tcc', compact('advisors'));
+        $professors = Professor::all();
+        return view('student.tcc.tcc', compact('professors'));
     }
 
     /**
@@ -43,9 +42,9 @@ class TccController extends Controller
     public function store(TccRequest $request)
     {
         $data = $request->all();
-        $data['advisor_id'] = $request->advisor;
+        $data['professor_id'] = $request->professor;
         $data['student_id'] = Auth::user()->id;
-        $data['subject_id'] = StudentHistory::query(function($query){
+        $data['subject_id'] = Tcc::query(function($query){
             $query->where('student_id', Auth::user()->id)->pluck('subject_id');
         })->first();
         dd($data);

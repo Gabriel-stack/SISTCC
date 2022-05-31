@@ -4,7 +4,7 @@ use App\Http\Controllers\Manager\{
     ProfessorController,
     DashboardController,
     ManagerController,
-    SubjectController,
+    ProgressStudentController,
 };
 use App\Http\Controllers\Manager\Auth\{
     AuthenticatedSessionController,
@@ -105,15 +105,13 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
     // Turma
     Route::prefix('subjects')->group(function () {
-        Route::get('/{id}', Subject::class)->name('subject');
+        Route::get('/{subject}', Subject::class)->name('subject');
 
-        // Alunos
-        Route::prefix('students')->name('student.')->group(function () {
-            Route::get('search', [Subject::class,'search'])->name('search');
+        // Aluno
+        Route::prefix('student')->name('student.')->group(function () {
+            // Route::post('remove', [Subject::class,'remove'])->name('remove');
 
-            Route::post('remove', [Subject::class,'remove'])->name('remove');
-
-            Route::get('show/{student}', [Subject::class,'show'])->name('show');
+            Route::get('{tcc}/show', [ProgressStudentController::class,'show'])->name('show'); 
         });
     });
 

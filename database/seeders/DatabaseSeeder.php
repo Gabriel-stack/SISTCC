@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Advisor;
 use App\Models\Manager;
 use App\Models\Professor;
 use App\Models\Student;
-use App\Models\StudentHistory;
 use App\Models\Subject;
 use App\Models\Tcc;
 use Illuminate\Database\Seeder;
@@ -74,7 +72,9 @@ class DatabaseSeeder extends Seeder
 
         $subject = Subject::factory()->count(1)->create();
 
-        $tcc = Tcc::factory(30)->make()->each(function ($tcc) use ($professor) {
+        $tcc = Tcc::factory(30)->make()->each(function ($tcc) use ($subject, $professor, $student) {
+            $tcc->student_id = $student->random()->id;
+            $tcc->subject_id = $subject->random()->id;
             $tcc->professor_id = $professor->random()->id;
         });
 
@@ -82,12 +82,5 @@ class DatabaseSeeder extends Seeder
             Tcc::create($tcc->toArray());
         });
 
-        $studentHistory = StudentHistory::factory(30)->make()->each(function ($history) use ($student, $subject, $tcc) {
-            $history->student_id = $student->random()->id;
-            $history->subject_id = $subject->random()->id;
-            $history->tcc_id = $tcc->random()->id;
-        });
-
-        StudentHistory::insert($studentHistory->toArray());
     }
 }

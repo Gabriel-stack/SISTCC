@@ -10,6 +10,8 @@ class Tcc extends Model
     use HasFactory;
 
     protected $fillable = [
+        'student_id',
+        'subject_id',
         'professor_id',
         'situation',
         'stage',
@@ -34,10 +36,15 @@ class Tcc extends Model
 
     public function professor()
     {
-        return $this->belongsTo(Manager::class);
+        return $this->belongsTo(Professor::class);
     }
-    public function students()
+    public function student()
     {
-        return $this->hasMany(StudentHistory::class);
+        return $this->belongsTo(Student::class);
+    }
+
+    public function subject()
+    {
+        return $this->hasOne(Subject::class);
     }
 }

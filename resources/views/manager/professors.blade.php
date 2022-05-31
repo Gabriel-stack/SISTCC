@@ -29,7 +29,7 @@
     </div>
 
     <div class="overflow-auto">
-        <table class="table table-light">
+        <table class="table bg-white box-shadow">
             <thead class="table-success">
                 <tr>
                     <th class="col-1">#</th>
@@ -74,14 +74,12 @@
                         <td class="text-center" colspan="7">NENHUM ORIENTADOR CADASTRADO!</td>
                     </tr>
                 @endif
-            </tbody>
-            <tfoot>
-                @if (isset($filters))
-                    {{ $professors->appends($filters)->links() }}
-                @else
-                    {{ $professors->links() }}
-                @endif
-            </tfoot>
+                </tbody>
         </table>
+        @if (isset($filters))
+        {{ $professors->appends($filters)->links() }}
+    @else
+        {{ $professors->links() }}
+    @endif
     </div>
 @endsection
