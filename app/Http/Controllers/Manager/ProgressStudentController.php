@@ -14,11 +14,11 @@ class ProgressStudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($tcc)
+    public function show($subject,$tcc)
     {
 
         return view('manager.progress', [
-            'tcc' => Tcc::with('student', 'professor')->findOrFail($tcc),
+            'tcc' => Tcc::with('student', 'professor')->where('subject_id', $subject)->findOrFail($tcc),
         ]);
     }
 

@@ -44,7 +44,7 @@ class Subject extends Component
         })->when($this->select_stage, function ($query) {
             return $query->where('stage', 'like', '%' . $this->select_stage . '%');
         })->when($this->select_professor, function ($query) {
-            return $query->where('professor_id', 'like', '%' . $this->select_professor . '%');
+            return $query->where('professor_id', 'like', $this->select_professor);
         })->paginate(10);
 
         return view('livewire.subject', [
@@ -55,7 +55,7 @@ class Subject extends Component
     }
 
 
-    private $tcc_id;
+    public $tcc_id;
 
     public function tccId($tcc_id)
     {
@@ -65,7 +65,7 @@ class Subject extends Component
     public function remove()
     {
         $tcc = Tcc::findOrFail($this->tcc_id);
-        dd($tcc);
+
         $tcc->delete();
 
         return $tcc ? back()->with('success', 'O aluno foi removido da turma com sucesso!')

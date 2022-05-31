@@ -108,11 +108,9 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
         Route::get('/{subject}', Subject::class)->name('subject');
 
         // Aluno
-        Route::prefix('student')->name('student.')->group(function () {
             // Route::post('remove', [Subject::class,'remove'])->name('remove');
 
-            Route::get('{tcc}/show', [ProgressStudentController::class,'show'])->name('show'); 
-        });
+            Route::get('{subject}/student/{tcc}/show', [ProgressStudentController::class,'show'])->name('show');
     });
 
 

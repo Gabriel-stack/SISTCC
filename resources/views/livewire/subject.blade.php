@@ -69,10 +69,9 @@
                     <td class="d-flex gap-1">
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" wire:click="tccId({{ $tcc->id }})"
                             data-bs-target="#modal-remove-student" data-student-id="{{ $tcc->id }}">
-                            {{-- data-subject-id="{{ $subject->id }}"> --}}
                             <i class="bi bi-person-dash"></i>
                         </button>
-                        <a class="btn btn-info" href="{{ route('manager.student.show', ['tcc' => $tcc->id]) }}">
+                        <a class="btn btn-info" href="{{ route('manager.show', ['subject'=> $tcc->subject_id, 'tcc' => $tcc->id]) }}">
                             <i class="bi bi-eye"></i>
                         </a>
                     </td>

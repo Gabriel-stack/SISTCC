@@ -1,6 +1,6 @@
 @extends('manager.templates.panel')
 
-@section('dashboard', 'bg-info')
+@section('dashboard', 'text-success')
 
 @section('title', 'GESTÃO DE TURMAS')
 

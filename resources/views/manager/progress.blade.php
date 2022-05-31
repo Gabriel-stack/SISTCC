@@ -27,9 +27,10 @@
         </div>
         <div class="col-8 col-sm-6 col-md-2 mt-2">
             <span>Disciplinas faltantes</span>
-            <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                Popover on top
-              </button>
+            <button type="button" class="form-control w-auto btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top"
+                data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                <i class="bi bi-book"></i>
+            </button>
         </div>
         <div class="col-4 col-sm-3 mt-2">
             <span>Orientador</span>
@@ -66,26 +67,17 @@
     <div class="d-flex p-4 my-4 justify-content-between align-items-center bg-white"
         style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
         <div>
-            <h5>ENVIO DE EMAIL PARA BIBLIOTECA</h5>
-        </div>
-        <div>
-            <a href="" style="font-size: 24px"><i class="bi bi-lock"></i></a>
-        </div>
-    </div>
-    <div class="d-flex p-4 my-4 justify-content-between align-items-center bg-white"
-        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-        <div>
             <h5>FINALIZAR DISCIPLINA</h5>
         </div>
         <div>
             <a href="" style="font-size: 24px"><i class="bi bi-lock"></i></a>
         </div>
     </div>
-    @section('scripts')
-        <script>
-            $(function () {
-                $('[data-toggle="popover"]').popover();
-            });
-        </script>
-    @endsection
+@section('scripts')
+    <script>
+        $(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+@endsection
 @endsection

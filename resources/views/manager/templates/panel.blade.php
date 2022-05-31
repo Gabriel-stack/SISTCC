@@ -42,24 +42,18 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link @yield('dashboard') text-dark" aria-current="page"
+                            <a class="nav-link @yield('dashboard')" style="color: black;" aria-current="page"
                                 href="{{ route('manager.dashboard') }}">
                                 <i class="bi bi-house-door fs-4"></i>
                                 GESTÃO DE TURMAS
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @yield('professor') text-dark" href="{{ route('manager.professors') }}">
+                            <a class="nav-link @yield('professor')" style="color: black;" href="{{ route('manager.professors') }}">
                                 <i class="bi bi-person-video3 fs-4"></i>
                                 GESTÃO DE ORIENTADORES
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                        <a class="nav-link @yield('manager') text-dark" href="{{ route('manager.managers') }}">
-                            <i class="bi bi-person-workspace fs-4"></i>
-                            GESTÃO DE PROFESSOR DA DISCIPLINA
-                        </a>
-                    </li> --}}
                     </ul>
                 </div>
             </div>
@@ -68,11 +62,11 @@
     <div class="container pb-4" style="padding-top: 80px;">
         <h4 class="title">
             @yield('title')
-        </h4>  
+        </h4>
         @isset($slot)
             {{ $slot }}
         @endisset
-        
+
         @yield('container')
     </div>
 @endsection

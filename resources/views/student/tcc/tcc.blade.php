@@ -12,22 +12,22 @@
     <div class="row bg-gray-400 box-shadow">
         <div class="col-12 col-sm-6">
             <div class="my-3">
-                <label for="advisor" class="form-label">Orientador</label>
-                <select name="advisor" id="advisor" class="form-select">
+                <label for="professor" class="form-label">Orientador</label>
+                <select name="professor" id="professor" class="form-select">
                     <option selected>Selecione</option>
-                    @forelse ($advisors as $advisor)
-                    <option value="{{ $advisor->id }}">{{ $advisor->name }}</option>
+                    @forelse ($professors as $professor)
+                    <option value="{{ $professor->id }}">{{ $professor->name }}</option>
                     @empty
                     <option disabled>Nenhum professor cadastrado</option>
                     @endforelse
                 </select>
             </div>
             <div class="my-3">
-                <label for="co_advisor" class="form-label">Co-orientador</label>
-                <select name="co_advisor" id="co_advisor" class="form-select">
+                <label for="co_professor" class="form-label">Co-orientador</label>
+                <select name="co_professor" id="co_professor" class="form-select">
                     <option selected>Selecione</option>
-                    @forelse ($advisors as $advisor)
-                    <option value="{{ $advisor->id }}">{{ $advisor->name }}</option>
+                    @forelse ($professors as $professor)
+                    <option value="{{ $professor->id }}">{{ $professor->name }}</option>
                     @empty
                     <option disabled>Nenhum professor cadastrado</option>
                     @endforelse
@@ -44,7 +44,7 @@
                 <input class="form-control" type="text" id="title" name="title" placeholder="Título do TCC">
             </div>
         </div>
-        <div class="row">
+        <div class="row align-items-end">
             <div class="my-3 col-12 col-sm-6 col-md-4 col-lg-4">
                 <label for="file_tcc" class="form-label">Pré projeto defendido na disciplina pré-TCC</label>
                 <input class="form-control" type="file" name="file_tcc" id="file_tcc">
