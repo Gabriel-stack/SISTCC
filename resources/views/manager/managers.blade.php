@@ -3,7 +3,6 @@
 @section('title', 'GESTÃO DE PROFESSOR DA DISCIPLINA')
 
 @section('container')
-
     @include('components.success')
     @include('components.fail')
     @include('components.auth-validation-errors')

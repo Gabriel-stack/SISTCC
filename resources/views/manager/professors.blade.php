@@ -5,11 +5,10 @@
 @section('title', 'GESTÃO DE ORIENTADORES')
 
 @section('container')
-
     @include('components.success')
     @include('components.fail')
     @include('components.auth-validation-errors')
-
+    
     <div class="my-5 py-4 row bg-white rounded-2 box-shadow justify-content-between align-items-center">
         <form class="d-flex col" role="search" action="{{ route('manager.professor.search') }}" method="get">
 

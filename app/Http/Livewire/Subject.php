@@ -35,7 +35,8 @@ class Subject extends Component
 
     public function render()
     {
-        $tccs = Tcc::when($this->search_name, function ($query) {
+        $tccs = Tcc::where('subject_id', $this->subject->id)
+        ->when($this->search_name, function ($query) {
             return $query->whereHas('student', function ($query) {
                 return $query->where('name', 'like', '%' . $this->search_name . '%');
             });

@@ -3,11 +3,10 @@
 @section('title', 'PERFIL')
 
 @section('container')
-
     @include('components.success')
     @include('components.fail')
     @include('components.auth-validation-errors')
-
+    
     <div class="row align-items-stretch">
         <div class="col-12 col-md-6">
             <div class="card h-100">

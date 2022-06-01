@@ -108,9 +108,22 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
         Route::get('/{subject}', Subject::class)->name('subject');
 
         // Aluno
-            // Route::post('remove', [Subject::class,'remove'])->name('remove');
+        Route::controller(ProgressStudentController::class)->group(function () {
+            Route::get('{subject}/student/{tcc}/show', 'show')->name('show');
 
-            Route::get('{subject}/student/{tcc}/show', [ProgressStudentController::class,'show'])->name('show');
+            Route::prefix('accompaniment')->name('accompaniment.')->group(function () {
+                Route::get('{tcc}/tcc', 'accompanimentTcc')->name('tcc');
+
+                Route::get('{tcc}/requirement', 'accompanimentRequirement')->name('requirement');
+                
+                Route::get('{tcc}/finish', 'accompanimentFinish')->name('finish');
+
+                Route::get('return', 'accompanimentReturn')->name('return');
+
+                Route::get('validate', 'accompanimentValidate')->name('validate');
+            });
+        });
+      
     });
 
 

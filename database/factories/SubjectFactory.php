@@ -25,7 +25,7 @@ class SubjectFactory extends Factory
             'start_date' => now(),
             'end_date' => $this->faker->dateTimeBetween('+4 months', '+5 months'),
             'close_date' => $this->faker->dateTimeBetween('+5 months', '+6 months'),
-            'is_active' => $this->faker->boolean(100)
+            'is_active' => $this->faker->boolean(50)
         ];
     }
 

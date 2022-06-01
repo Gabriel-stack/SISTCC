@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         $manager->professor_id = $professor->random()->id;
         $manager->save();
 
-        $subject = Subject::factory()->count(1)->create();
+        $subject = Subject::factory()->count(2)->create();
 
         $tcc = Tcc::factory(30)->make()->each(function ($tcc) use ($subject, $professor, $student) {
             $tcc->student_id = $student->random()->id;

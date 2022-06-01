@@ -60,9 +60,12 @@
         </div>
     </nav>
     <div class="container pb-4" style="padding-top: 80px;">
-        <h4 class="title">
+        <h3 class="title">
             @yield('title')
-        </h4>
+        </h3>
+
+        <hr class="my-5">
+        
         @isset($slot)
             {{ $slot }}
         @endisset

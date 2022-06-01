@@ -1,7 +1,14 @@
 @extends('layouts.guest')
 
 @section('title', 'Login')
+
 @section('content')
+    <style>
+        body {
+            background-color: rgb(229, 229, 229)!important;
+        }
+    </style>
+
     <div class="d-flex h-100 justify-content-center align-items-center p-3">
         <div class="bg-white rounded d-flex flex-column p-4" id="box">
             @include('components.application-logo')
@@ -9,7 +16,6 @@
                 @include('components.auth-validation-errors')
             @endif
             @include('components.fail')
-            <a href="/"></a>
 
             <form action="{{ route('manager.login') }}" method="post">
                 @csrf
