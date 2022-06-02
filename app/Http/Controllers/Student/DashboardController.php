@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Subject;
+use App\Models\Tcc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +17,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('student.dashboard');
+        
+        $active_class = Subject::where('is_active', true)->first();
+        $inside = Tcc::where('subject_id', $active_class->id)->first();
+        $classes = Subject::where('is_active', false)->get();
+        return view('student.dashboard', compact('active_class', 'classes', 'inside'));
     }
 
     /**

@@ -53,7 +53,7 @@
             <h6 class="title">ACOMPANHAMENTO DE TRABALHO DE CONCLUSÃO DE CURSO</h6>
         </div>
         <div class="col d-flex justify-content-end">
-            @if (true)
+            @if ($tcc->stage == 'Etapa 1')
                 <a href="{{ route('manager.accompaniment.tcc', $tcc) }}" style="font-size: 24px"><i class="bi bi-arrow-right-square"></i></a>
             @else
                 <i class="bi bi-lock" style="font-size: 24px"></i>
@@ -65,7 +65,7 @@
             <h6 class="title">ACOMPANHAMENTO DE REQUERIMENTO DE DEFESA</h6>
         </div>
         <div class="col d-flex justify-content-end">
-            @if (true)
+            @if ($tcc->stage == 'Etapa 2')
                 <a href="{{ route('manager.accompaniment.requirement', $tcc) }}" style="font-size: 24px"><i class="bi bi-arrow-right-square"></i></a>
             @else
                 <i class="bi bi-lock" style="font-size: 24px"></i>
@@ -77,7 +77,7 @@
             <h6 class="title">FINALIZAR DISCIPLINA</h6>
         </div>
         <div class="col d-flex justify-content-end">
-            @if (true)
+            @if ($tcc->stage == 'Etapa 3')
                 <a href="{{ route('manager.accompaniment.finish', $tcc) }}" style="font-size: 24px"><i class="bi bi-arrow-right-square"></i></a>
             @else
                 <i class="bi bi-lock" style="font-size: 24px"></i>

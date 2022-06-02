@@ -20,8 +20,8 @@ class TccFactory extends Factory
     public function definition()
     {
         return [
-            'situation' => $this->faker->randomElement(['Aprovado', 'Reprovado', 'Em análise', 'cursando', 'devolvido']),
-            'stage' => $this->faker->randomElement(['etapa 1', 'etapa 2', 'etapa 3']),
+            'situation' => 'cursando',
+            'stage' => 'etapa 1',
             'title' => $this->faker->sentence(),
             'theme' => $this->faker->words(5, true),
             'ethics_committee' => $this->faker->boolean(),

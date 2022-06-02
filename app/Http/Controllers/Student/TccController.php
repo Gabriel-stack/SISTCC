@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Student\TccRequest;
 use App\Models\Professor;
 use App\Models\Student;
+use App\Models\Subject;
 use App\Models\Tcc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,11 @@ class TccController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($subject)
     {
-        return view('student.tcc.progress');
+        $tcc = Tcc::with('subject')->where('student_id', Auth::user()->id)
+        ->where('subject_id', $subject)->first();
+        return view('student.tcc.progress', compact('tcc'));
     }
 
     /**
@@ -27,10 +30,11 @@ class TccController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($subject)
     {
+        $is_active_class = Subject::where('id', $subject)->first()->is_active;
         $professors = Professor::all();
-        return view('student.tcc.tcc', compact('professors'));
+        return view('student.tcc.tcc', compact('professors', 'is_active_class'));
     }
 
     /**

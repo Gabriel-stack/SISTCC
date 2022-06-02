@@ -60,7 +60,7 @@
                         <input value="1" name="ethics_committee" type="radio"> sim
                     </label>
                     <label class="btn btn-secondary">
-                        <input value="2" name="ethics_committee" type="radio"> não
+                        <input value="{{false}}" name="ethics_committee" type="radio"> não
                     </label>
                 </div>
             </div>
