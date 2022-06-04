@@ -17,9 +17,9 @@ use App\Http\Controllers\Student\Auth\{
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest', 'prevent-back-history'])->prefix('student')->name('student.')->group(function () {
-    Route::get('/', function () {
-        return redirect()->route('student.login');
-    });
+    // Route::get('/', function () {
+    //     return redirect()->route('student.login');
+    // });
 
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
@@ -79,9 +79,10 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
     Route::prefix('subject')->controller(TccController::class)->group(function () {
         Route::get('{subject}','index')->name('progress');
         Route::get('{subject}/tcc', 'create')->name('progress.tcc');
+        Route::post('store', 'enrollInClass')->name('progress.enroll');
         Route::post('tcc', 'store')->name('progress.tcc.store');
         Route::get('{subject}/requirement', 'requirement')->name('progress.requirement');
-        Route::post('requirement', 'requirementStore')->name('progress.requirement.store');
+        Route::post('requirement', 'storeRequirement')->name('progress.requirement.store');
     });
 
 

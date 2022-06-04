@@ -23,10 +23,10 @@
             <h6>Título do TCC: <span class="fw-normal">{{$tcc->title}}</span></h6>
         </div>
         <div class="my-3">
-            <h6>Pré projeto defendido na disciplina pré-TCC: <span class="fw-normal">{{$tcc->file_tcc}}</span><h6>
+            <h6>Pré projeto defendido na disciplina pré-TCC: <a href="{{$tcc->file_tcc}}"><i class="bi bi-archive"></i></a><h6>
         </div>
         <div class="my-3">
-            <h6>Termo de Compromisso de Orientação Assinado: <span class="fw-normal">{{$tcc->term_commitment}}</span></h6>   
+            <h6>Termo de Compromisso de Orientação Assinado: <a href="{{$tcc->term_commitment}}"><i class="bi bi-archive"></i></a></h6>   
         </div>
         <div class="my-3 d-flex align-items-baseline gap-3 flex-wrap">
             <h6>Submetido ao comitê de ética: <span class="fw-normal">{{$tcc->ethics_committee ? 'sim': 'não'}}</span></h6>

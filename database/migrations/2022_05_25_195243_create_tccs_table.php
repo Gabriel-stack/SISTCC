@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('subject_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('professor_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do orientador
-            $table->enum('stage',['Etapa 1', 'Etapa 2', 'Etapa 3'])->default('Etapa 1'); // Etapa do TCC
+            $table->foreignId('professor_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do orientador
+            $table->enum('stage',['Etapa 1',  'Etapa 2', 'Etapa 3'])->default('Etapa 1'); // Etapa do TCC
             $table->enum('situation',['Cursando', 'Em análise', 'Devolvido', 'Aprovado', 'Reprovado'])->default('Cursando'); // Status do TCC
-            $table->string('theme'); // Tema
-            $table->string('title'); // Título
-            $table->boolean('ethics_committee'); // Comitê de ética
-            $table->string('term_commitment'); // Termo de compromisso
-            $table->datetime('date_claim'); // Data de pretenção de defesa
+            $table->string('theme')->nullable(); // Tema
+            $table->string('title')->nullable(); // Título
+            $table->boolean('ethics_committee')->nullable(); // Comitê de ética
+            $table->string('term_commitment')->nullable(); // Termo de compromisso
+            $table->datetime('date_claim')->nullable(); // Data de pretenção de defesa
             $table->string('photo')->nullable(); // foto
             $table->string('keywords')->nullable(); // Palavras chave
             $table->text('abstract')->nullable(); // Resumo
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->datetime('intended_date')->nullable(); // Data de defesa pretendida
             $table->string('result_ethic_committee')->nullable(); // Parecer do comitê de ética
             $table->string('proof_article_submission')->nullable(); // Comprovante de submissão de artigo
-            $table->string('consent_advisor')->nullable(); // Anuência do orientador
+            $table->string('consent_professor')->nullable(); // Anuência do orientador
             $table->string('file_tcc')->nullable(); // TCC
             $table->json('members')->nullable(); // Membros da banca
             $table->timestamps();

@@ -13,8 +13,12 @@
         <h5>CADASTRAR TRABALHO DE CONCLUSÃO DE CURSO</h5>
     </div>
     <div>
+        @if($tcc->stage == "Etapa 1")
         <a href="{{ route('student.progress.tcc', $tcc->subject_id) }}" style="font-size: 24px"><i
                 class="bi bi-arrow-right-square"></i></a>
+        @else
+        <i class="bi bi-lock"></i>
+        @endif
     </div>
 </div>
 <div class="d-flex p-4 my-4 justify-content-between align-items-center bg-white"

@@ -44,8 +44,8 @@
     </div>
 
     <div class="overflow-auto mt-4">
-        <table class="table bg-white box-shadow p-2">
-            <thead class="table-success">
+       <table class="table align-middle box-shadow p-2 mb-0 bg-white">
+             <thead class="bg-dark text-white">
                 <tr>
                     <th class="col-1">#</th>
                     <th class="col-2">NOME</th>

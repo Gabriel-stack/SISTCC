@@ -10,12 +10,12 @@
     <form class="container" action="" method="POST" enctype="multipart/form-data">
         <div class="row align-items-center p-3 box-shadow my-3 bg-gray-400">
             <div class="col-12 col-sm-6 col-lg-3 py-2">
-                <label for="consert_advisor" class="form-label">Termo de anuência</label>
-                <input type="file" class="form-control" name="consert_advisor" id="consert_advisor">
+                <label for="consert_professor" class="form-label">Termo de anuência</label>
+                <input type="file" class="form-control" name="tt[]" id="consert_advisor">
             </div>
             <div class="col-12 col-sm-6 col-lg-3 py-2">
                 <label for="file_tcc" class="form-label">TCC finalizado</label>
-                <input type="file" class="form-control" name="file_tcc" id="file_tcc">
+                <input type="file" class="form-control" name="tt[]" id="file_tcc">
             </div>
             <div class="col-12 col-sm-6 col-lg-3 py-2">
                 <label for="result_ethics_commitee" class="form-label">Parecer do comitê de ética</label>
@@ -57,6 +57,27 @@
                 <p class="title">MEMBRO 1</p>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
+                <label for="name_member_1" class="form-label">Nome</label>
+                <input type="text" class="form-control" name="name_member_1" id="name_member_1">
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
+                <label for="titration_member_1" class="form-label">Titulação</label>
+                <input type="datetime" class="form-control" name="titration_member_1" id="titration_member_1">
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
+                <label for="organ_member_1" class="form-label">Orgão</label>
+                <input type="text" class="form-control" name="organ_member_1" id="organ_member_1">
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
+                <label for="accept_member_1" class="form-label">Aceite</label>
+                <input type="file" class="form-control" name="accept_member_1" id="accept_member_1">
+            </div>
+        </div>
+        <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
+            <div class="col-12">
+                <p class="title">MEMBRO 2</p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
                 <label for="name_member_2" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="name_member_2" id="name_member_2">
             </div>
@@ -75,7 +96,7 @@
         </div>
         <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
             <div class="col-12">
-                <p class="title">MEMBRO 2</p>
+                <p class="title">MEMBRO 3 (Opcional)</p>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
                 <label for="name_member_3" class="form-label">Nome</label>
@@ -92,27 +113,6 @@
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
                 <label for="accept_member_3" class="form-label">Aceite</label>
                 <input type="file" class="form-control" name="accept_member_3" id="accept_member_3">
-            </div>
-        </div>
-        <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
-            <div class="col-12">
-                <p class="title">MEMBRO 3 (Opcional)</p>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="name_member_4" class="form-label">Nome</label>
-                <input type="text" class="form-control" name="name_member_4" id="name_member_4">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="titration_member_4" class="form-label">Titulação</label>
-                <input type="datetime" class="form-control" name="titration_member_4" id="titration_member_4">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="organ_member_4" class="form-label">Orgão</label>
-                <input type="text" class="form-control" name="organ_member_4" id="organ_member_4">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="accept_member_4" class="form-label">Aceite</label>
-                <input type="file" class="form-control" name="accept_member_4" id="accept_member_4">
             </div>
         </div>
         <div class="my-3 d-flex gap-2">
