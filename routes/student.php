@@ -17,10 +17,6 @@ use App\Http\Controllers\Student\Auth\{
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest', 'prevent-back-history'])->prefix('student')->name('student.')->group(function () {
-    // Route::get('/', function () {
-    //     return redirect()->route('student.login');
-    // });
-
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
@@ -44,11 +40,8 @@ Route::middleware(['guest', 'prevent-back-history'])->prefix('student')->name('s
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
             ->name('password.reset');
 
-Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('student.')->group(function () {
-    // Route::get('/', function () {
-    //     return redirect()->route('student.dashboard');
-    // });
 
+Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('student.')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 

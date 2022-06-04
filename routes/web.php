@@ -19,10 +19,6 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     });
 });
 
-// Route::middleware('guest:professor')->group(function () {
-    require __DIR__ . '/student.php';
-// });
+require __DIR__ . '/student.php';
 
-// Route::middleware('guest')->group(function () {
-    require __DIR__ . '/manager.php';
-// });
+require __DIR__ . '/manager.php';

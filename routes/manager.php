@@ -19,11 +19,7 @@ use App\Http\Controllers\Manager\Auth\{
 use App\Http\Livewire\Subject;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['guest:professor', 'guest', 'prevent-back-history'])->prefix('professor')->name('manager.')->group(function () {
-    // Route::get('/', function () {
-    //     return redirect()->route('manager.login');
-    // });
-
+Route::middleware(['guest:professor', 'prevent-back-history'])->prefix('professor')->name('manager.')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -49,10 +45,6 @@ Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
 
 
 Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor')->name('manager.')->group(function () {
-    // Route::get('/', function () {
-    //     return redirect()->route('manager.dashboard');
-    // });
-
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
         ->name('verification.notice');
 
@@ -116,7 +108,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
                 Route::get('{tcc}/tcc', 'accompanimentTcc')->name('tcc');
 
                 Route::get('{tcc}/requirement', 'accompanimentRequirement')->name('requirement');
-                
+
                 Route::get('{tcc}/finish', 'accompanimentFinish')->name('finish');
 
                 Route::get('return', 'accompanimentReturn')->name('return');
@@ -124,7 +116,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
                 Route::get('validate', 'accompanimentValidate')->name('validate');
             });
         });
-      
+
     });
 
 
