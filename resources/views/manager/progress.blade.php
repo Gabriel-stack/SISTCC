@@ -6,7 +6,7 @@
     @include('components.success')
     @include('components.fail')
     @include('components.auth-validation-errors')
-    
+
     <div class="row p-3 bg-white box-shadow">
         <div class="col-12 col-sm-6 col-md-3 mt-2">
             <span>Nome</span>
@@ -27,13 +27,19 @@
         <div class="col-4 col-sm-2 mt-2 d-flex flex-column align-items-center">
             <span>Histórico do aluno</span>
             <a class="form-control w-auto btn btn-warning" href="#">
-                <i class="bi bi-arrow-down"></i>
+                BAIXAR
             </a>
         </div>
         <div class="col-4 col-sm-3 mt-2">
             <span>Orientador</span>
-            <span class="form-control bg-gray text-dark">{{ $tcc->professor->name }}</span>
+            <span class="form-control bg-gray text-dark">{{ $tcc->professor->name ?? '-' }}</span>
         </div>
+        @if (true)
+            <div class="col-4 col-sm-3 mt-2">
+                <span>Co-orientador</span>
+                {{-- <span class="form-control bg-gray text-dark">{{ $tcc->professor->name }}</span> --}}
+            </div>
+        @endif
         <div class="col-4 col-sm-3 mt-2">
             <span>Etapa</span>
             <span class="form-control bg-gray text-dark">{{ $tcc->stage }}</span>
@@ -43,7 +49,6 @@
             <span class="form-control bg-gray text-dark">{{ $tcc->situation }}</span>
         </div>
         <div class="col-4 col-sm-1 mt-2 d-flex flex-column align-items-start">
-            <span>Desistência</span>
             <button class="form-control w-auto btn btn-danger" type="button">REPROVAR</button>
         </div>
     </div>

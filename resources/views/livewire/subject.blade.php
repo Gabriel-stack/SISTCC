@@ -34,9 +34,9 @@
                 <select wire:model="select_professor" name="professor" id="professor_search" class="form-select w-auto">
                     <option value="">Todos</option>
                     @forelse($professors as $professor)
-                    <option value="{{ $professor->id }}">{{ $professor->name }}</option>
+                        <option value="{{ $professor->id }}">{{ $professor->name }}</option>
                     @empty
-                    <option>Nenhum orientador cadastrado</option>
+                        <option>Nenhum orientador cadastrado</option>
                     @endforelse
                 </select>
             </div>
@@ -44,8 +44,8 @@
     </div>
 
     <div class="overflow-auto mt-4">
-       <table class="table align-middle box-shadow p-2 mb-0 bg-white">
-             <thead class="bg-dark text-white">
+        <table class="table align-middle box-shadow p-2 mb-0 bg-white">
+            <thead class="bg-dark text-white">
                 <tr>
                     <th class="col-1">#</th>
                     <th class="col-2">NOME</th>
@@ -58,37 +58,39 @@
             </thead>
             <tbody>
                 @if ($tccs->all())
-                @foreach ($tccs as $key => $tcc)
-                <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $tcc->student->name }}</td>
-                    <td>{{ $tcc->student->email }}</td>
-                    <td>{{ $tcc->professor->name }}</td>
-                    <td>{{ $tcc->situation }}</td>
-                    <td>{{$tcc->stage}}</td>
-                    <td class="d-flex gap-1">
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" wire:click="tccId({{ $tcc->id }})"
-                            data-bs-target="#modal-remove-student" data-student-id="{{ $tcc->id }}">
-                            <i class="bi bi-person-dash"></i>
-                        </button>
-                        <a class="btn btn-info" href="{{ route('manager.show', ['subject'=> $tcc->subject_id, 'tcc' => $tcc->id]) }}">
-                            <i class="bi bi-eye"></i>
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-                @include('manager.components.subject.modal_remove_student')
+                    @foreach ($tccs as $key => $tcc)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $tcc->student->name }}</td>
+                            <td>{{ $tcc->student->email }}</td>
+                            <td>{{ $tcc->professor->name ?? '-' }}</td>
+                            <td>{{ $tcc->situation }}</td>
+                            <td>{{ $tcc->stage }}</td>
+                            <td class="d-flex gap-1">
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    wire:click="tccId({{ $tcc->id }})" data-bs-target="#modal-remove-student"
+                                    data-student-id="{{ $tcc->id }}">
+                                    <i class="bi bi-person-dash"></i>
+                                </button>
+                                <a class="btn btn-info"
+                                    href="{{ route('manager.show', ['subject' => $tcc->subject_id, 'tcc' => $tcc->id]) }}">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    @include('manager.components.subject.modal_remove_student')
                 @else
-                <tr>
-                    <td class="text-center" colspan="7">NENHUM ALUNO ENCONTRADO!</td>
-                </tr>
+                    <tr>
+                        <td class="text-center" colspan="7">NENHUM ALUNO ENCONTRADO!</td>
+                    </tr>
                 @endif
             </tbody>
         </table>
         @if (isset($filters))
-        {{ $tccs->appends($filters)->links() }}
+            {{ $tccs->appends($filters)->links() }}
         @else
-        {{ $tccs->links() }}
+            {{ $tccs->links() }}
         @endif
     </div>
 </div>

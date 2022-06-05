@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,8 +17,9 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('subject_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('professor_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do orientador
-            $table->enum('stage',['Etapa 1',  'Etapa 2', 'Etapa 3'])->default('Etapa 1'); // Etapa do TCC
-            $table->enum('situation',['Cursando', 'Em análise', 'Devolvido', 'Aprovado', 'Reprovado'])->default('Cursando'); // Status do TCC
+            $table->bigInteger('coprofessor_id')->nullable(); // Id do co-orientador
+            $table->enum('stage', ['Etapa 1',  'Etapa 2', 'Etapa 3'])->default('Etapa 1'); // Etapa do TCC
+            $table->enum('situation', ['Cursando', 'Em análise', 'Devolvido', 'Aprovado', 'Reprovado'])->default('Cursando'); // Status do TCC
             $table->string('theme')->nullable(); // Tema
             $table->string('title')->nullable(); // Título
             $table->boolean('ethics_committee')->nullable(); // Comitê de ética
@@ -33,7 +33,10 @@ return new class extends Migration
             $table->string('result_ethic_committee')->nullable(); // Parecer do comitê de ética
             $table->string('proof_article_submission')->nullable(); // Comprovante de submissão de artigo
             $table->string('consent_professor')->nullable(); // Anuência do orientador
-            $table->string('file_tcc')->nullable(); // TCC
+            $table->string('file_pretcc')->nullable(); // Pré TCC
+            $table->string('file_tcc')->nullable(); // TCC Final
+            $table->string('final_tcc')->nullable(); // TCC Final pós banca
+            $table->string('deposit_statement')->nullable(); // Declaração de depósito na biblioteca
             $table->json('members')->nullable(); // Membros da banca
             $table->timestamps();
         });

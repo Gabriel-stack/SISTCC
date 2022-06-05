@@ -70,12 +70,17 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
 
     // painel de progresso
     Route::prefix('subject')->controller(TccController::class)->group(function () {
-        Route::get('{subject}','index')->name('progress');
-        Route::get('{subject}/tcc', 'create')->name('progress.tcc');
-        Route::post('store', 'enrollInClass')->name('progress.enroll');
-        Route::post('tcc', 'store')->name('progress.tcc.store');
-        Route::get('{subject}/requirement', 'requirement')->name('progress.requirement');
-        Route::post('requirement', 'storeRequirement')->name('progress.requirement.store');
+        Route::get('{subject}', 'index')->name('progress');
+
+        Route::name('progress.')->group(function () {
+            Route::post('store', 'enrollInClass')->name('enroll');
+            Route::get('{subject}/tcc', 'createTcc')->name('tcc');
+            Route::post('tcc', 'storeTcc')->name('tcc.store');
+            Route::get('{subject}/requirement', 'createRequirement')->name('requirement');
+            Route::post('requirement', 'storeRequirement')->name('requirement.store');
+            Route::get('{tcc}/finish', 'createFinish')->name('finish');
+            Route::post('/finish', 'storeFinish')->name('finish.store');
+        });
     });
 
 

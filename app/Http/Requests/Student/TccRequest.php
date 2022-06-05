@@ -28,7 +28,7 @@ class TccRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'professor' => ['required'],
             'ethics_committee' => ['required'],
-            'file_tcc' => ['required', 'mimes:pdf'],
+            'file_pretcc' => ['required', 'mimes:pdf'],
             'term_commitment' => ['required', 'mimes:pdf'],
             'date_claim' => ['required', 'date'],
         ];

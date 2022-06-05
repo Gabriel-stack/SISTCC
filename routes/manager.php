@@ -111,9 +111,13 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
                 Route::get('{tcc}/finish', 'accompanimentFinish')->name('finish');
 
-                Route::get('return', 'accompanimentReturn')->name('return');
+                Route::post('return', 'accompanimentReturn')->name('return');
 
-                Route::get('validate', 'accompanimentValidate')->name('validate');
+                Route::post('validate', 'accompanimentValidate')->name('validate');
+
+                Route::post('approve', 'accompanimentApprove')->name('approve');
+
+                Route::post('disapprove', 'accompanimentDisapprove')->name('disapprove');
             });
         });
 

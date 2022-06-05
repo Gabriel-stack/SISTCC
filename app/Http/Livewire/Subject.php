@@ -3,11 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Models\Professor;
-use App\Models\Student;
 use App\Models\Subject as ModelsSubject;
 use App\Models\Tcc;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -35,7 +33,7 @@ class Subject extends Component
 
     public function render()
     {
-        $tccs = Tcc::where('subject_id', $this->subject->id)
+        $tccs = Tcc::with('professor')->where('subject_id', $this->subject->id)
         ->when($this->search_name, function ($query) {
             return $query->whereHas('student', function ($query) {
                 return $query->where('name', 'like', '%' . $this->search_name . '%');

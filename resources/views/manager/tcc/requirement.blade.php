@@ -7,125 +7,78 @@
     @include('components.fail')
     @include('components.auth-validation-errors')
 
-    <form class="container" action="" method="POST" enctype="multipart/form-data">
+    <div class="container">
         <div class="row align-items-center p-3 box-shadow my-3 bg-gray-400">
-            <div class="col-12 col-sm-6 col-lg-3 py-2">
-                <label for="consert_professor" class="form-label">Termo de anuência</label>
-                <input type="file" class="form-control" name="tt[]" id="consert_advisor">
+            <div class="col-3">
+                <a class="text-decoration-none text-dark" href="{{ route('file', $tcc->consert_professor) }}">
+                    <i class="bi bi-filetype-pdf"> </i>Termo de anuência</a>
             </div>
-            <div class="col-12 col-sm-6 col-lg-3 py-2">
-                <label for="file_tcc" class="form-label">TCC finalizado</label>
-                <input type="file" class="form-control" name="tt[]" id="file_tcc">
+            <div class="col-3">
+                <a class="text-decoration-none text-dark" href="{{ route('file', $tcc->file_tcc) }}">
+                    <i class="bi bi-filetype-pdf"> </i>TCC finalizado</a>
             </div>
-            <div class="col-12 col-sm-6 col-lg-3 py-2">
-                <label for="result_ethics_commitee" class="form-label">Parecer do comitê de ética</label>
-                <input type="file" class="form-control" name="result_ethics_commitee" id="result_ethics_commitee">
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3 py-2">
-                <label for="proof_article_submission" class="form-label">Comprovante de submissão do artigo</label>
-                <input type="file" class="form-control" name="proof_article_submission" id="proof_article_submission">
+            @if ($tcc->result_ethic_commitee)
+                <div class="col-3">
+                    <a class="text-decoration-none text-dark" href="{{ route('file', $tcc->result_ethic_commitee) }}">
+                        <i class="bi bi-filetype-pdf"> </i>Parecer do comitê de ética</a>
+                </div>
+            @endif
+            <div class="col-3">
+                <a class="text-decoration-none text-dark" href="{{ route('file', $tcc->proof_article_submission) }}">
+                    <i class="bi bi-filetype-pdf"> </i>Comprovante de submissão do artigo</a>
             </div>
         </div>
-        <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
-            <div class="col-12 col-md-6 col-lg-3">
-                <div class="my-3">
-                    <label for="photo" class="form-label">Foto 3x4</label>
-                    <input type="file" class="form-control" name="photo" id="photo">
-                </div>
-                <div class="my-3">
-                    <label for="intended_date" class="form-label">Data de defesa</label>
-                    <input type="datetime" class="form-control" name="intended_date" id="intended_date">
+        <div class="row align-items-start p-3 box-shadow my-3 bg-gray-400">
+            <div class="col-12 col-md-2">
+                <div>
+                    <img src="" alt="" width="113px" height="151px">
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="d-flex flex-column col-12 col-md-6 col-lg-4">
                 <div class="my-3">
-                    <label for="type_tcc" class="form-label">Tipo de TCC</label>
-                    <input type="text" class="form-control" name="type_tcc" id="type_tcc">
+                    <h6>Tipo do TCC: <span class="fw-normal">{{ $tcc->title }}</span></h6>
                 </div>
-                <div class="my-3">
-                    <label for="keywords" class="form-label">Palavras-chave</label>
-                    <input type="text" class="form-control" name="keywords" id="keywords">
+                <div class="mb-3">
+                    <h6>Palavras-chaves: <span class="fw-normal">{{ $tcc->keywords }}</span></h6>
+                </div>
+                <div class="mb-3">
+                    <h6>Data que pretende defender: <span class="fw-normal">{{ @datebr($tcc->intended_date) }}</span>
+                    </h6>
                 </div>
             </div>
             <div class="col-12 col-lg-6 d-flex flex-column">
-                <label for="abstract" class="form-label">Resumo</label>
-                <textarea name="abstract" id="abstract" cols="30" rows="5"></textarea>
+                <textarea class="overflow-y" name="abstract" id="abstract" cols="30" rows="6"
+                    disabled>{{ $tcc->abstract }}</textarea>
             </div>
         </div>
-        <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
-            <div class="col-12">
-                <p class="title">MEMBRO 1</p>
+        <div class="row align-items-start justify-content-center p-3 box-shadow my-3 bg-gray-400">
+            @foreach ($members as $member)
+                <div class="col-12 col-sm-6 col-md-3">
+                    <h6>Nome: <span class="fw-normal">{{ $member->name }}</span></h6>
+                    <h6>Titulação: <span class="fw-normal">{{ $member->titration }}</span></h6>
+                    <h6>Orgão: <span class="fw-normal">{{ $member->organ }}</span></h6>
+                    <a class="text-decoration-none text-dark" href="{{ $member->accept_member }}"><i
+                            class="bi bi-filetype-pdf"> </i>Aceite</a>
+                </div>
+            @endforeach
+        </div>
+        <div class="my-3 d-flex justify-content-between gap-2">
+            <div>
+                <a class="btn btn-secondary text-white my-3"
+                    href="{{ route('manager.show', [$tcc->subject_id, $tcc->id]) }}">VOLTAR</a>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="name_member_1" class="form-label">Nome</label>
-                <input type="text" class="form-control" name="name_member_1" id="name_member_1">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="titration_member_1" class="form-label">Titulação</label>
-                <input type="datetime" class="form-control" name="titration_member_1" id="titration_member_1">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="organ_member_1" class="form-label">Orgão</label>
-                <input type="text" class="form-control" name="organ_member_1" id="organ_member_1">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="accept_member_1" class="form-label">Aceite</label>
-                <input type="file" class="form-control" name="accept_member_1" id="accept_member_1">
+            <div>
+                <button type="button" class="btn btn-warning text-white my-3" data-bs-toggle="modal"
+                    data-bs-target="#modal-return-tcc" data-tcc="{{ $tcc }}">
+                    DEVOLVER
+                </button>
+                @include('manager.components.tcc.modal_return_tcc')
+                <button type="button" class="btn btn-success text-white my-3" data-bs-toggle="modal"
+                    data-bs-target="#modal-validate-tcc" data-tcc="{{ $tcc }}">
+                    VALIDAR
+                </button>
+                @include('manager.components.tcc.modal_validate_tcc')
             </div>
         </div>
-        <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
-            <div class="col-12">
-                <p class="title">MEMBRO 2</p>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="name_member_2" class="form-label">Nome</label>
-                <input type="text" class="form-control" name="name_member_2" id="name_member_2">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="titration_member_2" class="form-label">Titulação</label>
-                <input type="datetime" class="form-control" name="titration_member_2" id="titration_member_2">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="organ_member_2" class="form-label">Orgão</label>
-                <input type="text" class="form-control" name="organ_member_2" id="organ_member_2">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="accept_member_2" class="form-label">Aceite</label>
-                <input type="file" class="form-control" name="accept_member_2" id="accept_member_2">
-            </div>
-        </div>
-        <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
-            <div class="col-12">
-                <p class="title">MEMBRO 3 (Opcional)</p>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="name_member_3" class="form-label">Nome</label>
-                <input type="text" class="form-control" name="name_member_3" id="name_member_3">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="titration_member_3" class="form-label">Titulação</label>
-                <input type="datetime" class="form-control" name="titration_member_3" id="titration_member_3">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="organ_member_3" class="form-label">Orgão</label>
-                <input type="text" class="form-control" name="organ_member_3" id="organ_member_3">
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
-                <label for="accept_member_3" class="form-label">Aceite</label>
-                <input type="file" class="form-control" name="accept_member_3" id="accept_member_3">
-            </div>
-        </div>
-        <div class="my-3 d-flex gap-2">
-            <button type="button" class="btn btn-warning text-white my-3" data-bs-toggle="modal"
-                data-bs-target="#modal-return-tcc" data-tcc="{{ $tcc }}">
-                DEVOLVER
-            </button>
-            @include('manager.components.tcc.modal_return_tcc')
-            <button type="button" class="btn btn-success text-white my-3" data-bs-toggle="modal"
-                data-bs-target="#modal-validate-tcc" data-tcc="{{ $tcc }}">
-                VALIDAR
-            </button>
-            @include('manager.components.tcc.modal_validate_tcc')
-        </div>
-    </form>
+    </div>
 @endsection
