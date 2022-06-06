@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Manager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\SubjectRequest;
 use App\Models\Subject;
+use App\Models\Tcc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,6 +71,14 @@ class DashboardController extends Controller
     public function close(Request $request)
     {
         $subject = Subject::findOrFail($request->id);
+
+        $tccs = Tcc::where('subject_id', $subject->id)->get();
+        foreach ($tccs as $tcc) {
+            if ($tcc->situation != 'Aprovado'){
+                $tcc->situation = 'Reprovado';
+                $tcc->save();
+            }
+        }
 
         $subject->update(['is_active' => false]);
 

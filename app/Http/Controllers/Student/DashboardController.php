@@ -18,10 +18,14 @@ class DashboardController extends Controller
     public function index()
     {
         $active_class = Subject::where('is_active', true)->first();
-        $inside = Tcc::where('subject_id', $active_class->id)
-        ->where('student_id', Auth::user()->id)->first();
-        $classes = Subject::where('is_active', false)->get();
-        return view('student.dashboard', compact('active_class', 'classes', 'inside'));
+
+        $inside = $active_class ? Tcc::with('subject')->where('subject_id', $active_class->id)
+            ->where('student_id', Auth::user()->id)->first() : null;
+
+        $tccs = Tcc::with('subject')->where('student_id', Auth::user()->id)
+            ->whereRelation('subject', 'is_active', '=', false)->orderBy('situation', 'asc')->get();
+
+        return view('student.dashboard', compact('active_class', 'inside', 'tccs'));
     }
 
     /**

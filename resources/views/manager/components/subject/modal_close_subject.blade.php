@@ -13,7 +13,11 @@
 
                     <input class="d-none" id="close-id" type="hidden" name="id" required>
 
-                    <h5 class="title text-start">REALMENTE DESEJA ENCERRAR A TURMA?</h5>
+                    <h5 class="title text-start">Realmente deseja finalizar a turma?</h5>
+                    <p>
+                        <i class="bi bi-exclamation-triangle-fill text-warning fs-4"></i>
+                        Todos os alunos que não foram aprovados serão reprovados automaticamente!
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">FECHAR</button>

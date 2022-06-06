@@ -1,4 +1,4 @@
-@extends('manager.templates.panel')
+@extends('student.templates.panel')
 
 @section('title', 'REQUERIMENTO DE DEFESA')
 
@@ -64,23 +64,8 @@
         </div>
         <div class="my-3 d-flex justify-content-between gap-2">
             <div>
-                <a class="btn btn-secondary text-white my-3"
-                    href="{{ route('manager.show', [$tcc->subject_id, $tcc->id]) }}">VOLTAR</a>
+                <a class="btn btn-secondary text-white my-3" href="{{ route('student.progress', [$tcc->subject_id]) }}">VOLTAR</a>
             </div>
-            @if ($tcc->stage == 'Etapa 2' && $tcc->situation == 'Em análise')
-                <div>
-                    <button type="button" class="btn btn-warning text-white my-3" data-bs-toggle="modal"
-                        data-bs-target="#modal-return-tcc" data-tcc="{{ $tcc }}">
-                        DEVOLVER
-                    </button>
-                    @include('manager.components.tcc.modal_return_tcc')
-                    <button type="button" class="btn btn-success text-white my-3" data-bs-toggle="modal"
-                        data-bs-target="#modal-validate-tcc" data-tcc="{{ $tcc }}">
-                        VALIDAR
-                    </button>
-                    @include('manager.components.tcc.modal_validate_tcc')
-                </div>
-            @endif
         </div>
     </div>
 @endsection

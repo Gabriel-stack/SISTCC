@@ -7,7 +7,7 @@
     @include('components.fail')
     @include('components.auth-validation-errors')
 
-    <form class="container my-4" action="{{ route('student.progress.tcc.store') }}" method="POST"
+    <form class="container my-4" action="{{ route('student.progress.tcc.store', $tcc->subject_id) }}" method="POST"
         enctype="multipart/form-data">
         @csrf
         <div class="row bg-white box-shadow rounded-2">

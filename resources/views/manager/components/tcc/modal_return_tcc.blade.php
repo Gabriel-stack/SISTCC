@@ -13,7 +13,7 @@
 
                     <input class="d-none" id="return-id" type="hidden" name="id" value="{{ $tcc->id }}" required>
 
-                    <textarea class="form-control" name="return" id="return" cols="20" rows="5" placeholder="Informe o motivo da devolução."></textarea>
+                    <textarea class="form-control" name="message" id="message" cols="20" rows="5" placeholder="Informe o motivo da devolução."></textarea>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">FECHAR</button>

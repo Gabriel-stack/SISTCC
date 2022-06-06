@@ -13,6 +13,7 @@ class Tcc extends Model
         'student_id',
         'subject_id',
         'professor_id',
+        'coprofessor_id',
         'situation',
         'stage',
         'theme',
@@ -27,8 +28,11 @@ class Tcc extends Model
         'intended_date',
         'result_ethic_committee',
         'proof_article_submission',
-        'consent_advisor',
+        'consent_professor',
+        'file_pretcc',
         'file_tcc',
+        'final_tcc',
+        'deposit_statement',
         'members',
     ];
 

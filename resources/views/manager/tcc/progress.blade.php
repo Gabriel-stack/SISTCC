@@ -26,7 +26,7 @@
         </div>
         <div class="col-4 col-sm-2 mt-2 d-flex flex-column align-items-center">
             <span>Histórico do aluno</span>
-            <a class="form-control w-auto btn btn-warning" href="#">
+            <a class="form-control w-auto btn btn-warning text-white" href="#">
                 BAIXAR
             </a>
         </div>
@@ -37,7 +37,7 @@
         @if (true)
             <div class="col-4 col-sm-3 mt-2">
                 <span>Co-orientador</span>
-                {{-- <span class="form-control bg-gray text-dark">{{ $tcc->professor->name }}</span> --}}
+                <span class="form-control bg-gray text-dark">{{ $coprofessor->name ?? '-' }}</span>
             </div>
         @endif
         <div class="col-4 col-sm-3 mt-2">
@@ -49,41 +49,54 @@
             <span class="form-control bg-gray text-dark">{{ $tcc->situation }}</span>
         </div>
         <div class="col-4 col-sm-1 mt-2 d-flex flex-column align-items-start">
-            <button class="form-control w-auto btn btn-danger" type="button">REPROVAR</button>
+            <button type="button" class="btn btn-danger text-white my-3" data-bs-toggle="modal"
+                data-bs-target="#modal-disapprove-tcc" data-tcc="{{ $tcc }}">
+                REPROVAR
+            </button>
+            @include('manager.components.tcc.modal_disapprove_tcc')
         </div>
     </div>
 
-    <div class="row p-4 my-4 justify-content-between align-items-center bg-white" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+    <div class="row p-4 my-4 justify-content-between align-items-center bg-white"
+        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
         <div class="col">
             <h6 class="title">ACOMPANHAMENTO DE TRABALHO DE CONCLUSÃO DE CURSO</h6>
         </div>
         <div class="col d-flex justify-content-end">
-            @if (in_array($tcc->stage,['Etapa 1', 'Etapa 2', 'Etapa 3']))
-                <a href="{{ route('manager.accompaniment.tcc', $tcc) }}" style="font-size: 24px"><i class="bi bi-arrow-right-square"></i></a>
+            @if (($tcc->stage == 'Etapa 1' && in_array($tcc->situation, ['Em análise', 'Devolvido', 'Reprovado'])) && $tcc->file_pretcc || $tcc->stage != 'Etapa 1')
+                <a href="{{ route('manager.accompaniment.tcc', $tcc) }}" style="font-size: 24px">
+                    <i class="bi bi-arrow-right-square"></i>
+                </a>
             @else
                 <i class="bi bi-lock" style="font-size: 24px"></i>
             @endif
         </div>
     </div>
-    <div class="row p-4 my-4 justify-content-between align-items-center bg-white" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+    <div class="row p-4 my-4 justify-content-between align-items-center bg-white"
+        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
         <div class="col">
             <h6 class="title">ACOMPANHAMENTO DE REQUERIMENTO DE DEFESA</h6>
         </div>
         <div class="col d-flex justify-content-end">
-            @if (in_array($tcc->stage,['Etapa 2', 'Etapa 3']))
-                <a href="{{ route('manager.accompaniment.requirement', $tcc) }}" style="font-size: 24px"><i class="bi bi-arrow-right-square"></i></a>
+            @if (($tcc->stage == 'Etapa 2' && in_array($tcc->situation, ['Em análise', 'Devolvido', 'Reprovado'])) && $tcc->file_tcc || !in_array($tcc->stage, ['Etapa 1', 'Etapa 2']))
+                <a href="{{ route('manager.accompaniment.requirement', $tcc) }}" style="font-size: 24px">
+                    <i class="bi bi-arrow-right-square"></i>
+                </a>
             @else
                 <i class="bi bi-lock" style="font-size: 24px"></i>
             @endif
         </div>
     </div>
-    <div class="row p-4 my-4 justify-content-between align-items-center bg-white" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+    <div class="row p-4 my-4 justify-content-between align-items-center bg-white"
+        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
         <div class="col">
             <h6 class="title">FINALIZAR DISCIPLINA</h6>
         </div>
         <div class="col d-flex justify-content-end">
-            @if ($tcc->stage == 'Etapa 3')
-                <a href="{{ route('manager.accompaniment.finish', $tcc) }}" style="font-size: 24px"><i class="bi bi-arrow-right-square"></i></a>
+            @if ($tcc->stage == 'Etapa 3' && $tcc->situation != 'Cursando' && $tcc->final_tcc)
+                <a href="{{ route('manager.accompaniment.finish', $tcc) }}" style="font-size: 24px">
+                    <i class="bi bi-arrow-right-square"></i>
+                </a>
             @else
                 <i class="bi bi-lock" style="font-size: 24px"></i>
             @endif

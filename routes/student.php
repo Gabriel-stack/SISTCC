@@ -68,18 +68,25 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
         Route::get('dashboard', 'index')->name('dashboard');
     });
 
-    // painel de progresso
+    // painel de Progresso
     Route::prefix('subject')->controller(TccController::class)->group(function () {
         Route::get('{subject}', 'index')->name('progress');
 
         Route::name('progress.')->group(function () {
             Route::post('store', 'enrollInClass')->name('enroll');
             Route::get('{subject}/tcc', 'createTcc')->name('tcc');
-            Route::post('tcc', 'storeTcc')->name('tcc.store');
+            Route::post('{subject}/tcc', 'storeTcc')->name('tcc.store');
             Route::get('{subject}/requirement', 'createRequirement')->name('requirement');
-            Route::post('requirement', 'storeRequirement')->name('requirement.store');
+            Route::post('{subject}/requirement', 'storeRequirement')->name('requirement.store');
             Route::get('{tcc}/finish', 'createFinish')->name('finish');
-            Route::post('/finish', 'storeFinish')->name('finish.store');
+            Route::post('{subject}/finish', 'storeFinish')->name('finish.store');
+        });
+
+        // Acompanhamento
+        Route::name('accompaniment.')->group(function () {
+            Route::get('{subject}/accompaniment/tcc', 'accompanimentTcc')->name('tcc');
+            Route::get('{subject}/accompaniment/requirement', 'accompanimentRequirement')->name('requirement');
+            Route::get('{tcc}/accompaniment/finish', 'accompanimentFinish')->name('finish');
         });
     });
 

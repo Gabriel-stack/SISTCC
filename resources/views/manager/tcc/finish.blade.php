@@ -26,25 +26,27 @@
                         <a class="btn btn-secondary text-white my-3"
                             href="{{ route('manager.show', [$tcc->subject_id, $tcc->id]) }}">VOLTAR</a>
                     </div>
-                    <div>
-                        <button type="button" class="btn btn-warning text-white my-3" data-bs-toggle="modal"
-                            data-bs-target="#modal-return-tcc" data-tcc="{{ $tcc }}">
-                            DEVOLVER
-                        </button>
-                        @include('manager.components.tcc.modal_return_tcc')
+                    @if ($tcc->stage == 'Etapa 3' && $tcc->situation == 'Em análise')
+                        <div>
+                            <button type="button" class="btn btn-warning text-white my-3" data-bs-toggle="modal"
+                                data-bs-target="#modal-return-tcc" data-tcc="{{ $tcc }}">
+                                DEVOLVER
+                            </button>
+                            @include('manager.components.tcc.modal_return_tcc')
 
-                        <button type="button" class="btn btn-danger text-white my-3" data-bs-toggle="modal"
-                            data-bs-target="#modal-disapprove-tcc" data-tcc="{{ $tcc }}">
-                            REPROVAR
-                        </button>
-                        @include('manager.components.tcc.modal_disapprove_tcc')
+                            <button type="button" class="btn btn-danger text-white my-3" data-bs-toggle="modal"
+                                data-bs-target="#modal-disapprove-tcc" data-tcc="{{ $tcc }}">
+                                REPROVAR
+                            </button>
+                            @include('manager.components.tcc.modal_disapprove_tcc')
 
-                        <button type="button" class="btn btn-success text-white my-3" data-bs-toggle="modal"
-                            data-bs-target="#modal-approve-tcc" data-tcc="{{ $tcc }}">
-                            APROVAR
-                        </button>
-                        @include('manager.components.tcc.modal_approve_tcc')
-                    </div>
+                            <button type="button" class="btn btn-success text-white my-3" data-bs-toggle="modal"
+                                data-bs-target="#modal-approve-tcc" data-tcc="{{ $tcc }}">
+                                APROVAR
+                            </button>
+                            @include('manager.components.tcc.modal_approve_tcc')
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

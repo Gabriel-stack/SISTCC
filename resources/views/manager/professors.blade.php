@@ -8,7 +8,7 @@
     @include('components.success')
     @include('components.fail')
     @include('components.auth-validation-errors')
-    
+
     <div class="my-5 py-4 row bg-white rounded-2 box-shadow justify-content-between align-items-center">
         <form class="d-flex col" role="search" action="{{ route('manager.professor.search') }}" method="get">
 
@@ -35,8 +35,8 @@
                     <th class="col-2">NOME</th>
                     <th class="col-3">E-MAIL</th>
                     <th class="col-2">TELEFONE</th>
-                    <th class="col-2">TITULAÇÃO</th>
-                    <th class="col-1">ÓRGÃO</th>
+                    <th class="col-1">TITULAÇÃO</th>
+                    <th class="col-2">ÓRGÃO</th>
                     <th class="col-1">AÇÕES</th>
                 </tr>
             </thead>

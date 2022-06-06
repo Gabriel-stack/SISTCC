@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class FilesController extends Controller
 {
@@ -15,6 +16,7 @@ class FilesController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Response::download(storage_path($request->file));
+        // return response()->file(storage_path($request->file));
+        return Storage::download($request->file);
     }
 }

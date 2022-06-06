@@ -8,13 +8,13 @@
     @include('components.fail')
     @include('components.auth-validation-errors')
 
-    <form class="container" action="{{ route('student.progress.requirement.store') }}" method="POST"
+    <form class="container" action="{{ route('student.progress.requirement.store', $tcc->subject_id) }}" method="POST"
         enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center align-items-center p-3 box-shadow my-3 bg-gray-400">
             <div class="col-12 col-sm-6 col-lg-3 py-2">
-                <label for="consert_professor" class="form-label">Termo de anuência</label>
-                <input type="file" class="form-control" name="consert_professor" id="consert_professor">
+                <label for="consent_professor" class="form-label">Termo de anuência</label>
+                <input type="file" class="form-control" name="consent_professor" id="consent_professor">
             </div>
             <div class="col-12 col-sm-6 col-lg-3 py-2">
                 <label for="file_tcc" class="form-label">TCC finalizado</label>

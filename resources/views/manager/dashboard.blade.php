@@ -17,7 +17,6 @@
                 <span class="h4 fw-light w-100 text-center">Cadastre uma turma</span>
 
                 <div class="d-flex col">
-                    <!-- Button trigger modal -->
                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
                         data-bs-target="#modal-store-subject">
                         CADASTRAR TURMA
@@ -55,7 +54,6 @@
                                     ENCERRAR
                                 </button>
                                 @include('manager.components.subject.modal_close_subject')
-
 
                                 <a class="btn btn-primary"
                                     href="{{ route('manager.subject', $active_subject->id) }}">ENTRAR</a>

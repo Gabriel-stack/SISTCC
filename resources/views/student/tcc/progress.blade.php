@@ -11,8 +11,8 @@
 
     @if ($tcc->situation == 'Devolvido')
         <div class="alert alert-danger text-center">
-            {{-- {{ $tcc->message }} --}}
-            A etapa foi devolvida!
+            <h5 class="title fw-bold">A etapa foi devolvida!</h5>
+            <p>{{ $tcc->message }}</p>
         </div>
     @endif
 
@@ -22,11 +22,16 @@
             <h5>CADASTRAR TRABALHO DE CONCLUSÃO DE CURSO</h5>
         </div>
         <div>
-            @if ($tcc->stage == 'Etapa 1')
-                <a href="{{ route('student.progress.tcc', $tcc->subject_id) }}" style="font-size: 24px"><i
-                        class="bi bi-arrow-right-square"></i></a>
+            @if (($tcc->stage == 'Etapa 1' && in_array($tcc->situation, ['Cursando', 'Devolvido'])))
+                <a href="{{ route('student.progress.tcc', $tcc->subject_id) }}" style="font-size: 24px">
+                    <i class="bi bi-arrow-right-square"></i>
+                </a>
+            @elseif ($tcc->stage != 'Etapa 1' || !in_array($tcc->situation, ['Cursando', 'Devolvido']))
+                <a href="{{ route('student.accompaniment.tcc', $tcc->id) }}" style="font-size: 24px">
+                    <i class="bi bi-eye"></i>
+                </a>
             @else
-                <i class="bi bi-lock"></i>
+                <i class="bi bi-lock" style="font-size: 24px"></i>
             @endif
         </div>
     </div>
@@ -36,11 +41,16 @@
             <h5>CADASTRAR REQUERIMENTO DE DEFESA</h5>
         </div>
         <div>
-            @if ($tcc->stage == 'Etapa 2')
-                <a href="{{ route('student.progress.requirement', $tcc->subject_id) }}" style="font-size: 24px"><i
-                        class="bi bi-arrow-right-square"></i></a>
+            @if ($tcc->stage == 'Etapa 2' && in_array($tcc->situation, ['Cursando', 'Devolvido']))
+                <a href="{{ route('student.progress.requirement', $tcc->subject_id) }}" style="font-size: 24px">
+                    <i class="bi bi-arrow-right-square"></i>
+                </a>
+            @elseif (($tcc->stage == 'Etapa 2' && !in_array($tcc->situation, ['Cursando', 'Devolvido'])) || !in_array($tcc->stage, ['Etapa 1', 'Etapa 2']))
+                <a href="{{ route('student.accompaniment.requirement', $tcc->id) }}" style="font-size: 24px">
+                    <i class="bi bi-eye"></i>
+                </a>
             @else
-                <i class="bi bi-lock"></i>
+                <i class="bi bi-lock" style="font-size: 24px"></i>
             @endif
         </div>
     </div>
@@ -51,10 +61,15 @@
         </div>
         <div>
             @if ($tcc->stage == 'Etapa 3' && in_array($tcc->situation, ['Cursando', 'Devolvido']))
-                <a href="{{ route('student.progress.finish', $tcc->subject_id) }}" style="font-size: 24px"><i
-                        class="bi bi-arrow-right-square"></i></a>
+                <a href="{{ route('student.progress.finish', $tcc->subject_id) }}" style="font-size: 24px">
+                    <i class="bi bi-arrow-right-square"></i>
+                </a>
+            @elseif ($tcc->stage == 'Etapa 3' && !in_array($tcc->situation, ['Cursando', 'Devolvido']) || !in_array($tcc->stage, ['Etapa 1', 'Etapa 2', 'Etapa 3']))
+                <a href="{{ route('student.accompaniment.finish', $tcc->id) }}" style="font-size: 24px">
+                    <i class="bi bi-eye"></i>
+                </a>
             @else
-                <i class="bi bi-lock"></i>
+                <i class="bi bi-lock" style="font-size: 24px"></i>
             @endif
         </div>
     </div>

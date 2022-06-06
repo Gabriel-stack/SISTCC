@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('final_tcc')->nullable(); // TCC Final pós banca
             $table->string('deposit_statement')->nullable(); // Declaração de depósito na biblioteca
             $table->json('members')->nullable(); // Membros da banca
+            $table->text('message')->nullable(); // Mensagem de devolução de etapa
             $table->timestamps();
         });
     }
