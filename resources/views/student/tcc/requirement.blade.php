@@ -13,10 +13,6 @@
         @csrf
         <div class="row justify-content-center align-items-center p-3 box-shadow my-3 bg-gray-400">
             <div class="col-12 col-sm-6 col-lg-3 py-2">
-                <label for="consent_professor" class="form-label">Termo de anuência</label>
-                <input type="file" class="form-control" name="consent_professor" id="consent_professor">
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3 py-2">
                 <label for="file_tcc" class="form-label">TCC finalizado</label>
                 <input type="file" class="form-control" name="file_tcc" id="file_tcc">
             </div>
@@ -45,7 +41,14 @@
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="my-3">
                     <label for="type_tcc" class="form-label">Tipo de TCC</label>
-                    <input type="text" class="form-control" name="type_tcc" id="type_tcc">
+                    <select class="form-select" name="type_tcc" id="type_tcc">
+                        <option class="text-muted" selected>Selecione</option>
+                        <option value="1">Artigo</option>
+                        <option value="2">Capítulo de Livro</option>
+                        <option value="3">Monografia</option>
+                        <option value="4">Outro</option>
+                    </select>
+                        
                 </div>
                 <div class="my-3">
                     <label for="keywords" class="form-label">Palavras-chave</label>
@@ -59,8 +62,29 @@
         </div>
         <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
             <div class="col-12">
-                <p class="title">MEMBRO 1</p>
+                <p class="title fw-bold">Orientador</p>
+            </div><hr>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
+                <span class="my-3">Nome</span>
+                <p class="form-control bg-gray text-muted">{{$tcc->professor->name}}</p>
             </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
+                <span class="my-3">Titulação</span>
+                <p class="form-control bg-gray text-muted">{{$tcc->professor->titration}}</p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
+                <span class="my-3">Titulação</span>
+                <p class="form-control bg-gray text-muted">{{$tcc->professor->organ}}</p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
+                <label for="consent_professor" class="form-label">Termo de anuência</label>
+                <input type="file" class="form-control" name="consent_professor" id="consent_professor">
+            </div>
+        </div>
+        <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
+            <div class="col-12">
+                <p class="title fw-bold">Membro 1</p>
+            </div><hr>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
                 <label for="members[one][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[one][name]" id="name">
@@ -81,8 +105,8 @@
         </div>
         <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
             <div class="col-12">
-                <p class="title">MEMBRO 2</p>
-            </div>
+                <p class="title fw-bold">Membro 2</p>
+            </div><hr>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
                 <label for="members[two][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[two][name]" id="members[two][name]">
@@ -103,7 +127,7 @@
         </div>
         <div class="row align-items-baseline p-3 box-shadow my-3 bg-gray-400">
             <div class="col-12">
-                <p class="title">MEMBRO 3 (Opcional)</p>
+                <p class="title fw-bold">Membro 3 (Opcional)</p>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
                 <label for="members[three][name]" class="form-label">Nome</label>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Student\RequirementRequest;
 use App\Http\Requests\Student\TccRequest;
 use App\Models\Professor;
 use App\Models\Subject;
@@ -68,6 +69,7 @@ class TccController extends Controller
         $data['student_id'] = Auth::user()->id;
         $this->deleteFiles([$tcc->file_pretcc, $tcc->term_commitment]);
         $data['file_pretcc'] = $request->file_pretcc->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
+        dd($data['file_pretcc']);
         $data['term_commitment'] = $request->term_commitment->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
         $data['ethics_committee'] = $request->ethics_committee == 1 ? true : false;
         $data['situation'] = 'Em análise';
@@ -97,8 +99,9 @@ class TccController extends Controller
         return view('student.tcc.requirement', compact('ethics_committee', 'subject_id', 'tcc'));
     }
 
-    public function storeRequirement(Request $request)
+    public function storeRequirement(RequirementRequest $request)
     {
+        // dd($request->validated());
         $tcc = Tcc::where('student_id', Auth::user()->id)
             ->where('subject_id', $request->subject)
             ->first();

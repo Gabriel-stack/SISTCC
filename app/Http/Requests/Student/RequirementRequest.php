@@ -24,15 +24,21 @@ class RequirementRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => ['required', 'mimes:jpeg,jpg,png'],
+            'photo' => ['required','mimes:jpeg,jpg,png'],
             'keywords' => ['required', 'string'],
             'abstract' => ['required', 'string'],
             'type_tcc' => ['required', 'string'],
             'intended_date' => ['required', 'date'],
             'result_ethic_commitee' => ['required', 'mimes:pdf'],
-            'proof_article_submission' => ['required', 'mimes:pdf'],
-            'consent_advisor' => ['required', 'mimes:pdf'],
+            'proof_article_submission' => ['require_if:type_tcc, ==, artigo', 'mimes:pdf'],
+            'consent_professor' => ['required', 'mimes:pdf'],
             'file_tcc' => ['required', 'mimes:pdf'],
+            'members.one.*' => ['required'],
+            'members.two.*' => ['required'],
+            'members.three.name' => ['required_with:members.titration, members.three.organ'],
+            'members.three.organ' => ['required_with:members.titration, members.three.name'],
+            'members.three.titration' => ['required_with:members.three.name, members.three.organ'],
+            'members.three.accept_member' => ['sometimes','required'],
         ];
     }
 }
