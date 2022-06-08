@@ -16,6 +16,7 @@ use App\Http\Controllers\Manager\Auth\{
     RegisteredUserController,
     VerifyEmailController,
 };
+use App\Http\Controllers\Professor\Report\BaremaController;
 use App\Http\Livewire\Subject;
 use Illuminate\Support\Facades\Route;
 
@@ -118,6 +119,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
                 Route::post('approve', 'accompanimentApprove')->name('approve');
 
                 Route::post('disapprove', 'accompanimentDisapprove')->name('disapprove');
+                // Route::get('download', [BaremaController::class])->name('barema.download');
             });
         });
 
@@ -138,20 +140,4 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
             Route::post('destroy', 'destroy')->name('destroy');
         });
     });
-
-
-    // Professor de disciplina
-    // Route::prefix('managers')->controller(ManagerController::class)->group(function () {
-    //     Route::get('/', 'create')->name('managers');
-
-    //     Route::name('manager.')->group(function () {
-    //         Route::get('search', 'search')->name('search');
-
-    //         Route::post('store', 'store')->name('store');
-
-    //         Route::post('update', 'update')->name('update');
-
-    //         Route::post('destroy', 'destroy')->name('destroy');
-    //     });
-    // });
 });

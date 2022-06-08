@@ -43,10 +43,10 @@
                     <label for="type_tcc" class="form-label">Tipo de TCC</label>
                     <select class="form-select" name="type_tcc" id="type_tcc">
                         <option class="text-muted" selected>Selecione</option>
-                        <option value="1">Artigo</option>
-                        <option value="2">Capítulo de Livro</option>
-                        <option value="3">Monografia</option>
-                        <option value="4">Outro</option>
+                        <option value="artigo">Artigo</option>
+                        <option value="cap_livro">Capítulo de Livro</option>
+                        <option value="monografia">Monografia</option>
+                        <option value="outro">Outro</option>
                     </select>
                         
                 </div>

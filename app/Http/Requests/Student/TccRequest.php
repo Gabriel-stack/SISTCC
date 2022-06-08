@@ -30,7 +30,7 @@ class TccRequest extends FormRequest
             'ethics_committee' => ['required'],
             'file_pretcc' => ['required', 'mimes:pdf'],
             'term_commitment' => ['required', 'mimes:pdf'],
-            'date_claim' => ['required', 'date'],
+            'date_claim' => ['required', 'date', 'after:today'],
         ];
     }
 }
