@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Professor\Report;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tcc;
 use Illuminate\Http\Request;
+use Nette\Utils\Json;
 use PDF;
 class BaremaController extends Controller
 {
@@ -15,8 +17,10 @@ class BaremaController extends Controller
      */
     public function __invoke(Request $request)
     {
-        dd($request->all());
-        $pdf = PDF::loadView('manager.pdfs_templates.barema');
+        $tcc = Tcc::findOrFail($request->tcc);
+        abort_if($tcc->stage != 'Etapa 3', 403, 'Ação não permitida para esse tcc');
+        $members = Json::decode($tcc->members);
+        $pdf = PDF::loadView('manager.pdfs_templates.barema', compact('tcc','members'));
         return $pdf->stream('barema.pdf');
     }
         

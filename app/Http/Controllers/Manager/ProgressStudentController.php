@@ -25,7 +25,7 @@ class ProgressStudentController extends Controller
     public function accompanimentTcc($tcc)
     {
         $tcc = Tcc::findOrFail($tcc);
-        abort_if(($tcc->stage == 'Etapa 1' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->file_pretcc), 401);
+        abort_if(($tcc->stage == 'Etapa 1' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->file_pretcc), 403, 'No momento, essa etapa não está liberada para visualização');
         $coprofessor = Professor::find($tcc->coprofessor_id);
         return view('manager.tcc.tcc', compact('tcc', 'coprofessor'));
     }
@@ -33,7 +33,7 @@ class ProgressStudentController extends Controller
     public function accompanimentRequirement($tcc)
     {
         $tcc = Tcc::findOrFail($tcc);
-        abort_if(($tcc->stage == 'Etapa 2' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->file_tcc || $tcc->stage == 'Etapa 1'), 401);
+        abort_if(($tcc->stage == 'Etapa 2' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->file_tcc || $tcc->stage == 'Etapa 1'), 403, 'No momento, essa etapa não está liberada para visualização');
         $members = Json::decode($tcc->members);
         return view('manager.tcc.requirement', compact('tcc', 'members'));
     }
@@ -41,7 +41,7 @@ class ProgressStudentController extends Controller
     public function accompanimentFinish($tcc)
     {
         $tcc = Tcc::findOrFail($tcc);
-        abort_if(($tcc->stage == 'Etapa 3' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->final_tcc || in_array($tcc->stage, ['Etapa 1', 'Etapa 2'])), 401);
+        abort_if(($tcc->stage == 'Etapa 3' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->final_tcc || in_array($tcc->stage, ['Etapa 1', 'Etapa 2'])), 403, 'No momento, essa etapa não está liberada para visualização');
         return view('manager.tcc.finish', compact('tcc'));
     }
 

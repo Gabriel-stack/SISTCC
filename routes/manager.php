@@ -96,7 +96,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
         });
     });
 
-
+    Route::get('barema/{tcc}/download', BaremaController::class)->name('barema');
     // Turma
     Route::prefix('subjects')->group(function () {
         Route::get('/{subject}', Subject::class)->name('subject');
@@ -119,7 +119,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
                 Route::post('approve', 'accompanimentApprove')->name('approve');
 
                 Route::post('disapprove', 'accompanimentDisapprove')->name('disapprove');
-                // Route::get('download', [BaremaController::class])->name('barema.download');
+               
             });
         });
 

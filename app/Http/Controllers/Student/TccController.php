@@ -53,7 +53,7 @@ class TccController extends Controller
         $tcc = Tcc::where('student_id', Auth::user()->id)->where('subject_id', $subject_id)->first();;
         abort_if(!$tcc->subject->is_active || $tcc->stage != 'Etapa 1' ||
             $tcc->stage == 'Etapa 1' &&
-            !in_array($tcc->situation, ['Cursando', 'Devolvido']), 401);
+            !in_array($tcc->situation, ['Cursando', 'Devolvido']), 403, 'Ação não permitida');
 
         return view('student.tcc.tcc', compact('professors', 'subject_id', 'tcc'));
     }
@@ -88,7 +88,7 @@ class TccController extends Controller
         $tcc = Tcc::where('student_id', Auth::user()->id)->where('subject_id', $subject_id)->first();
         abort_if(!$tcc->subject->is_active || $tcc->stage != 'Etapa 2' ||
             $tcc->stage == 'Etapa 2' &&
-            !in_array($tcc->situation, ['Cursando', 'Devolvido']), 401);
+            !in_array($tcc->situation, ['Cursando', 'Devolvido']), 403, 'Ação não permitida');
 
         $ethics_committee = Tcc::where('student_id', Auth::user()->id)
             ->where('subject_id', $subject_id)
@@ -136,7 +136,7 @@ class TccController extends Controller
         $tcc = Tcc::with('subject')->where('student_id', Auth::user()->id)->where('subject_id', $subject_id)->first();
         abort_if(!$tcc->subject->is_active || $tcc->stage != 'Etapa 3' ||
             $tcc->stage == 'Etapa 3' &&
-            !in_array($tcc->situation, ['Cursando', 'Devolvido']), 401);
+            !in_array($tcc->situation, ['Cursando', 'Devolvido']), 403, 'Ação não permitida');
 
         return view('student.tcc.finish', compact('subject_id', 'tcc'));
     }
@@ -169,7 +169,7 @@ class TccController extends Controller
     public function accompanimentTcc($tcc)
     {
         $tcc = Tcc::findOrFail($tcc);
-        abort_if(($tcc->stage == 'Etapa 1' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->file_pretcc), 401);
+        abort_if(($tcc->stage == 'Etapa 1' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->file_pretcc), 403, 'Ação não permitida');
         $coprofessor = Professor::find($tcc->coprofessor_id);
         return view('student.tcc.accompaniment.tcc', compact('tcc', 'coprofessor'));
     }
@@ -177,7 +177,7 @@ class TccController extends Controller
     public function accompanimentRequirement($tcc)
     {
         $tcc = Tcc::findOrFail($tcc);
-        abort_if(($tcc->stage == 'Etapa 2' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->file_tcc || $tcc->stage == 'Etapa 1'), 401);
+        abort_if(($tcc->stage == 'Etapa 2' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->file_tcc || $tcc->stage == 'Etapa 1'), 403, 'Ação não permitida');
         $members = Json::decode($tcc->members);
         return view('student.tcc.accompaniment.requirement', compact('tcc', 'members'));
     }
@@ -185,7 +185,7 @@ class TccController extends Controller
     public function accompanimentFinish($tcc)
     {
         $tcc = Tcc::findOrFail($tcc);
-        abort_if(($tcc->stage == 'Etapa 3' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->final_tcc || in_array($tcc->stage, ['Etapa 1', 'Etapa 2'])), 401);
+        abort_if(($tcc->stage == 'Etapa 3' && $tcc->situation == 'Cursando' || $tcc->situation == 'Reprovado' && !$tcc->final_tcc || in_array($tcc->stage, ['Etapa 1', 'Etapa 2'])), 403, 'Ação não permitida');
         return view('student.tcc.accompaniment.finish', compact('tcc'));
     }
 }
