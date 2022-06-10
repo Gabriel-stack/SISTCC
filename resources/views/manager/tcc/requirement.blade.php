@@ -82,7 +82,7 @@
         </div>
         @elseif($tcc->stage == 'Etapa 3')
         <div>
-        <a type="button" class="btn btn-primary text-white my-3" href="">
+        <a type="button" class="btn btn-primary text-white my-3" target="_blank" href="{{ route('manager.ata', $tcc) }}">
             GERAR ATA
         </a>
         <a type="button" class="btn btn-primary text-white my-3" target="_blank" href="{{ route('manager.barema', $tcc) }}">

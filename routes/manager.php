@@ -16,6 +16,7 @@ use App\Http\Controllers\Manager\Auth\{
     RegisteredUserController,
     VerifyEmailController,
 };
+use App\Http\Controllers\Professor\Report\AtaController;
 use App\Http\Controllers\Professor\Report\BaremaController;
 use App\Http\Livewire\Subject;
 use Illuminate\Support\Facades\Route;
@@ -97,6 +98,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
     });
 
     Route::get('barema/{tcc}/download', BaremaController::class)->name('barema');
+    Route::get('ata/{tcc}/download', AtaController::class)->name('ata');
     // Turma
     Route::prefix('subjects')->group(function () {
         Route::get('/{subject}', Subject::class)->name('subject');

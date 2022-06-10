@@ -5,13 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Barema de avaliação</title>
+    <title>Barema de avaliação - {{ $tcc->student->name }}</title>
     <style>
-        #cabecalho>p,
-        #titulo>p {
-            padding: 0;
-            margin: 0;
-        }
+       
 
         #cabecalho {
             font-family: Arial, Helvetica, sans-serif;
