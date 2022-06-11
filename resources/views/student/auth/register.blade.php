@@ -106,4 +106,13 @@
         </div>
     </form>
 </div>
+@push('masks')
+<script>
+    $(document).ready(function () {
+        $('#phone').mask('(00) 00000-0000');
+        $('#zip_code').mask('00000-000');
+        
+    });
+</script>
+@endpush    
 @endsection
