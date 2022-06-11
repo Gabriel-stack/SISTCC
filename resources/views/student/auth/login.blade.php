@@ -1,6 +1,7 @@
 @extends('layouts.guest')
 
 @section('title', 'Login')
+
 @section('content')
     <div class="d-flex h-100 justify-content-center align-items-center p-3">
         <div class="bg-white rounded d-flex flex-column p-4" id="box">
@@ -9,7 +10,6 @@
                 @include('components.auth-validation-errors')
             @endif
             @include('components.fail')
-            <a href="/"></a>
 
             <form action="{{ route('student.login') }}" method="post">
                 @csrf
@@ -29,6 +29,10 @@
                         autocomplete="current-password">
                 </div>
 
+                <div class="text-center mt-4">
+                    <button class="btn btn-success w-100">ENTRAR</button>
+                </div>
+
                 <div class="d-flex align-items-center justify-content-between mt-4">
                     <a class="text-decoration-none" href="{{ route('student.password.request') }}">Recuperar senha?</a>
 
@@ -37,18 +41,9 @@
 
                 <hr>
 
-                <!-- Remember Me -->
-                <div class="d-flex justify-content-between my-4">
-                    <label for="remember_me">
-                        <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
-                        <span class="ms-2">Lembrar-me</span>
-                    </label>
-
-                    <a class="text-decoration-none" href="{{ route('manager.login') }}">Acesso de Professor</a>
-                </div>
-
-                <div class="text-center">
-                    <button class="btn btn-success w-100">Entrar</button>
+                <!-- Access Professor -->
+                <div class="d-flex justify-content-between mt-4">
+                    <a class="text-decoration-none" href="{{ route('manager.login') }}">Acesso de professor</a>
                 </div>
             </form>
         </div>

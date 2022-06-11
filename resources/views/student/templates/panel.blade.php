@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <nav class="navbar navbar-dark fixed-top" style="background-color: #18B644;">
+    <nav class="navbar navbar-dark fixed-top" style="background-color: #0e864e;">
         <div class="container-fluid justify-content-end">
             <div class="dropdown-center">
                 <button class="btn dropdown-toggle text-light" id="user" type="button" data-bs-toggle="dropdown"
@@ -23,12 +23,12 @@
             </div>
         </div>
     </nav>
-    <div class="container pb-4" style="padding-top: 80px">
+    <div class="container pb-4" style="padding-top: 100px">
         <h4 class="title">
             @yield('title')
         </h4>
 
-        <hr class="my-5">
+        <hr class="my-4">
 
         @yield('container')
     </div>

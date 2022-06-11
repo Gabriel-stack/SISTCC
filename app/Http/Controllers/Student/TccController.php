@@ -31,8 +31,7 @@ class TccController extends Controller
 
     public function enrollInClass(Request $request)
     {
-        $subject = Subject::where('id', $request->subject)
-            ->where('class_code', $request->class_code)->first();
+        $subject = Subject::where('class_code', $request->code)->first();
         if (!$subject) {
             return back()->with('fail', 'Código de turma inválido');
         }
@@ -69,7 +68,6 @@ class TccController extends Controller
         $data['student_id'] = Auth::user()->id;
         $this->deleteFiles([$tcc->file_pretcc, $tcc->term_commitment]);
         $data['file_pretcc'] = $request->file_pretcc->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
-        dd($data['file_pretcc']);
         $data['term_commitment'] = $request->term_commitment->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
         $data['ethics_committee'] = $request->ethics_committee == 1 ? true : false;
         $data['situation'] = 'Em análise';

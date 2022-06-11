@@ -17,17 +17,16 @@ return new class extends Migration
             $table->id();
             $table->string('name'); // Nome
             $table->string('email')->unique(); // E-mail
+            $table->string('registration'); // Matrícula
             $table->string('password'); // Senha
-            $table->string('phone'); // Telefone
-            $table->text('missing_subjects')->nullable(); // Disciplinas pendentes
-            $table->string('semester_origin'); // Semestre de origem
-            $table->integer('attended_count_tcc'); // Quantas vezes cursou TCC
+            $table->string('phone'); // Telefone //
             $table->string('state'); // Estado
             $table->string('city'); // Cidade
             $table->string('district'); // Bairro
             $table->string('street'); // Rua
             $table->string('zip_code'); // CEP
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('historic')->nullable(); // Histórico
+                        $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

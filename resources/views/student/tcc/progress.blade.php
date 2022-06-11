@@ -73,4 +73,7 @@
             @endif
         </div>
     </div>
+    <div class="my-3 text-start">
+        <a class="btn btn-secondary" href="{{ route('student.dashboard') }}">VOLTAR</a>
+    </div>
 @endsection

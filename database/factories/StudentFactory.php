@@ -26,9 +26,7 @@ class StudentFactory extends Factory
             'password' => Hash::make('12345678'), // password
             'remember_token' => Str::random(10),
             'phone' => $this->faker->phoneNumber,
-            'semester_origin' => $this->faker->numberBetween(1, 10),
-            'attended_count_tcc' => $this->faker->numberBetween(1, 10),
-            'missing_subjects'=> $this->faker->sentence(3),
+            'registration' => $this->faker->randomDigit,
             'street'=> $this->faker->streetName,
             'district'=> $this->faker->city,
             'city'=> $this->faker->city,

@@ -15,7 +15,7 @@ html, body {
   background-color: #FCFCFC
 }
 .box-shadow{
-  box-shadow: 10px 10px 35px 0 rgb(0 0 0 / 17%)
+  box-shadow: 10px 10px 35px 0 rgb(0 0 0 / 17%);
 }
 .student-subjects{
   min-width: 100%;
@@ -27,6 +27,16 @@ html, body {
 
 .offcanvas {
     width: 300px;
+}
+
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.btn {
+    font-weight: bold;
 }
 
 @media screen and (min-width: 560px) {

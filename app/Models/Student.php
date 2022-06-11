@@ -21,10 +21,9 @@ class Student extends Authenticatable
         'name',
         'email',
         'password',
+        'registration',
+        'historic',
         'phone',
-        'semester_origin',
-        'attended_count_tcc',
-        'missing_subjects',
         'state',
         'city',
         'district',
@@ -51,7 +50,7 @@ class Student extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+
 
     public function tcc()
     {
