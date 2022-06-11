@@ -7,8 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Barema de avaliação - {{ $tcc->student->name }}</title>
     <style>
-       
 
+       #cabecalho>p,
+        #titulo>p {
+            padding: 0;
+            margin: 0;
+        }
         #cabecalho {
             font-family: Arial, Helvetica, sans-serif;
             margin-left: 40px;

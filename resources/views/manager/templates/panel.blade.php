@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <nav class="navbar navbar-dark fixed-top" style="background-color: #18B644;">
+    <nav class="navbar navbar-dark fixed-top" style="background-color: #0e864e">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
@@ -65,7 +65,7 @@
         </h3>
 
         <hr class="my-5">
-        
+
         @isset($slot)
             {{ $slot }}
         @endisset

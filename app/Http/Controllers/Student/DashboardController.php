@@ -25,6 +25,7 @@ class DashboardController extends Controller
         $tccs = Tcc::with('subject')->where('student_id', Auth::user()->id)
             ->whereRelation('subject', 'is_active', '=', false)->orderBy('situation', 'asc')->get();
 
+        // dd($tccs, $inside, $active_class);
         return view('student.dashboard', compact('active_class', 'inside', 'tccs'));
     }
 
