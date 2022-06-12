@@ -1,34 +1,42 @@
 @extends('layouts.guest')
 
 @section('title', 'Recuperar senha')
+
 @section('content')
-<div class="d-flex h-100 flex-column justify-content-center align-items-center">
-    <div class="p-4 m-2 rounded bg-white">
-        <div class="mb-4 small">
-            Esqueceu sua senha? Não tem problema. Basta nos informar seu e-mail e nós lhe enviaremos um link para
-            redefinir sua senha.
-        </div>
-        @if($errors->any())
-        <div class="alert alert-danger">
-            <ul class="list-disc list-inside small text-danger">
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-            @endif
-        <form class="d-flex gap-3 align-items-center flex-wrap" method="POST" action="{{ route('student.password.email') }}">
-            @csrf
-            <div class="mb-3 flex-grow-1">
-                <label for="email">Email</label>
-                <input id="email" class="w-100 form-control" type="email" name="email" value="{{ old('email') }}"
-                    required autofocus>
+    <div class="d-flex h-100 flex-column justify-content-center align-items-center">
+        <div class="p-4 m-2 rounded bg-white" style="max-width: 400px;">
+            @include('components.application-logo')
+            <div class="small">
+                Digite seu e-mail e enviaremos um link para redefinir sua senha.
             </div>
-            <div>
-            <button type="submit" class="btn btn-primary">
-                Redefinir senha
-            </button>
+            @include('components.auth-session-status')
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="list-disc list-inside small text-danger">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form class="d-flex flex-column" method="POST"
+                action="{{ route('student.password.email') }}">
+                @csrf
+                <div class="col-12 my-3">
+                    <label for="email">Email</label>
+                    <input id="email" class="w-100 form-control" type="email" name="email" value="{{ old('email') }}"
+                        required autofocus>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success w-100">
+                        Confirmar
+                    </button>
+                </div>
+                <!-- Access Aluno -->
+                <div class="d-flex justify-content-between mt-3">
+                    <a class="text-decoration-none" href="{{ route('student.login') }}">Voltar</a>
+                </div>
+            </form>
         </div>
-        </form>
     </div>
-</div>
+@endsection

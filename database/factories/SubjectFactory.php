@@ -19,10 +19,13 @@ class SubjectFactory extends Factory
     public function definition()
     {
         return [
-            'semester' => $this->faker->word(),
-            'key' => Str::random(5),
-            'start_date' => $this->faker->dateTimeBetween('now', '+1 year'),
-            'end_date' => $this->faker->dateTimeBetween('now', '+1 year'),
+            'manager_id' => 2,
+            'class' => $this->faker->word(),
+            'class_code' => Str::random(5),
+            'start_date' => now(),
+            'end_date' => $this->faker->dateTimeBetween('+4 months', '+5 months'),
+            'close_date' => $this->faker->dateTimeBetween('+5 months', '+6 months'),
+            'is_active' => $this->faker->boolean(100)
         ];
     }
 

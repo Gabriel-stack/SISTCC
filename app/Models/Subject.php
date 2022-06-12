@@ -15,9 +15,24 @@ class Subject extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'semester',
-        'key',
+        'manager_id',
+        'is_active',
+        'class',
+        'class_code',
         'start_date',
         'end_date',
+        'close_date',
     ];
+
+    public function tcc(){
+        return $this->hasMany(Tcc::class);
+    }
+
+    public function manager(){
+        return $this->hasOne(Manager::class);
+    }
+    // public function course(){
+    //     return $this->hasOne(Course::class);
+    // }
+
 }

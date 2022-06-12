@@ -18,15 +18,12 @@ class Student extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'active',
-        'status',
         'name',
         'email',
         'password',
+        'registration',
+        'historic',
         'phone',
-        'semester_origin',
-        'attended_count_tcc',
-        'missing_subjects',
         'state',
         'city',
         'district',
@@ -52,4 +49,11 @@ class Student extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function tcc()
+    {
+        return $this->hasMany(Tcc::class);
+    }
 }

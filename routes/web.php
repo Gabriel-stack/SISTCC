@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\FilesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +13,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'prevent-back-history'],function (){
+
+Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('/', function () {
         return redirect()->route('student.login');
     });
 });
 
-require __DIR__.'/student_auth.php';
+// Route::middleware(['auth:professor', 'prevent-back-history'], function () {
+    // Route::get('file/{file}', FilesController::class)->name('file');
+    Route::post('file', FilesController::class)->name('file');
+// });
 
-require __DIR__.'/professor_auth.php';
+require __DIR__ . '/student.php';
+
+require __DIR__ . '/manager.php';
