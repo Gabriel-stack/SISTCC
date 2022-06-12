@@ -9,7 +9,7 @@
                     <i class="bi bi-person-circle text-light fs-4"></i>
                 </button>
 
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user">
+                <ul class="dropdown-menu dropdown-menu-end" style="margin-right: 10px;" aria-labelledby="user">
                     <li class="dropdown-item text-center bg-secondary text-light">{{ Auth::user()->name }}</li>
                     <li><a class="dropdown-item" href="{{ route('student.dashboard') }}">Painel</a></li>
                     <li><a class="dropdown-item" href="{{ route('student.profile') }}">Perfil</a></li>

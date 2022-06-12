@@ -26,8 +26,8 @@ class SubjectRequest extends FormRequest
         return [
             'class' => ['required'],
             'class_code' => ['required'],
-            'start_date' => ['required'],
-            'end_date' => ['required'],
+            'start_date' => ['required', 'after:yesterday'],
+            'end_date' => ['required', 'after:start_date, +3 months'],
         ];
     }
 

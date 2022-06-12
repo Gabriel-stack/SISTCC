@@ -5,15 +5,15 @@
         <div class="modal-content px-2">
             <form action="{{ route('manager.accompaniment.return') }}" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">DEVOLVER ETAPA</h5>
+                    <h4 class="modal-title fs-4" id="staticBackdropLabel">Devolver etapa</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body row">
                     @csrf
 
                     <input class="d-none" id="return-id" type="hidden" name="id" value="{{ $tcc->id }}" required>
-
-                    <textarea class="form-control" name="message" id="message" cols="20" rows="5" placeholder="Informe o motivo da devolução."></textarea>
+                    <h5 class="fs-5">Informe o motivo da devolução:</h5>
+                    <textarea class="form-control" name="message" id="message" cols="20" rows="5"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">FECHAR</button>

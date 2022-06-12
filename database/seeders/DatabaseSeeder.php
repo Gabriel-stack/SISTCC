@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
         $manager->professor_id = $professor->random()->id;
         $manager->save();
 
-       Subject::factory()->count(1)->create();
+    //    Subject::factory()->count(1)->create();
 
     }
 }

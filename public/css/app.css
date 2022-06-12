@@ -1,33 +1,39 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html, body {
-  height: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.bg-gray{
-  background-color: #f6f6f6;
+html,
+body {
+    height: 100%;
 }
 
-.bg-gray-400{
-  background-color: #FCFCFC
+h4, p {
+    margin: 0;
 }
-.box-shadow{
-  box-shadow: 10px 10px 35px 0 rgb(0 0 0 / 17%);
-}
-.student-subjects{
-  min-width: 100%;
-}
-.student-subjects-end{
-  min-width: 300px;
-}
-/* Menu lateral */
 
-.offcanvas {
-    width: 300px;
+label {
+    margin-bottom: 4px !important;
 }
+
+
+.bg-gray {
+    background-color: #f6f6f6;
+}
+
+.bg-gray-400 {
+    background-color: #FCFCFC
+}
+
+.box-shadow {
+    box-shadow: 10px 10px 35px 0 rgb(0 0 0 / 17%);
+}
+
+.student-subjects {
+    min-width: 100%;
+}
+
 
 .title {
     font-size: 2em;

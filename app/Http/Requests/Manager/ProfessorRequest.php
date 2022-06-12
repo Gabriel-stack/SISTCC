@@ -29,6 +29,7 @@ class ProfessorRequest extends FormRequest
             'phone' => ['required'],
             'titration' => ['required'],
             'organ' => ['required'],
+            'Cpf' => ['required', 'digits:11', 'unique:professors'],
         ];
     }
 
@@ -36,6 +37,8 @@ class ProfessorRequest extends FormRequest
     {
         return [
             'required' => 'O campo :attribute é obrigatório',
+            'unique' => 'O :attribute já está cadastrado',
+            'digits' => 'O :attribute deve conter 11 dígitos',
         ];
     }
 }

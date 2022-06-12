@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\Student\{
-    DashboardController,
-    TccController,
-};
 use App\Http\Controllers\Student\Auth\{
     AuthenticatedSessionController,
     ConfirmablePasswordController,
@@ -14,6 +10,11 @@ use App\Http\Controllers\Student\Auth\{
     RegisteredUserController,
     VerifyEmailController,
 };
+use App\Http\Controllers\Student\{
+    DashboardController,
+    TccController,
+};
+
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest', 'prevent-back-history'])->prefix('student')->name('student.')->group(function () {
@@ -66,6 +67,7 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
     // Painel de Controle
     Route::controller(DashboardController::class)->group(function () {
         Route::get('dashboard', 'index')->name('dashboard');
+        Route::post('store', 'enrollInClass')->name('enroll');
     });
 
     // painel de Progresso
@@ -73,7 +75,6 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
         Route::get('{subject}', 'index')->name('progress');
 
         Route::name('progress.')->group(function () {
-            Route::post('store', 'enrollInClass')->name('enroll');
             Route::get('{subject}/tcc', 'createTcc')->name('tcc');
             Route::post('{subject}/tcc', 'storeTcc')->name('tcc.store');
             Route::get('{subject}/requirement', 'createRequirement')->name('requirement');

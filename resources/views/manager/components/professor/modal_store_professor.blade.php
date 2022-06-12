@@ -5,34 +5,39 @@
         <div class="modal-content">
             <form action="{{ route('manager.professor.store') }}" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">CADASTRAR ORIENTADOR</h5>
+                    <h4 class="modal-title fs-4" id="staticBackdropLabel">Cadastrar orientador</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body row">
                     @csrf
 
-                    <div class="col-8 my-2">
-                        <label class="form-label">NOME</label>
+                    <div class="col-12 my-2">
+                        <label class="form-label">Nome</label>
                         <input class="form-control" type="text" name="name" required>
                     </div>
 
-                    <div class="col-4 my-2">
-                        <label class="form-label">ÓRGÃO</label>
+                    <div class="col-12 my-2">
+                        <label class="form-label">E-mail</label>
+                        <input class="form-control" type="text" name="email" required>
+                    </div>
+
+                    <div class="col-12 col-sm-6 my-2">
+                        <label class="form-label">CPF</label>
+                        <input class="form-control" type="text" name="cpf" required>
+                    </div>
+
+                    <div class="col-12 col-sm-6 my-2">
+                        <label class="form-label">Telefone</label>
+                        <input class="form-control" type="text" name="phone" required>
+                    </div>
+
+                    <div class="col-12 my-2">
+                        <label class="form-label">Órgão</label>
                         <input class="form-control" type="text" name="organ" required>
                     </div>
 
                     <div class="col-12 my-2">
-                        <label class="form-label">E-MAIL</label>
-                        <input class="form-control" type="text" name="email" required>
-                    </div>
-
-                    <div class="col-6 my-2">
-                        <label class="form-label">TELEFONE</label>
-                        <input class="form-control" type="text" name="phone" required>
-                    </div>
-
-                    <div class="col-6 my-2">
-                        <label class="form-label">TITULAÇÃO</label>
+                        <label class="form-label">Titulação</label>
                         <input class="form-control" type="text" name="titration" required>
                     </div>
                 </div>

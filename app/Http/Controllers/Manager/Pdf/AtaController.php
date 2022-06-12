@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Professor\Report;
+namespace App\Http\Controllers\Manager\Pdf;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tcc;

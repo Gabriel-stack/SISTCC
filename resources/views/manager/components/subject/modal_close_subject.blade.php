@@ -5,7 +5,7 @@
         <div class="modal-content">
             <form action="{{ route('manager.subject.close') }}" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">ENCERRAR TURMA</h5>
+                    <h4 class="modal-title fs-4" id="staticBackdropLabel">Encerrar turma</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body row">
@@ -13,11 +13,11 @@
 
                     <input class="d-none" id="close-id" type="hidden" name="id" required>
 
-                    <h5 class="title text-start">Realmente deseja finalizar a turma?</h5>
-                    <p>
+                    <h5 class="fs-5 text-start">
                         <i class="bi bi-exclamation-triangle-fill text-warning fs-4"></i>
-                        Todos os alunos que não foram aprovados serão reprovados automaticamente!
-                    </p>
+                        Realmente deseja finalizar a turma?
+                    </h5>
+                    <p>Todos os alunos que não foram aprovados serão reprovados automaticamente!</p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">FECHAR</button>

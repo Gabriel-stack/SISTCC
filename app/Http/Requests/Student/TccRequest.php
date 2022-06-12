@@ -24,13 +24,25 @@ class TccRequest extends FormRequest
     public function rules()
     {
         return [
-            'theme'=> ['required', 'string'],
+            'theme'=> ['required', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'professor' => ['required'],
             'ethics_committee' => ['required'],
             'file_pretcc' => ['required', 'mimes:pdf'],
             'term_commitment' => ['required', 'mimes:pdf'],
             'date_claim' => ['required', 'date', 'after:today'],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages()
+    {
+        return [
+            'after' => 'O campo :attribute deve ser uma data posterior a hoje.',
         ];
     }
 }

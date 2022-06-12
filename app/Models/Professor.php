@@ -17,6 +17,7 @@ class Professor extends Model
     protected $fillable = [
         'name',
         'email',
+        'cpf',
         'phone',
         'titration',
         'organ',

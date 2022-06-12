@@ -1,11 +1,5 @@
 <?php
 
-use App\Http\Controllers\Manager\{
-    ProfessorController,
-    DashboardController,
-    ManagerController,
-    ProgressStudentController,
-};
 use App\Http\Controllers\Manager\Auth\{
     AuthenticatedSessionController,
     ConfirmablePasswordController,
@@ -16,8 +10,15 @@ use App\Http\Controllers\Manager\Auth\{
     RegisteredUserController,
     VerifyEmailController,
 };
-use App\Http\Controllers\Professor\Report\AtaController;
-use App\Http\Controllers\Professor\Report\BaremaController;
+use App\Http\Controllers\Manager\{
+    ProfessorController,
+    DashboardController,
+    ManagerController,
+    ProgressStudentController,
+};
+use App\Http\Controllers\Manager\Pdf\AtaController;
+use App\Http\Controllers\Manager\Pdf\BaremaController;
+
 use App\Http\Livewire\Subject;
 use Illuminate\Support\Facades\Route;
 
@@ -79,8 +80,6 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
             Route::post('update', 'update')->name('update');
 
-            // Route::post('destroy', 'destroy')->name('destroy');
-
             Route::post('close', 'close')->name('close');
         });
     });
@@ -121,14 +120,14 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
                 Route::post('approve', 'accompanimentApprove')->name('approve');
 
                 Route::post('disapprove', 'accompanimentDisapprove')->name('disapprove');
-               
+
             });
         });
 
     });
 
 
-    // Orientadores
+    // Orientadores - Professores
     Route::prefix('professors')->controller(ProfessorController::class)->group(function () {
         Route::get('/', 'create')->name('professors');
 
@@ -140,6 +139,10 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
             Route::post('update', 'update')->name('update');
 
             Route::post('destroy', 'destroy')->name('destroy');
+
+            Route::post('assign_charge', 'assignCharge')->name('assign.charge');
+
+            Route::post('remove_charge', 'removeCharge')->name('remove.charge');
         });
     });
 });

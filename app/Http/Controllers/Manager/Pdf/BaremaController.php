@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Professor\Report;
+namespace App\Http\Controllers\Manager\Pdf;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tcc;
 use Illuminate\Http\Request;
 use Nette\Utils\Json;
 use PDF;
+
 class BaremaController extends Controller
 {
     /**
@@ -23,5 +24,4 @@ class BaremaController extends Controller
         $pdf = PDF::loadView('manager.pdfs_templates.barema', compact('tcc','members'));
         return $pdf->stream('barema.pdf');
     }
-        
 }

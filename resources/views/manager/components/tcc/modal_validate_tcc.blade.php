@@ -5,15 +5,14 @@
         <div class="modal-content">
             <form action="{{ route('manager.accompaniment.validate') }}" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">VALIDAR ETAPA</h5>
+                    <h4 class="modal-title fs-4" id="staticBackdropLabel">Validar etapa</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body row">
                     @csrf
 
                     <input class="d-none" id="validate-id" type="hidden" name="id" value="{{ $tcc->id }}" required>
-
-                    <h5>REALMENTE DESEJA VALIDAR A ETAPA?</h5>
+                    <h5 class="fs-5">Realmente deseja validar a etapa?</h5>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">FECHAR</button>

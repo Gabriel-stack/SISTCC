@@ -20,6 +20,7 @@ class ProfessorFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->phoneNumber,
+            'cpf' => $this->faker->numberBetween(1000000000, 30000000000),////////////
             'titration' => $this->faker->randomElement(['Mestrado', 'Doutorado']),
             'organ' => 'Universidade Federal de Minas Gerais',
         ];

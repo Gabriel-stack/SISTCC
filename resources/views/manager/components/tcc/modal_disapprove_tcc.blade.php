@@ -5,7 +5,7 @@
         <div class="modal-content">
             <form action="{{ route('manager.accompaniment.disapprove') }}" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">REPROVAR ALUNO</h5>
+                    <h4 class="modal-title fs-4" id="staticBackdropLabel">Reprovar aluno</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body row">
@@ -13,7 +13,10 @@
 
                     <input class="d-none" id="disapprove-id" type="hidden" name="id" value="{{ $tcc->id }}" required>
 
-                    <h5>REALMENTE DESEJA REPROVAR O ALUNO?</h5>
+                    <h5 class="fs-5">
+                        <i class="bi bi-exclamation-triangle-fill text-warning fs-4"></i>
+                        Realmente deseja reprovar o aluno?
+                    </h5>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">FECHAR</button>

@@ -29,22 +29,6 @@ class TccController extends Controller
     }
 
 
-    public function enrollInClass(Request $request)
-    {
-        $subject = Subject::where('class_code', $request->code)->first();
-        if (!$subject) {
-            return back()->with('fail', 'Código de turma inválido');
-        }
-
-        $tcc = Tcc::create([
-            'student_id' => Auth::user()->id,
-            'subject_id' => $subject->id,
-        ]);
-
-        return  $tcc ? redirect()->route('student.progress', $subject->id)->with('success', 'Matrícula realizada com sucesso!')
-            : back()->with('fail', 'Erro ao matricular!');
-    }
-
 
     public function createTcc($subject_id)
     {
@@ -63,7 +47,7 @@ class TccController extends Controller
             ->where('subject_id', $request->subject)
             ->first();
 
-        $data = $request->except('_token');
+        $data = $request->validated();
         $data['professor_id'] = $request->professor;
         $data['student_id'] = Auth::user()->id;
         $this->deleteFiles([$tcc->file_pretcc, $tcc->term_commitment]);

@@ -4,13 +4,16 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">REMOVER ALUNO</h5>
+                <h4 class="modal-title fs-4" id="staticBackdropLabel">Removar aluno</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body row">
                 @csrf
 
-                <h5>REALMENTE DESEJA REMOVER O ALUNO DA TURMA?</h5>
+                <h5 class="fs-5">
+                    <i class="bi bi-exclamation-triangle-fill text-warning fs-4"></i>
+                    Relamente deseja remover o aluno da turma?
+                </h5>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">FECHAR</button>
@@ -21,10 +24,9 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-{{-- @section('scripts') --}}
-    <script>
-        $('#remove').on('click', function(event) {
-            $('#modal-remove-student').modal('hide');
-        });
-    </script>
-{{-- @endsection --}}
+
+<script>
+    $('#remove').on('click', function(event) {
+        $('#modal-remove-student').modal('hide');
+    });
+</script>

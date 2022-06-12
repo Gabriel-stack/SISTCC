@@ -17,7 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $active_class = Subject::where('is_active', true)->first();
+        $active_class = Subject::where('is_active', true)->first() ?? false;
 
         $inside = $active_class ? Tcc::with('subject')->where('subject_id', $active_class->id)
             ->where('student_id', Auth::user()->id)->first() : null;
@@ -25,7 +25,6 @@ class DashboardController extends Controller
         $tccs = Tcc::with('subject')->where('student_id', Auth::user()->id)
             ->whereRelation('subject', 'is_active', '=', false)->orderBy('situation', 'asc')->get();
 
-        // dd($tccs, $inside, $active_class);
         return view('student.dashboard', compact('active_class', 'inside', 'tccs'));
     }
 
@@ -39,6 +38,24 @@ class DashboardController extends Controller
         //
     }
 
+    public function enrollInClass(Request $request)
+    {
+        $subject = Subject::where('class_code', $request->code)
+            ->where('is_active', true)
+            ->first();
+
+        if (!$subject) {
+            return back()->with('fail', 'Código de turma inválido');
+        }
+
+        $tcc = Tcc::create([
+            'student_id' => Auth::user()->id,
+            'subject_id' => $subject->id,
+        ]);
+
+        return $tcc ? redirect()->route('student.progress', $subject->id)->with('success', 'Matrícula realizada com sucesso!')
+            : back()->with('fail', 'Erro ao matricular!');
+    }
     /**
      * Store a newly created resource in storage.
      *
