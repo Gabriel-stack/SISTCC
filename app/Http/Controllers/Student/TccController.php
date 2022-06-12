@@ -51,7 +51,7 @@ class TccController extends Controller
         $data['professor_id'] = $request->professor;
         $data['student_id'] = Auth::user()->id;
         $this->deleteFiles([$tcc->file_pretcc, $tcc->term_commitment]);
-        $data['file_pretcc'] = $request->file_pretcc->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
+        $data['file_pretcc'] = $request->file('file_pretcc')->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
         $data['term_commitment'] = $request->term_commitment->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
         $data['ethics_committee'] = $request->ethics_committee == 1 ? true : false;
         $data['situation'] = 'Em análise';

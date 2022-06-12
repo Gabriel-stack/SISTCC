@@ -45,6 +45,16 @@ label {
     font-weight: bold;
 }
 
+.btn-success {
+    background-color: #319470;
+    border-color: #319470;
+}
+
+.bg-success {
+    background-color: #319470;
+}
+
+
 @media screen and (min-width: 560px) {
     .offcanvas {
         width: 400px;

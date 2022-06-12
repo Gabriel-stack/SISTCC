@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <nav class="navbar navbar-dark fixed-top" style="background-color: #0e864e;">
+    <nav class="navbar navbar-dark fixed-top" style="background-color: #319470;">
         <div class="container-fluid justify-content-end">
             <div class="dropdown-center">
                 <button class="btn dropdown-toggle text-light" id="user" type="button" data-bs-toggle="dropdown"

@@ -21,10 +21,9 @@
 
     <!-- Scripts -->
     @yield('scripts')
-
 </head>
 
-<body style="background-color: #18B644;">
+<body style="background-color: #319470;">
     @yield('content')
     @isset($slot)
     {{ $slot }}
