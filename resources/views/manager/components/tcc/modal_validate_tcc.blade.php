@@ -12,7 +12,7 @@
                     @csrf
 
                     <input class="d-none" id="validate-id" type="hidden" name="id" value="{{ $tcc->id }}" required>
-                    <h5 class="fs-5">Realmente deseja validar a etapa?</h5>
+                    <h5 class="fs-5 text-start">Realmente deseja validar a etapa?</h5>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">FECHAR</button>
@@ -22,12 +22,3 @@
         </div>
     </div>
 </div>
-
-{{-- <script>
-    const modalValidate = document.getElementById('modal-validate-tcc');
-    modalValidate.addEventListener('shown.bs.modal', (event) => {
-        let button = $(event.relatedTarget);
-        let tcc = button.data('tcc');
-        document.querySelector('#validate-id').value = tcc.id;
-    });
-</script> --}}

@@ -7,10 +7,11 @@
         @if ($errors->any())
             @include('components.auth-validation-errors')
         @endif
+
         @include('components.fail')
 
-        <form class="row bg-white rounded p-4" style="max-width: 762px;"
-            action="{{ route('student.register') }}" method="post">
+        <form class="row bg-white rounded p-4" style="max-width: 762px;" action="{{ route('student.register') }}"
+            method="post">
             @csrf
             <div class="col-12 my-2 p-3 border border-1">
                 <h5 class="text-title">Dados pessoais</h5>
@@ -116,16 +117,15 @@
                 <a class="text-decoration-none" href="{{ route('student.login') }}">Já está cadastrado?</a>
                 <button class="btn btn-success text-decoration-none" type="submit">CADASTRAR</button>
             </div>
-        </div>
-    </form>
-</div>
-@push('masks')
-<script>
-    $(document).ready(function () {
-        $('#phone').mask('(00) 00000-0000');
-        $('#zip_code').mask('00000-000');
-        
-    });
-</script>
-@endpush    
+        </form>
+    </div>
+
+    @push('masks')
+        <script>
+            $(document).ready(function() {
+                $('#phone').mask('(00) 00000-0000');
+                $('#zip_code').mask('00000-000');
+            });
+        </script>
+    @endpush
 @endsection

@@ -11,10 +11,14 @@
 
     <div class="d-flex h-100 justify-content-center align-items-center p-3">
         <div class="bg-white rounded d-flex flex-column p-4" id="box">
-            @include('components.application-logo')
+            <div class="mx-auto mb-4" style="max-width: 300px;">
+                @include('components.application-logo')
+            </div>
+
             @if ($errors->any())
                 @include('components.auth-validation-errors')
             @endif
+
             @include('components.fail')
 
             <form action="{{ route('manager.login') }}" method="post">
@@ -22,7 +26,6 @@
                 <!-- Email Address -->
                 <div class="">
                     <label for="email">E-mail</label>
-
                     <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required
                         autofocus>
                 </div>
@@ -30,7 +33,6 @@
                 <!-- Password -->
                 <div class="mt-4">
                     <label for="password">Senha</label>
-
                     <input id="password" class="form-control" type="password" name="password" required
                         autocomplete="current-password">
                 </div>

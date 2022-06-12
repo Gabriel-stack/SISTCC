@@ -11,7 +11,7 @@
                 @csrf
 
                 <h5 class="fs-5">
-                    <i class="bi bi-exclamation-triangle-fill text-warning fs-4"></i>
+                    <i class="bi bi-exclamation-triangle-fill fs-4"></i>
                     Relamente deseja remover o aluno da turma?
                 </h5>
             </div>

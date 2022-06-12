@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('professor_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade'); // Id do orientador
             $table->bigInteger('coprofessor_id')->nullable(); // Id do co-orientador
             $table->enum('stage', ['Etapa 1',  'Etapa 2', 'Etapa 3'])->default('Etapa 1'); // Etapa do TCC
-            $table->enum('situation', ['Cursando', 'Em análise', 'Devolvido', 'Aprovado', 'Reprovado'])->default('Cursando'); // Status do TCC
+            $table->enum('situation', ['Cursando', 'Em análise', 'Devolvido', 'Concluído', 'Reprovado'])->default('Cursando'); // Status do TCC
             $table->string('theme')->nullable(); // Tema
             $table->string('title')->nullable(); // Título
             $table->boolean('ethics_committee')->nullable(); // Comitê de ética

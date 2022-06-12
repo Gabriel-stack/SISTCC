@@ -9,7 +9,7 @@ body {
     height: 100%;
 }
 
-h4, p {
+h5, h4, p {
     margin: 0;
 }
 
@@ -36,7 +36,7 @@ label {
 
 
 .title {
-    font-size: 2em;
+    font-size: 1.6em;
     font-weight: bold;
     margin-bottom: 0;
 }
@@ -50,8 +50,37 @@ label {
     border-color: #319470;
 }
 
-.bg-success {
+.bg-success, th {
     background-color: #319470;
+}
+
+th {
+    background-color: #21B982 !important;
+    color: white;
+}
+
+.btn-light {
+    border-color: black !important;
+}
+
+.bi {
+    color: black !important;
+}
+
+.bi-arrow-right-square, .bi-eye {
+    color: green !important;
+}
+
+.bi-person-circle, .bi-pencil-square, .bi-trash, .bi-send, td > button > .bi-person-dash, td > a > .bi-eye {
+    color: white !important;
+}
+
+.bi-exclamation-triangle-fill {
+    color: orange !important;
+}
+
+.dropdown-toggle {
+    box-shadow: none !important;
 }
 
 

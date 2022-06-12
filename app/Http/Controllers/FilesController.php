@@ -16,7 +16,6 @@ class FilesController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // return response()->file(storage_path($request->file));
-        return Storage::download($request->file);
+        return response()->file(storage_path('app/tcc/'.$request->file));
     }
 }

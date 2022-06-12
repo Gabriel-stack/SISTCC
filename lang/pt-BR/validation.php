@@ -203,7 +203,7 @@ return [
         'abstract' => 'resumo',
         'type_tcc'=> 'tipo de TCC',
         'intended_date' => 'data de defesa',
-        'result_ethic_commitee' => 'resultado do comitê de ética',
+        'result_ethic_committee' => 'parecer do comitê de ética',
         'proof_article_submission' => 'prova de submissão de artigo',
         'consent_professor' => 'termo de anuência do professor',
         'file_tcc' => 'TCC final',

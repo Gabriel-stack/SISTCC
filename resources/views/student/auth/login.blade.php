@@ -5,10 +5,14 @@
 @section('content')
     <div class="d-flex h-100 justify-content-center align-items-center p-3">
         <div class="bg-white rounded d-flex flex-column p-4" id="box">
-            @include('components.application-logo')
+            <div class="mx-auto mb-4" style="max-width: 300px;">
+                @include('components.application-logo')
+            </div>
+
             @if ($errors->any())
                 @include('components.auth-validation-errors')
             @endif
+
             @include('components.fail')
 
             <form action="{{ route('student.login') }}" method="post">

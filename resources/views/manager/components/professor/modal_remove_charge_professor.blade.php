@@ -14,7 +14,7 @@
                     <input class="d-none" id="remove_charge-id" type="hidden" name="id" required>
 
                     <h5 class="fs-5">
-                        <i class="bi bi-exclamation-triangle-fill text-warning fs-4"></i>
+                        <i class="bi bi-exclamation-triangle-fill fs-4"></i>
                         Realmente deseja remover o cargo de professor da disciplina?
                     </h5>
                 </div>

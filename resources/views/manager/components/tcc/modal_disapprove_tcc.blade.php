@@ -14,7 +14,7 @@
                     <input class="d-none" id="disapprove-id" type="hidden" name="id" value="{{ $tcc->id }}" required>
 
                     <h5 class="fs-5">
-                        <i class="bi bi-exclamation-triangle-fill text-warning fs-4"></i>
+                        <i class="bi bi-exclamation-triangle-fill fs-4"></i>
                         Realmente deseja reprovar o aluno?
                     </h5>
                 </div>
@@ -26,12 +26,3 @@
         </div>
     </div>
 </div>
-
-{{-- <script>
-    const modalDisapprove = document.getElementById('modal-disapprove-tcc');
-    modalDisapprove.addEventListener('shown.bs.modal', (event) => {
-        let button = $(event.relatedTarget);
-        let tcc = button.data('tcc');
-        document.querySelector('#disapprove-id').value = tcc.id;
-    });
-</script> --}}

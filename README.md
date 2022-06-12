@@ -32,3 +32,13 @@ $Extras = [
 	'13' => 'Gerar declaração de participação de membros da banca',
     '' => '',
 ];
+
+
+
+Estilizar páginas de acompanhamento aluno e professor.
+
+Adicionar campo de orientador na tela do aluno.
+
+Adicionar sistema de preenchimento de campos nas páginas que são devolvidas.
+
+Validar os campos de membro opcional.

@@ -4,12 +4,17 @@
 
 @section('content')
     <div class="d-flex h-100 flex-column justify-content-center align-items-center">
-        <div class="p-4 m-2 rounded bg-white" style="max-width: 400px;">
-            @include('components.application-logo')
+        <div class="p-4 m-2 rounded bg-white" id="box">
+            <div class="mx-auto mb-4" style="max-width: 300px;">
+                @include('components.application-logo')
+            </div>
+
             <div class="small">
                 Digite seu e-mail e enviaremos um link para redefinir sua senha.
             </div>
+
             @include('components.auth-session-status')
+
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul class="list-disc list-inside small text-danger">
@@ -19,6 +24,7 @@
                     </ul>
                 </div>
             @endif
+
             <form class="d-flex flex-column" method="POST"
                 action="{{ route('student.password.email') }}">
                 @csrf

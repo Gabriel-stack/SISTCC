@@ -47,7 +47,8 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('professor')->logout();
 
-        $request->session()->invalidate();
+        dd($request->user->session()->all());
+        $request->user->session()->invalidate();
 
         $request->session()->regenerateToken();
 

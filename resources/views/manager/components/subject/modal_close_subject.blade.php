@@ -14,7 +14,7 @@
                     <input class="d-none" id="close-id" type="hidden" name="id" required>
 
                     <h5 class="fs-5 text-start">
-                        <i class="bi bi-exclamation-triangle-fill text-warning fs-4"></i>
+                        <i class="bi bi-exclamation-triangle-fill fs-4"></i>
                         Realmente deseja finalizar a turma?
                     </h5>
                     <p>Todos os alunos que não foram aprovados serão reprovados automaticamente!</p>

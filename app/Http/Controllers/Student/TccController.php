@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Student\RequirementRequest;
 use App\Http\Requests\Student\TccRequest;
 use App\Models\Professor;
-use App\Models\Subject;
 use App\Models\Tcc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Nette\Utils\Json;
 
 class TccController extends Controller
@@ -47,15 +47,14 @@ class TccController extends Controller
             ->where('subject_id', $request->subject)
             ->first();
 
-        $data = $request->validated();
+        $data = $request->all();
         $data['professor_id'] = $request->professor;
         $data['student_id'] = Auth::user()->id;
         $this->deleteFiles([$tcc->file_pretcc, $tcc->term_commitment]);
-        $data['file_pretcc'] = $request->file('file_pretcc')->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
-        $data['term_commitment'] = $request->term_commitment->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
+        $data['file_pretcc'] = $request->file_pretcc->store('tcc');
+        $data['term_commitment'] = $request->term_commitment->store('tcc');
         $data['ethics_committee'] = $request->ethics_committee == 1 ? true : false;
         $data['situation'] = 'Em análise';
-
         $tcc->update($data);
 
         if (!$tcc) {
@@ -66,42 +65,51 @@ class TccController extends Controller
 
     public function createRequirement($subject_id)
     {
-
         $tcc = Tcc::where('student_id', Auth::user()->id)->where('subject_id', $subject_id)->first();
+
         abort_if(!$tcc->subject->is_active || $tcc->stage != 'Etapa 2' ||
             $tcc->stage == 'Etapa 2' &&
             !in_array($tcc->situation, ['Cursando', 'Devolvido']), 403, 'Ação não permitida');
 
-        $ethics_committee = Tcc::where('student_id', Auth::user()->id)
-            ->where('subject_id', $subject_id)
-            ->first()->ethics_committee;
-
-
-
-        return view('student.tcc.requirement', compact('ethics_committee', 'subject_id', 'tcc'));
+        return view('student.tcc.requirement', compact('subject_id', 'tcc'));
     }
 
     public function storeRequirement(RequirementRequest $request)
     {
-        // dd($request->validated());
         $tcc = Tcc::where('student_id', Auth::user()->id)
             ->where('subject_id', $request->subject)
             ->first();
 
-        $data = $request->except('_token');
-        $this->deleteFiles([$tcc->consent_professor, $tcc->file_tcc, $tcc->result_ethic_commitee, $tcc->proof_article_submission, $tcc->photo]);
-        $data['consent_professor'] = $request->consent_professor->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
-        $data['file_tcc'] = $request->file_tcc->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
+        if ($tcc->ethics_committee) {
+            $validate = Validator::make($request->only('result_ethic_committee'), [
+                'result_ethic_committee' => 'required|file|mimes:pdf',
+            ]);
+
+            if($validate->fails()) return back()->withErrors($validate->errors());
+
+        }
+
+        $data = $request->validated();
+
+        dd($data);
+
+        $this->deleteFiles([$tcc->consent_professor, $tcc->file_tcc, $tcc->result_ethic_commitee,
+        $tcc->proof_article_submission, $tcc->photo]);
+
+
+        $data['consent_professor'] = $request->consent_professor->store('tcc');
+        $data['file_tcc'] = $request->file_tcc->store('tcc');
         if ($request->result_ethic_commitee)
-            $data['result_ethic_commitee'] = $request->result_ethic_commitee->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
-        $data['proof_article_submission'] = $request->proof_article_submission->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
-        $data['photo'] = $request->photo->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
+            $data['result_ethic_commitee'] = $request->result_ethic_commitee->store('tcc');
+
+        $data['proof_article_submission'] = $request->proof_article_submission ? $request->proof_article_submission->store('tcc') : null;
+        $data['photo'] = $request->photo->store('public/student/photo');
         $data_members = $request->members;
         if (in_array(null, $data_members['three'])) unset($data_members['three']);
         foreach ($request->members as $key => $member) {
             if ($key != 'three' || $key == 'three' && !empty($member['accept_member'])) {
                 $this->deleteFiles([$member['accept_member']]);
-                $data_members[$key]['accept_member'] = $member['accept_member']->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
+                $data_members[$key]['accept_member'] = $member['accept_member']->store('tcc');
             }
         }
         $data['members'] = Json::encode($data_members);
@@ -131,8 +139,8 @@ class TccController extends Controller
 
         $data = $request->except('_token');
         $this->deleteFiles([$tcc->final_tcc, $tcc->deposit_statement]);
-        $data['final_tcc'] = $request->final_tcc->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
-        $data['deposit_statement'] = $request->deposit_statement->store('tcc/subject_' . $request->subject . '/student_' . Auth::user()->id);
+        $data['final_tcc'] = $request->final_tcc->store('tcc');
+        $data['deposit_statement'] = $request->deposit_statement->store('tcc');
         $data['situation'] = 'Em análise';
 
         $tcc->update($data);

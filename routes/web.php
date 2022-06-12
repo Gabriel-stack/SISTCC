@@ -22,7 +22,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
 // Route::middleware(['auth:professor', 'prevent-back-history'], function () {
     // Route::get('file/{file}', FilesController::class)->name('file');
-    Route::post('file', FilesController::class)->name('file');
+    Route::get('file/{file}', FilesController::class)->name('file');
 // });
 
 require __DIR__ . '/student.php';

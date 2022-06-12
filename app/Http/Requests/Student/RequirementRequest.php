@@ -39,9 +39,10 @@ class RequirementRequest extends FormRequest
             'members.two.accept_member' => ['required', 'file', 'mimes:pdf'],
             'members.one.cpf' => ['numeric', 'digits:11'],
             'members.two.cpf' => ['numeric','digits:11'],
-            'members.three.name' => ['required_with:members.titration, members.three.organ, members.three.cpf'],
-            'members.three.organ' => ['required_with:members.titration, members.three.name, members.three.cpf'],
-            'members.three.titration' => ['required_with:members.three.name, members.three.organ, members.three.cpf'],
+            'members.three.name' => ['required_with:members.three.cpf, members.three.titration, members.three.organ'],
+            'members.three.cpf' => ['required_with:members.three.name, members.three.titration, members.three.organ', 'numeric', 'digits:11'],
+            'members.three.titration' => ['required_with:members.three.name, members.three.cpf, members.three.organ'],
+            'members.three.organ' => ['required_with:members.three.name, members.three.cpf, members.three.titration'],
             'members.three.accept_member' => ['sometimes','required'],
         ];
     }
@@ -49,6 +50,7 @@ class RequirementRequest extends FormRequest
     {
         return [
             'after:today' => 'A data deve ser posterior a hoje',
+            // 'required_with' => 'O campo :attribute é obrigatório quando o campo qualquer outro valor do membro 3 está preenchido',
         ];
   }
 }
