@@ -33,8 +33,8 @@
                 <div class="my-2 px-2">
                     <label for="type_tcc" class="form-label">Tipo de TCC</label>
                     <select class="form-select" name="type_tcc" id="type_tcc">
-                        <option class="text-muted" selected>Selecione</option>
-                        <option value="artigo">Artigo</option>
+                        <option class="text-muted" @if(!$tcc->proof_article_submission) selected @endif>Selecione</option>
+                        <option value="artigo" @if($tcc->proof_article_submission) selected @endif>Artigo</option>
                         <option value="cap_livro">Capítulo de Livro</option>
                         <option value="monografia">Monografia</option>
                         <option value="outro">Outro</option>
@@ -63,9 +63,9 @@
                     <input type="file" class="form-control" name="result_ethic_committee" id="result_ethic_committee">
                 </div>
             @endif
-            <div class="col-12 col-sm-6 col-lg-3 my-2 p-2" id="proof_article" style="display: none;">
+            <div class="col-12 col-sm-6 col-lg-3 my-2 p-2" id="proof_article" style="@if(!$tcc->proof_article_submission) display: none; @endif">
                 <label for="proof_article_submission" class="form-label">Comprovante de submissão do artigo</label>
-                <input type="file" class="form-control" name="proof_article_submission" id="proof_article_submission" disabled>
+                <input type="file" class="form-control" name="proof_article_submission" id="proof_article_submission" @if(!$tcc->proof_article_submission) disabled @endif>
             </div>
         </div>
 

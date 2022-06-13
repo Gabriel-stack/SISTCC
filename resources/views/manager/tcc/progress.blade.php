@@ -44,13 +44,15 @@
             <span>Situação</span>
             <span class="form-control bg-gray text-dark">{{ $tcc->situation }}</span>
         </div>
-        <div class="col-5 col-md-2 mt-2 px-2">
-            <button type="button" class="btn btn-danger text-white my-3" data-bs-toggle="modal"
-                data-bs-target="#modal-disapprove-tcc" data-tcc="{{ $tcc }}">
-                REPROVAR
-            </button>
-            @include('manager.components.tcc.modal_disapprove_tcc')
-        </div>
+        @if (!in_array($tcc->situation, ['Reprovado', 'Concluído']))
+            <div class="col-5 col-md-2 mt-2 px-2">
+                <button type="button" class="btn btn-danger text-white my-3" data-bs-toggle="modal"
+                    data-bs-target="#modal-disapprove-tcc" data-tcc="{{ $tcc }}">
+                    REPROVAR
+                </button>
+                @include('manager.components.tcc.modal_disapprove_tcc')
+            </div>
+        @endif
         @if ($tcc->stage == 'Etapa 3')
             <div class="col-5 col-md-3 mt-2 px-2 d-flex gap-2">
                 <a type="button" class="btn btn-primary text-white my-3" target="_blank"

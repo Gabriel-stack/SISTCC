@@ -24,12 +24,12 @@ class TccRequest extends FormRequest
     public function rules()
     {
         return [
-            'theme'=> ['required', 'string', 'max:255'],
-            'title' => ['required', 'string', 'max:255'],
-            'professor' => ['required'],
+            'theme'=> ['required', 'string', 'min:3', 'max:255'],
+            'title' => ['required', 'string', 'min:3', 'max:255'],
+            'professor' => ['required', 'regex:/^[0-9]+$/'],
             'ethics_committee' => ['required'],
-            'file_pretcc' => ['required', 'mimes:pdf'],
-            'term_commitment' => ['required', 'mimes:pdf'],
+            'file_pretcc' => ['required', 'mimes:pdf', 'max:4096'],
+            'term_commitment' => ['required', 'mimes:pdf', 'max:4096'],
             'date_claim' => ['required', 'date', 'after:today'],
         ];
     }

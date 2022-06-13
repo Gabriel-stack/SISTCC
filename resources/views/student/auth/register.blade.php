@@ -4,15 +4,17 @@
 
 @section('content')
     <div class="p-md-4 d-flex justify-content-center">
-        @if ($errors->any())
-            @include('components.auth-validation-errors')
-        @endif
-
-        @include('components.fail')
-
         <form class="row bg-white rounded p-4" style="max-width: 762px;" action="{{ route('student.register') }}"
             method="post">
             @csrf
+            <div class="col-12 p-0">
+                @if ($errors->any())
+                    @include('components.auth-validation-errors')
+                @endif
+
+                @include('components.fail')
+            </div>
+
             <div class="col-12 my-2 p-3 border border-1">
                 <h5 class="text-title">Dados pessoais</h5>
                 <div class="row">

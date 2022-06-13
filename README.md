@@ -2,43 +2,46 @@
 
 
 
-$Estudante = [
-	% // '4.5' => 'Anexar comprovante de artigo se o tcc for do tipo artigo na página de requerimento',
-	% // '8' => 'Exibir mensagem de devolução das etapas',
-	% // '2' => 'Sobrescrever arquivos na edição de etapa',
-	'' => '',
-];
+% Adicionar sistema de preenchimento de campos nas páginas que são devolvidas (está faltando apenas os arquivos).
 
-$Professor = [
-	% // '1' => 'Sistema de reprovar aluno', 
-	'7' => 'Adicionar outro professor a turma',
-	'10' => 'Gerar relatório com base em filtros',
-	'' => '',
-];
+Aplicar validações nos formulários das etapas.
+Validar os campos de membro opcional.
 
-$Restrições = [
-	% // '5' => 'Sistema de reprovar aluno','Middleware para verificação de acesso a rotas das etapas',
-	% // '3' => 'Não permitir modificar dados das etapas após avançar para a próxima etapa',
-	% // '4' => 'Não permitir modificar dados das etapas após a turma ser finalizada',
-	'6' => 'Request de validação das etapas',
-	'' => '',
-];
-
-$Extras = [
-	% // '9' => 'Tradução de mensagens de validação',
-	'0' => 'Exibição de arquivos',
-	'11' => 'Exibição de dados na devolução de etapas',
-	'12' => 'Aplicar máscaras nos formulários',
-	'13' => 'Gerar declaração de participação de membros da banca',
-    '' => '',
-];
-
-
+Aplicar exibição de arquivos enviados para o sistema (histórico do aluno).
+Copiar o sistema de exibição de arquivos para as páginas do aluno.
 
 Estilizar páginas de acompanhamento aluno e professor.
 
-Adicionar campo de orientador na tela do aluno.
+Adicionar validação no front-end.
 
-Adicionar sistema de preenchimento de campos nas páginas que são devolvidas.
+Gerar relatório da turma em pdf com base em filtros.
 
-Validar os campos de membro opcional.
+Gerar declaração de participação dos membros da banca.
+
+Aplicar máscaras nos formulários.
+
+Adicionar selects no cadastro de requerimento para o aluno poder selecionar um professor já cadastrado no sistema para ser um membro da banca.
+
+Estilizar a paginação das tabelas (fazer a publicação da paginação).
+
+Consertar problemas de e-mail para recuperação de senha (estilizar mensagem enviada para o e-mail).
+Enviar e-mail de validação no cadastro de aluno.
+
+Possibilitar o professor fazer a devolução da primeira etapa quando o aluno estiver na segunda etapa.
+
+Adicionar opção de atribuir cargo a outro professor para assumir a disciplina (criar tabela de cursos e adaptar o sistema para mais várias disciplinas com a exibição específica apenas para o professor/coordenador do curso responsável).
+
+Adicionar professor visitante (professor que foi retirado do cargo de professor titular da disciplina agora terá acesso limitado, mas ainda poderá visualizar e baixar os arquivos relacionados as turmas em que lecionou).
+
+
+
+
+Anotações:
+
+Especificar que no campo de cadastro de aluno o estado deve ser informado sua sigla.
+
+Remover botão de reprovar quando a turma estiver finalizada.
+
+Gerar convite de defesa de TCC.
+
+Deixar o nome da turma único.

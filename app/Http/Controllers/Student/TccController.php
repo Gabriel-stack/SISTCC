@@ -91,7 +91,6 @@ class TccController extends Controller
 
         $data = $request->validated();
 
-        dd($data);
 
         $this->deleteFiles([$tcc->consent_professor, $tcc->file_tcc, $tcc->result_ethic_commitee,
         $tcc->proof_article_submission, $tcc->photo]);

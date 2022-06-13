@@ -59,19 +59,10 @@ class ProgressStudentController extends Controller
     public function accompanimentValidate(Request $request)
     { // Executa ação de validação de etapa
         $tcc = Tcc::findOrFail($request->id);
+        $tcc->situation = $tcc->stage == 'Etapa 3' ? 'Concluído' : 'Cursando';
         $tcc->stage = $tcc->stage == 'Etapa 1' ? 'Etapa 2' : 'Etapa 3';
-        $tcc->situation = 'Cursando';
         $tcc->save();
         return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'A etapa foi validada!')
-            : redirect()->back()->with('fail', 'Ocorreu um erro ao tentar validar a etapa!');
-    }
-
-    public function accompanimentApprove(Request $request)
-    { // Executa ação de aprovar o aluno
-        $tcc = Tcc::findOrFail($request->id);
-        $tcc->situation = 'Aprovado';
-        $tcc->save();
-        return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'O aluno foi aprovado!')
             : redirect()->back()->with('fail', 'Ocorreu um erro ao tentar validar a etapa!');
     }
 

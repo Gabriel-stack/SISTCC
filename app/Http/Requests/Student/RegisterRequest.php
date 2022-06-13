@@ -25,17 +25,17 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z ]+$/'],
+            'name' => ['required', 'string', 'min:3','max:255', 'regex:/^[a-zA-Z ]+$/'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:students', 'ends_with:@aluno.ifsertao-pe.edu.br,@ifsertao-pe.edu.br'],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['required', 'confirmed', Password::min(8)->letters()->numbers()],
             'phone' => ['required', 'string', 'max:12', 'regex:/^[0-9]+$/'],
             'registration' => ['required', 'string', 'max:20', 'regex:/^[0-9]+$/'],
-            'state' => ['required', 'string', 'max:2'],
-            'city' => ['required', 'string', 'max:255'],
-            'historic' => ['required','mimes:pdf'],
-            'district' => ['required', 'string', 'max:255'],
-            'street' => ['required', 'string', 'max:255'],
-            'zip_code' => ['required', 'string', 'max:255'],
+            'state' => ['required', 'string', 'min:2', 'max:2'],
+            'city' => ['required', 'string', 'min:3', 'max:100'],
+            'historic' => ['required','mimes:pdf', 'size:4096'],
+            'district' => ['required', 'string', 'min:3', 'max:100'],
+            'street' => ['required', 'string', 'min:3','max:200'],
+            'zip_code' => ['required', 'string', 'min:7', 'max:8', 'regex:/^[0-9]+$/'],
         ];
     }
 
@@ -50,6 +50,9 @@ class RegisterRequest extends FormRequest
             'email.ends_with' => 'O email deve terminar com "@aluno.ifsertao-pe.edu.br"',
             'confimed' => 'As senhas não conferem.',
             'phone.regex' => 'O campo telefone deve conter apenas números',
+            'password.min' => 'A senha deve ter no mínimo 8 caracteres',
+            'password.letters' => 'A senha deve conter letras',
+            'password.numbers' => 'A senha deve conter números',
         ];
     }
 }
