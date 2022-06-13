@@ -9,21 +9,23 @@
 
     <div class="d-flex flex-wrap align-items-center box-shadow bg-gray-400 rounded-2 p-4">
         <div class="col-3">
-            <a class="text-decoration-none text-dark" href="{{ route('file', substr($tcc->file_tcc, 4)) }}">
+            <a class="text-decoration-none text-dark" target="_blank" href="{{ route('file', substr($tcc->file_tcc, 4)) }}">
                 <i class="bi bi-filetype-pdf"> </i>TCC finalizado</a>
         </div>
         @if ($tcc->result_ethic_commitee)
             <div class="col-3">
                 <a class="text-decoration-none text-dark"
-                    href="{{ route('file', substr($tcc->result_ethic_commitee, 4)) }}">
+                    target="_blank" href="{{ route('file', substr($tcc->result_ethic_commitee, 4)) }}">
                     <i class="bi bi-filetype-pdf"> </i>Parecer do comitê de ética</a>
             </div>
         @endif
+        @if($tcc->type_ccc == 'artigo')
         <div class="col-3">
             <a class="text-decoration-none text-dark"
-                href="{{ route('file', substr($tcc->proof_article_submission, 4)) }}">
+                target="_blank" href="{{ route('file', substr($tcc->proof_article_submission, 4)) }}">
                 <i class="bi bi-filetype-pdf"> </i>Comprovante de submissão do artigo</a>
         </div>
+        @endif
     </div>
     <div class="d-flex flex-wrap align-items-start box-shadow bg-gray-400 rounded-2 p-3 mt-3">
         <div class="col-12 col-md-2">
@@ -52,7 +54,7 @@
             <h6>Orientador: <span class="fw-normal">{{ $tcc->professor->name }}</span></h6>
             <h6>Titulação: <span class="fw-normal">{{ $tcc->professor->titration }}</span></h6>
             <h6>Orgão: <span class="fw-normal">{{ $tcc->professor->organ }}</span></h6>
-            <a class="text-decoration-none text-dark" href="{{ route('file', substr( $tcc->consent_professor, 4)) }}"><i
+            <a class="text-decoration-none text-dark" target="_blank" href="{{ route('file', substr( $tcc->consent_professor, 4)) }}"><i
                     class="bi bi-filetype-pdf">
                 </i>Aceite</a>
         </div>
@@ -61,7 +63,7 @@
                 <h6>Nome: <span class="fw-normal">{{ $member->name }}</span></h6>
                 <h6>Titulação: <span class="fw-normal">{{ $member->titration }}</span></h6>
                 <h6>Orgão: <span class="fw-normal">{{ $member->organ }}</span></h6>
-                <a class="text-decoration-none text-dark" href="{{ route('file', substr($member->accept_member, 4)) }}"><i
+                <a class="text-decoration-none text-dark" target="_blank" href="{{ route('file', substr($member->accept_member, 4)) }}"><i
                         class="bi bi-filetype-pdf">
                     </i>Aceite</a>
             </div>

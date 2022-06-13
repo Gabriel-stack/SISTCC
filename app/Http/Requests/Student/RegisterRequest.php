@@ -28,14 +28,14 @@ class RegisterRequest extends FormRequest
             'name' => ['required', 'string', 'min:3','max:255', 'regex:/^[a-zA-Z ]+$/'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:students', 'ends_with:@aluno.ifsertao-pe.edu.br,@ifsertao-pe.edu.br'],
             'password' => ['required', 'confirmed', Password::min(8)->letters()->numbers()],
-            'phone' => ['required', 'string', 'max:12', 'regex:/^[0-9]+$/'],
+            'phone' => ['required', 'string', 'min:12', 'max:15'],
             'registration' => ['required', 'string', 'max:20', 'regex:/^[0-9]+$/'],
             'state' => ['required', 'string', 'min:2', 'max:2'],
             'city' => ['required', 'string', 'min:3', 'max:100'],
-            'historic' => ['required','mimes:pdf', 'size:4096'],
+            'historic' => ['required', 'mimes:pdf', 'max:4096'],
             'district' => ['required', 'string', 'min:3', 'max:100'],
             'street' => ['required', 'string', 'min:3','max:200'],
-            'zip_code' => ['required', 'string', 'min:7', 'max:8', 'regex:/^[0-9]+$/'],
+            'zip_code' => ['required', 'string', 'min:8', 'max:9'],
         ];
     }
 

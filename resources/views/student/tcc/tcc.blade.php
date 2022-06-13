@@ -22,7 +22,7 @@
                 <div class="my-3 px-2">
                     <label for="professor" class="form-label">Orientador</label>
                     <select name="professor" id="professor" class="form-select">
-                        <option selected>Selecione</option>
+                        <option>Selecione</option>
                         @forelse ($professors as $professor)
                             <option value="{{ $professor->id }}" @if (old('professor') == $professor->id) selected @endif>
                                 {{ $professor->name }}</option>
@@ -34,7 +34,7 @@
                 <div class="my-3 px-2">
                     <label for="coprofessor_id" class="form-label">Co-orientador</label>
                     <select name="coprofessor_id" id="coprofessor_id" class="form-select">
-                        <option selected>Selecione</option>
+                        <option disabled>Selecione</option>
                         @forelse ($professors as $professor)
                             <option value="{{ $professor->id }}" @if (old('coprofessor_id') == $professor->id) selected @endif>
                                 {{ $professor->name }}</option>

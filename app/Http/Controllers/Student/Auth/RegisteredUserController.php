@@ -34,7 +34,8 @@ class RegisteredUserController extends Controller
      */
     public function store(RegisterRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
+        $data['historic'] = $request->historic->store('historics');
         $data['password'] = Hash::make($request->password);
         $user = Student::create($data);
 
@@ -54,7 +55,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255, regex:/^[a-zA-Z\s]+$/'],
-        ],);
+        ]);
 
         $student = Student::find(Auth::user()->id);
 

@@ -5,7 +5,7 @@
 @section('content')
     <div class="p-md-4 d-flex justify-content-center">
         <form class="row bg-white rounded p-4" style="max-width: 762px;" action="{{ route('student.register') }}"
-            method="post">
+            method="post" enctype="multipart/form-data">
             @csrf
             <div class="col-12 p-0">
                 @if ($errors->any())

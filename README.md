@@ -7,7 +7,8 @@
 Aplicar validações nos formulários das etapas.
 Validar os campos de membro opcional.
 
-Aplicar exibição de arquivos enviados para o sistema (histórico do aluno).
+<!-- Aplicar exibição de arquivos enviados para o sistema (histórico do aluno). -->
+
 Copiar o sistema de exibição de arquivos para as páginas do aluno.
 
 Estilizar páginas de acompanhamento aluno e professor.

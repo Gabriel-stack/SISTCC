@@ -22,7 +22,7 @@
         </div>
         <div class="col-4 col-sm-2 mt-2 px-2 d-flex flex-column align-items-center">
             <span>Histórico do aluno</span>
-            <a class="form-control w-auto btn btn-warning text-white" href="#">
+            <a class="form-control w-auto btn btn-warning text-white" target="_blank" href="{{route('file', substr($tcc->student->historic, 10))}}">
                 BAIXAR
             </a>
         </div>

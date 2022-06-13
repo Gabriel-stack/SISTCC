@@ -19,12 +19,12 @@
         </div>
         <div class="my-3">
             <h6>Pré projeto defendido na disciplina pré-TCC:
-                <a target="_blank" href="{{ $tcc->file_tcc }}"><i class="bi bi-archive"></i></a>
+                <a target="_blank" target="_blank" href="{{ route('file', substr($tcc->file_pretcc, 4)) }}"><i class="bi bi-archive"></i></a>
             <h6>
         </div>
         <div class="my-3">
             <h6>Termo de Compromisso de Orientação Assinado:
-                <a target="blank" href="{{ $tcc->term_commitment }}"><i class="bi bi-archive"></i></a>
+                <a target="blank" target="_blank" href="{{ route('file', substr($tcc->term_commitment, 4)) }}"><i class="bi bi-archive"></i></a>
             </h6>
         </div>
         <div class="my-3 d-flex align-items-baseline gap-3 flex-wrap">
