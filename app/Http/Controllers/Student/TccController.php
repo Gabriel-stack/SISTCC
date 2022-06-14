@@ -92,14 +92,14 @@ class TccController extends Controller
         $data = $request->validated();
 
 
-        $this->deleteFiles([$tcc->consent_professor, $tcc->file_tcc, $tcc->result_ethic_commitee,
+        $this->deleteFiles([$tcc->consent_professor, $tcc->file_tcc, $tcc->result_ethic_committee,
         $tcc->proof_article_submission, $tcc->photo]);
 
 
         $data['consent_professor'] = $request->consent_professor->store('tcc');
         $data['file_tcc'] = $request->file_tcc->store('tcc');
-        if ($request->result_ethic_commitee)
-            $data['result_ethic_commitee'] = $request->result_ethic_commitee->store('tcc');
+        if ($request->result_ethic_committee)
+            $data['result_ethic_committee'] = $request->result_ethic_committee->store('tcc');
 
         $data['proof_article_submission'] = $request->proof_article_submission ? $request->proof_article_submission->store('tcc') : null;
         $data['photo'] = $request->photo->store('public/student/photo');

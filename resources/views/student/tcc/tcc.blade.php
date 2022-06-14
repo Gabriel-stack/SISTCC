@@ -19,7 +19,7 @@
         @csrf
         <div class="d-flex flex-wrap bg-gray-400 box-shadow rounded-2 px-4 py-3">
             <div class="col-12 col-sm-6">
-                <div class="my-3 px-2">
+                <div class="mt-3 px-2">
                     <label for="professor" class="form-label">Orientador</label>
                     <select name="professor" id="professor" class="form-select">
                         <option>Selecione</option>
@@ -31,7 +31,7 @@
                         @endforelse
                     </select>
                 </div>
-                <div class="my-3 px-2">
+                <div class="mt-3 px-2">
                     <label for="coprofessor_id" class="form-label">Co-orientador</label>
                     <select name="coprofessor_id" id="coprofessor_id" class="form-select">
                         <option disabled>Selecione</option>
@@ -45,27 +45,27 @@
                 </div>
             </div>
             <div class="col-12 col-sm-6">
-                <div class="my-3 px-2">
+                <div class="mt-3 px-2">
                     <label for="theme" class="form-label">Tema do TCC (em caixa alta)</label>
                     <input class="form-control" type="text" id="theme" name="theme" placeholder="Tema do TCC"
                         value="{{ old('theme') }}">
                 </div>
-                <div class="my-3 px-2">
+                <div class="mt-3 px-2">
                     <label for="title" class="form-label">Título do TCC (em caixa alta)</label>
                     <input class="form-control" type="text" id="title" name="title" placeholder="Título do TCC"
                         value="{{ old('title') }}">
                 </div>
             </div>
-            <div class="row align-items-end">
-                <div class="my-3 px-2 col-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 my-3 px-2">
                     <label for="file_pretcc" class="form-label">Pré projeto defendido na disciplina pré-TCC</label>
                     <input class="form-control" type="file" name="file_pretcc" id="file_pretcc">
                 </div>
-                <div class="my-3 px-2 col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 my-3 px-2">
                     <label for="term_commitment" class="form-label">Termo de Compromisso de Orientação Assinado</label>
                     <input class="form-control" type="file" name="term_commitment" id="term_commitment">
                 </div>
-                <div class="d-flex flex-column gap-1 my-3 px-2 col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2 d-flex flex-column my-3 px-2">
                     <label for="ethics_committee">Submetido ao comitê de ética</label>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary">
@@ -78,7 +78,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="my-3 px-2 col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2 my-3 px-2">
                     <label for="date_claim">Data pretendida</label>
                     <input class="form-control" type="date" min="{{ date('Y-m-d', strtotime('+3 months')) }}" name="date_claim" id="date_claim"
                         value="{{ old('date_claim') }}">

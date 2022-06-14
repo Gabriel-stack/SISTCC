@@ -75,8 +75,12 @@ th {
     color: white !important;
 }
 
-.bi-exclamation-triangle-fill {
+.bi-exclamation-triangle-fill, .text-warning {
     color: orange !important;
+}
+
+.btn-warning {
+    background-color: orange !important;
 }
 
 .dropdown-toggle {

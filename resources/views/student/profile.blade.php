@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h5 class="card-title m-0">Dados pessoais</h5>
                     <div class="form-group">
-                        <form action="{{ route('student.profile.update') }}" method="POST">
+                        <form action="{{ route('student.profile.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-7 mt-4">
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-7 col-lg-5 col-xl-4 mt-4">
                                     <label for="historic">Histórico</label>
-                                    <input type="file" class="form-control" id="historic" name="historic" value="{{ Auth::user()->historic }}" required>
+                                    <input type="file" class="form-control" id="historic" name="historic" value="{{ Auth::user()->historic }}">
                                 </div>
                             </div>
                             <div class="text-end mt-4">
@@ -76,7 +76,7 @@
                             <div class="row">
                                 <div class="col-6 mt-4">
                                     <label for="state">Estado</label>
-                                    <input type="text" class="form-control" id="state" name="state" value="{{Auth::user()->state}}" required>
+                                    <input type="text" class="form-control" id="state" name="state" value="{{Auth::user()->state}}" maxlength="2" required>
                                 </div>
                                 <div class="col-6 mt-4">
                                     <label for="zip_code">CEP</label>
@@ -124,4 +124,13 @@
             <a class="btn btn-secondary" href="{{ route('student.dashboard') }}">VOLTAR</a>
         </div>
     </div>
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#phone').mask('(00) 00000-0000');
+            $('#zip_code').mask('00000-000');
+        });
+    </script>
+@endsection
 @endsection

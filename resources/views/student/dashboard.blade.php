@@ -36,7 +36,11 @@
                         </a>
                     </div>
                     <div class="d-flex flex-wrap justify-content-center mt-3">
-                        <p class="card-text col-12 text-center fw-bold fs-5 text-warning">Cursando</p>
+                        <p class="card-text col-12 text-center fw-bold fs-5
+                            @if ($inside->situation == 'Reprovado') text-danger">Reprovado
+                            @elseif($inside->situation == 'Concluído') text-success">Concluído
+                            @else text-warning">Cursando @endif
+                        </p>
                         <div class="col-8 col-md-6 d-flex flex-column align-content-start mt-1 px-1">
                             <span class="mb-1">Data de início</span>
                             <span class="px-3 text-center py-1 bg-gray form-control fw-bold" style="height: 38px;">{{ @datebr($active_class->start_date) }}</span>
@@ -65,8 +69,10 @@
                         </a>
                     </div>
                     <div class="d-flex flex-wrap justify-content-center mt-3">
-                        <p class="card-text col-12 text-center fw-bold fs-5 @switch($tcc->situation) @case('Reprovado')text-danger"> Reprovado @break
-                            @case('Aprovado')text-success"> Aprovado @break @endswitch
+                        <p class="card-text col-12 text-center fw-bold fs-5
+                            @if ($tcc->situation == 'Reprovado') text-danger">Reprovado
+                            @elseif($tcc->situation == 'Concluído') text-success">Concluído
+                            @else text-warning">Cursando @endif
                         </p>
                         <div class="col-8 col-md-6 d-flex flex-column align-content-start mt-1 px-1">
                             <span class="mb-1">Data de início</span>

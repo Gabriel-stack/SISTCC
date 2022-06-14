@@ -228,6 +228,7 @@ return [
         'class_code' =>'código da turma',
         'start_date' =>'data de início',
         'end_date' =>'data de término',
+        'new_password' =>'nova senha',
     ],
 
 ];

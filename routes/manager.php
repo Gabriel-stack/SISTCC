@@ -16,13 +16,19 @@ use App\Http\Controllers\Manager\{
     ManagerController,
     ProgressStudentController,
 };
-use App\Http\Controllers\Manager\Pdf\AtaController;
-use App\Http\Controllers\Manager\Pdf\BaremaController;
+use App\Http\Controllers\Manager\Pdf\{
+    AtaController,
+    BaremaController,
+    DeclaracaoController,
+};
 
 use App\Http\Livewire\Subject;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest:professor', 'prevent-back-history'])->prefix('professor')->name('manager.')->group(function () {
+    route::get('/', function () {
+        return redirect()->route('manager.login');
+    });
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -98,6 +104,8 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
     Route::get('barema/{tcc}/download', BaremaController::class)->name('barema');
     Route::get('ata/{tcc}/download', AtaController::class)->name('ata');
+    Route::get('declaracao/{tcc}/download', DeclaracaoController::class)->name('declaracao');
+
     // Turma
     Route::prefix('subjects')->group(function () {
         Route::get('/{subject}', Subject::class)->name('subject');

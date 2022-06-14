@@ -6,19 +6,15 @@
     <div class="col-12">
         @if ($tcc->situation == 'Devolvido')
             <div class="alert alert-danger text-center">
-                <h5 class="fw-bold">Algo está errado! {{ $tcc->stage }} foi devolvida.</h5>
+                <h5 class="fw-bold">{{ $tcc->stage }} foi devolvida porque algo está errado!</h5>
             </div>
-        @endif
-
-        @if ($tcc->situation == 'Cursando')
+        @elseif ($tcc->situation == 'Cursando')
             <div class="alert alert-success text-center">
                 <h5 class="fw-bold">{{ $tcc->stage }} está liberada!</h5>
             </div>
-        @endif
-
-        @if ($tcc->situation == 'Em análise')
-            <div class="alert alert-success text-center">
-                <h5 class="fw-bold">{{ $tcc->stage }} está sendo analisada pelo professor!</h5>
+        @elseif ($tcc->situation == 'Em análise')
+            <div class="alert alert-info text-center">
+                <h5 class="fw-bold">{{ $tcc->stage }} está em processo de análise</h5>
             </div>
         @endif
 
@@ -46,7 +42,7 @@
             @endif
         </div>
     </div>
-    <div class="d-flex justify-content-between align-items-center bg-gray-400 box-shadow rounded-2 p-4 mt-4">
+    <div class="d-flex justify-content-between align-items-center bg-gray-400 box-shadow rounded-2 p-4 mt-3">
         <div>
             <span class="text-muted">ETAPA 2</span>
             <h5 class="me-2">CADASTRAR REQUERIMENTO DE DEFESA</h5>
@@ -65,7 +61,7 @@
             @endif
         </div>
     </div>
-    <div class="d-flex justify-content-between align-items-center bg-gray-400 box-shadow rounded-2 p-4 mt-4">
+    <div class="d-flex justify-content-between align-items-center bg-gray-400 box-shadow rounded-2 p-4 mt-3">
         <div>
             <span class="text-muted">ETAPA 3</span>
             <h5 class="me-2">ENTREGAR DE TCC</h5>

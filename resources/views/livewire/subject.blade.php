@@ -91,9 +91,9 @@
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     wire:click="tccId({{ $tcc->id }})" data-bs-target="#modal-remove-student"
                                     data-student-id="{{ $tcc->id }}">
-                                    <i class="bi bi-person-dash"></i>
+                                    <i class="bi bi-person-dash" data-bs-toggle="tooltip" data-bs-placement="top" title="remover da disciplina"></i>
                                 </button>
-                                <a class="btn btn-info"
+                                <a type="button" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="ir para página de acompanhamento"
                                     href="{{ route('manager.show', ['subject' => $tcc->subject_id, 'tcc' => $tcc->id]) }}">
                                     <i class="bi bi-eye"></i>
                                 </a>
@@ -119,4 +119,11 @@
             {{ $tccs->links() }}
         @endif
     </div>
+    @section('scripts')
+        <script>
+            $(document).ready(function () {
+                $('[data-bs-toggle="tooltip"]').tooltip();
+            });
+        </script>
+    @endsection
 </div>

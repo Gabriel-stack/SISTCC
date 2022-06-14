@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserController extends Controller
 {
@@ -35,7 +36,7 @@ class RegisteredUserController extends Controller
     public function store(RegisterRequest $request)
     {
         $data = $request->validated();
-        $data['historic'] = $request->historic->store('historics');
+        $data['historic'] = $request->historic->store('historic');
         $data['password'] = Hash::make($request->password);
         $user = Student::create($data);
 
@@ -53,13 +54,15 @@ class RegisteredUserController extends Controller
 
     public function updatePersonalData(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => ['required', 'string', 'max:255, regex:/^[a-zA-Z\s]+$/'],
+            'phone' => ['required', 'string', 'min:15', 'max:15'],
         ]);
 
-        $student = Student::find(Auth::user()->id);
+        $request->historic ? $data['historic'] =  $request->historic->store('historic') : null;
 
-        $student->update($request->all());
+        $student = Student::find(Auth::user()->id);
+        $student->update($data);
 
         if ($student) {
             return redirect()->back()->with('success', 'Os dados de perfil foram alterados com sucesso!');
@@ -70,13 +73,15 @@ class RegisteredUserController extends Controller
 
     public function updateAddress(Request $request)
     {
-        // $request->validate([
-        //     'name' => ['required', 'string', 'max:255, regex:/^[a-zA-Z\s]+$/'],
-        // ],);
+        $data = $request->validate([
+            'city' => ['required', 'string', 'min:3', 'max:100'],
+            'state' => ['required', 'string', 'min:2', 'max:2'],
+            'zip_code' => ['required', 'string', 'min:9', 'max:9'],
+        ]);
 
         $student = Student::find(Auth::user()->id);
 
-        $student->update($request->all());
+        $student->update($data);
 
         if ($student) {
             return redirect()->back()->with('success', 'Os dados de endereço foram alterados com sucesso!');
@@ -85,28 +90,11 @@ class RegisteredUserController extends Controller
         return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados de endereço!');
     }
 
-    public function updateTcc(Request $request)
-    {
-        // $request->validate([
-        //     'name' => ['required', 'string', 'max:255, regex:/^[a-zA-Z\s]+$/'],
-        // ],);
-
-        $student = Student::find(Auth::user()->id);
-
-        $student->update($request->all());
-
-        if ($student) {
-            return redirect()->back()->with('success', 'Os dados de TCC foram alterados com sucesso!');
-        }
-
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados de TCC!');
-    }
-
     public function updatePassword(Request $request)
     {
         $request->validate([
             'password' => ['required', 'string', 'min:8'],
-            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+            'new_password' => ['required', 'confirmed', Password::min(8)->letters()->numbers()],
         ]);
 
         $student = Student::find(Auth::user()->id);

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Nette\Utils\Json;
 use PDF;
 
-class BaremaController extends Controller
+class DeclaracaoController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -21,7 +21,7 @@ class BaremaController extends Controller
         $tcc = Tcc::findOrFail($request->tcc);
         abort_if($tcc->stage != 'Etapa 3', 403, 'Ação não permitida para esse tcc');
         $members = Json::decode($tcc->members);
-        $pdf = PDF::loadView('manager.pdfs_templates.barema', compact('tcc','members'));
-        return $pdf->stream('declaracao.pdf');
+        $pdf = PDF::loadView('manager.pdfs_templates.declaracao', compact('tcc','members'));
+        return $pdf->stream('barema.pdf');
     }
 }
