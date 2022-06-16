@@ -39,3 +39,8 @@ Gerar convite de defesa de TCC.
 
 Fazer middleware para deslogar.
 
+Ajustar logo (em especial no mobile).
+
+Adicionar olho para visualizar senha.
+
+Na página de gestão de alunos, organizar a exibição dos alunos em ordem alfabética.
