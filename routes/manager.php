@@ -123,6 +123,8 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
                 Route::post('return', 'accompanimentReturn')->name('return');
 
+                Route::post('rollback-stage', 'rollbackStage')->name('rollback');
+
                 Route::post('validate', 'accompanimentValidate')->name('validate');
 
                 Route::post('approve', 'accompanimentApprove')->name('approve');

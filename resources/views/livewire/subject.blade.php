@@ -88,11 +88,13 @@
                                 {{ $tcc->situation }}
                             </td>
                             <td class="d-flex gap-1">
+                                @if($tcc->situation != 'Concluído')
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     wire:click="tccId({{ $tcc->id }})" data-bs-target="#modal-remove-student"
                                     data-student-id="{{ $tcc->id }}">
                                     <i class="bi bi-person-dash" data-bs-toggle="tooltip" data-bs-placement="top" title="remover da disciplina"></i>
                                 </button>
+                                @endif
                                 <a type="button" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="ir para página de acompanhamento"
                                     href="{{ route('manager.show', ['subject' => $tcc->subject_id, 'tcc' => $tcc->id]) }}">
                                     <i class="bi bi-eye"></i>

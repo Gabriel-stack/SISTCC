@@ -144,29 +144,38 @@
         </table>
         <div id="data" style="width: 100%; text-align: center;  margin-top: 40px">Petrolina, {{@datebr(now())}}</div>
 
-        <div id="orientador" style="margin-top: 20px;">
-            <p style="text-align: center">______________________________________________________</p>
+        <div id="orientador" style="margin-top: 20px; {{count((array) $members) == 3 ? 'float: left;' : null}}">
+            <p style="text-align: center">__________________________________________</p>
             <p style="text-align: center"><strong>{{$tcc->professor->name}}</strong></p>
             <p style="text-align: center">Avaliador 1 (orietador)</p>
         </div>
         @foreach ($members as $member)
             @if($loop->first)
-            <div id="avaliador_dois" style="margin-top: 20px; float: left">
+            <div id="avaliador_dois" style="margin-top: 20px;{{count((array) $members) == 3 ? 'float: right;' : 'float: left;'}}">
                 <p style="text-align: center">__________________________________________</p>
                 <p style="text-align: center"><strong>{{$member->name}}</strong></p>
                 <p style="text-align: center">Avaliador 2</p>
             </div>
             @endif
+            <div style="clear: both"></div>
             @if($loop->index == 1)
-            <div id="avaliador_dois" style="margin-top: 20px; float: right">
+            <div style="clear: both"></div>
+            <div id="avaliador_dois" style="margin-top: 20px; {{count((array) $members) == 3 ? 'float: left;' : 'float: right;'}}">
                 <p style="text-align: center">__________________________________________</p>
                 <p style="text-align: center"><strong>{{$member->name}}</strong></p>
                 <p style="text-align: center">Avaliador 3</p>
             </div>
             @endif
+            @if($loop->index == 2)
+            <div id="avaliador_tres" style="margin-top: 20px; {{count((array) $members) == 3 ? 'float: right;' : 'float: left;'}}">
+                <p style="text-align: center">__________________________________________</p>
+                <p style="text-align: center"><strong>{{$member->name}}</strong></p>
+                <p style="text-align: center">Avaliador 4</p>
+            </div>
+          
+            @endif
         @endforeach
     </div>
-
 </body>
 
 </html>

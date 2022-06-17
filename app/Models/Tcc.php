@@ -40,13 +40,13 @@ class Tcc extends Model
     protected function title(): Attribute
     {
         return Attribute::make(
-            set: fn ($value) => strtoupper($value),
+            set: fn ($value) => mb_strtoupper($value),
         );
     }
     protected function theme(): Attribute
     {
         return Attribute::make(
-            set: fn ($value) => strtoupper($value),
+            set: fn ($value) => mb_strtoupper($value),
         );
     }
     public function professor()

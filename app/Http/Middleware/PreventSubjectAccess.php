@@ -17,10 +17,9 @@ class PreventSubjectAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        abort_if(Tcc::with('subject')->where('subject_id ', $request->subject)
+        abort_if(Tcc::where('subject_id', $request->subject)
             ->where('student_id', Auth()->user()->id)
-            ->whereRelation('subject', 'is_active', false)->first()
-            ,403, 'Você não tem permissão para acessar esta disciplina.');
+            ->first() === null ,403, 'Você não tem permissão para acessar esta disciplina.');
 
         return $next($request);
     }

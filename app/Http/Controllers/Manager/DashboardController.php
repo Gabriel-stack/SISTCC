@@ -74,7 +74,7 @@ class DashboardController extends Controller
 
         $tccs = Tcc::where('subject_id', $subject->id)->get();
         foreach ($tccs as $tcc) {
-            if ($tcc->situation != 'Aprovado'){
+            if ($tcc->situation != 'Concluído'){
                 $tcc->situation = 'Reprovado';
                 $tcc->save();
             }

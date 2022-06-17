@@ -46,14 +46,18 @@
                     <!-- Password -->
                     <div class="col-12 col-md-6 mt-3">
                         <label for="password">Senha</label>
-                        <input id="password" class="form-control" type="password" name="password" required
-                            autocomplete="current-password">
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <span class="input-group-text pass"><i class="bi bi-eye-slash"></i></span>
+                        </div>
                     </div>
                     <!-- Confirm Password -->
                     <div class="col-12 col-md-6 mt-3">
                         <label for="password_confirmation">Confirmar senha</label>
-                        <input id="password_confirmation" class="form-control" type="password"
-                            name="password_confirmation" required>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                            <span class="input-group-text pass"><i class="bi bi-eye-slash"></i></span>
+                        </div>
                     </div>
                 </div>
             </div>

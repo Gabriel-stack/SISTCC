@@ -55,6 +55,16 @@ class ProgressStudentController extends Controller
         return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'A etapa foi devolvida ao aluno!')
             : redirect()->back()->with('fail', 'Ocorreu um erro ao tentar devolver a etapa ao aluno!');
     }
+    public function rollbackStage(Request $request)
+    {// Executa ação de retrocesso para a primeira etapa
+        $tcc = Tcc::findOrFail($request->id);
+        $tcc->stage = 'Etapa 1';
+        $tcc->situation = 'Devolvido';
+        $tcc->save();
+
+        return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'A etapa foi devolvida ao aluno!')
+            : redirect()->back()->with('fail', 'Ocorreu um erro ao tentar devolver a etapa ao aluno!');
+    }
 
     public function accompanimentValidate(Request $request)
     { // Executa ação de validação de etapa

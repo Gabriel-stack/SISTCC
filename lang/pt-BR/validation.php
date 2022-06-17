@@ -229,6 +229,7 @@ return [
         'start_date' =>'data de início',
         'end_date' =>'data de término',
         'new_password' =>'nova senha',
+        'coprofessor_id' =>'co-orientador',
     ],
 
 ];

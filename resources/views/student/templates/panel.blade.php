@@ -3,7 +3,7 @@
 @section('content')
     <nav class="navbar navbar-dark fixed-top" style="background-color: #319470;">
         <div class="container-fluid justify-content-between align-items-center">
-            <div style="width: 160px;">
+            <div style="width: 120px;">
                 @include('components.application-logo')
             </div>
 

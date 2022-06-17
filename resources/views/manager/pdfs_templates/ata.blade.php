@@ -105,21 +105,22 @@
             <p style="text-align: center"><strong>{{$member->name}}</strong></p>
             <p style="text-align: center">Avaliador 3</p>
         </div>
-    @elseif(count($members) == 3 && $loop->index == 2)
-    <div id="avaliador_tres" style="margin-top: 20px; float: right;">
-        <p style="text-align: center">__________________________________________</p>
-        <p style="text-align: center"><strong>{{$member->name}}</strong></p>
-        <p style="text-align: center">Avaliador 4</p>
-    </div>
+        @elseif($loop->index == 2)
+        <div id="avaliador_tres" style="margin-top: 20px; float: right;">
+            <p style="text-align: center">__________________________________________</p>
+            <p style="text-align: center"><strong>{{$member->name}}</strong></p>
+            <p style="text-align: center">Avaliador 4</p>
+        </div>
     </div>
     @endif
     @endforeach
+    <div style="clear: both"></div>
     <div id="aluno" style="margin-top: 20px; float: right;">
         <p style="text-align: center">__________________________________________</p>
         <p style="text-align: center"><strong>{{$tcc->student->name}}</strong></p>
         <p style="text-align: center">Aluno</p>
     </div>
-</div>
+    </div>
 </body>
 
 </html>

@@ -15,7 +15,7 @@ Gerar relatório da turma em pdf com base em filtros.
 
 <!-- Aplicar máscaras nos formulários. -->
 
-Possibilitar o professor fazer a devolução da primeira etapa quando o aluno estiver na segunda etapa.
+<!-- Possibilitar o professor fazer a devolução da primeira etapa quando o aluno estiver na segunda etapa. -->
 
 Adicionar selects no cadastro de requerimento para o aluno poder selecionar um professor já cadastrado no sistema para ser um membro da banca.
 
@@ -41,6 +41,6 @@ Fazer middleware para deslogar.
 
 Ajustar logo (em especial no mobile).
 
-Adicionar olho para visualizar senha.
+<!-- Adicionar olho para visualizar senha. (restante do sistema) -->
 
 Na página de gestão de alunos, organizar a exibição dos alunos em ordem alfabética.

@@ -46,8 +46,13 @@ class TccController extends Controller
         $tcc = Tcc::where('student_id', Auth::user()->id)
             ->where('subject_id', $request->subject)
             ->first();
+        if ($request->coprofessor_id) {
+            $request->validate([
+                'coprofessor_id' => 'integer|exists:professors,id',
+            ]);
+        }
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['professor_id'] = $request->professor;
         $data['student_id'] = Auth::user()->id;
         $this->deleteFiles([$tcc->file_pretcc, $tcc->term_commitment]);
@@ -58,7 +63,7 @@ class TccController extends Controller
         $tcc->update($data);
 
         if (!$tcc) {
-            return redirect()->back()->with('fail', 'Erro ao cadastrar TCC');
+            return back()->with('fail', 'Erro ao cadastrar TCC');
         }
         return redirect()->route('student.progress', $request->subject)->with('success', 'TCC cadastrado com sucesso!');
     }
@@ -85,15 +90,16 @@ class TccController extends Controller
                 'result_ethic_committee' => 'required|file|mimes:pdf',
             ]);
 
-            if($validate->fails()) return back()->withErrors($validate->errors());
-
+            if ($validate->fails()) return back()->withErrors($validate->errors());
         }
 
         $data = $request->validated();
 
 
-        $this->deleteFiles([$tcc->consent_professor, $tcc->file_tcc, $tcc->result_ethic_committee,
-        $tcc->proof_article_submission, $tcc->photo]);
+        $this->deleteFiles([
+            $tcc->consent_professor, $tcc->file_tcc, $tcc->result_ethic_committee,
+            $tcc->proof_article_submission, $tcc->photo
+        ]);
 
 
         $data['consent_professor'] = $request->consent_professor->store('tcc');
@@ -151,7 +157,7 @@ class TccController extends Controller
     private function deleteFiles($files)
     {
         foreach ($files as $file) {
-            if($file) Storage::delete($file);
+            if ($file) Storage::delete($file);
         }
     }
 

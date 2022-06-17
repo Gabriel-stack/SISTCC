@@ -34,7 +34,7 @@
                 <div class="mt-3 px-2">
                     <label for="coprofessor_id" class="form-label">Co-orientador</label>
                     <select name="coprofessor_id" id="coprofessor_id" class="form-select">
-                        <option disabled>Selecione</option>
+                        <option value="">Selecione</option>
                         @forelse ($professors as $professor)
                             <option value="{{ $professor->id }}" @if (old('coprofessor_id') == $professor->id) selected @endif>
                                 {{ $professor->name }}</option>
