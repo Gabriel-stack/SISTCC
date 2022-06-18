@@ -131,6 +131,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
 
                 Route::post('disapprove', 'accompanimentDisapprove')->name('disapprove');
 
+                Route::post('cancel_disapproval', 'accompanimentCancelDisapproval')->name('cancel_disapproval');
             });
         });
 

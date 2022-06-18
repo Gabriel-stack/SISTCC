@@ -10,7 +10,6 @@ use App\Models\Tcc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use Nette\Utils\Json;
 
 class TccController extends Controller
@@ -48,11 +47,10 @@ class TccController extends Controller
             ->first();
         if ($request->coprofessor_id) {
             $request->validate([
-                'coprofessor_id' => 'integer|exists:professors,id',
+                'coprofessor_id' => 'numeric|exists:professors,id',
             ]);
         }
-
-        $data = $request->validated();
+        $data = $request->all();
         $data['professor_id'] = $request->professor;
         $data['student_id'] = Auth::user()->id;
         $this->deleteFiles([$tcc->file_pretcc, $tcc->term_commitment]);
@@ -86,11 +84,7 @@ class TccController extends Controller
             ->first();
 
         if ($tcc->ethics_committee) {
-            $validate = Validator::make($request->only('result_ethic_committee'), [
-                'result_ethic_committee' => 'required|file|mimes:pdf',
-            ]);
-
-            if ($validate->fails()) return back()->withErrors($validate->errors());
+            $request->validate(['result_ethic_committee'=> 'required|file|mimes:pdf|max:4096']);
         }
 
         $data = $request->validated();

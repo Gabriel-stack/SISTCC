@@ -2,8 +2,8 @@
 
 
 
-Aplicar validações nos formulários das etapas.
-Validar os campos de membro opcional.
+<!-- Aplicar validações nos formulários das etapas. -->
+<!-- Validar os campos de membro opcional. -->
 
 <!-- Aplicar exibição de arquivos enviados para o sistema (histórico do aluno). -->
 
@@ -32,15 +32,20 @@ Adicionar professor visitante (professor que foi retirado do cargo de professor 
 
 Adicionar sistema de preenchimento de campos nas páginas que são devolvidas (está faltando apenas os arquivos).
 
-
-Anotações:
-
 Gerar convite de defesa de TCC.
 
-Fazer middleware para deslogar.
+<!-- apagar arquivos do usuario caso seja excluído da turma. -->
 
-Ajustar logo (em especial no mobile).
+<!-- Adicionar botão para desreprovar um aluno. -->
+
+erro de permissão 
+
+bug da foto
+
+<!-- Inserir validação na devolução de etapa. -->
+
+<!-- Ajustar logo (em especial no mobile). -->
 
 <!-- Adicionar olho para visualizar senha. (restante do sistema) -->
 
-Na página de gestão de alunos, organizar a exibição dos alunos em ordem alfabética.
+<!-- Na página de gestão de alunos, organizar a exibição dos alunos em ordem alfabética. -->

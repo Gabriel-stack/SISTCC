@@ -14,7 +14,7 @@
                     <input class="d-none" id="return-id" type="hidden" name="id" value="{{ $tcc->id }}" required>
                     <h5 class="fs-5 text-start mb-2">Informe o motivo da devolução:</h5>
                     <div>
-                        <textarea class="form-control" name="message" id="message" cols="20" rows="5"></textarea>
+                        <textarea class="form-control" name="message" id="message" cols="20" rows="5" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -24,12 +24,12 @@ class ProfessorRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'email' => ['required'],
-            'phone' => ['required'],
-            'titration' => ['required'],
-            'organ' => ['required'],
-            'Cpf' => ['required', 'digits:11', 'unique:professors'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:professors', 'ends_with:@ifsertao-pe.edu.br'],
+            'phone' => ['required', 'string', 'min:12', 'max:15'],
+            'titration' => ['required', 'string'],
+            'organ' => ['required', 'string'],
+            'cpf' => ['required', 'string', 'min:14', 'max:14', 'unique:professors'],
         ];
     }
 

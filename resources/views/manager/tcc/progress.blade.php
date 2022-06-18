@@ -11,11 +11,17 @@
     <div class="col-12 d-flex flex-wrap justify-content-between align-items-center px-2">
         <h5 class="my-2 me-2">Dados do aluno</h5>
         @if (!in_array($tcc->situation, ['Reprovado', 'Concluído']))
-        <button type="button" class="btn btn-danger text-white my-2" data-bs-toggle="modal"
-            data-bs-target="#modal-disapprove-tcc" data-tcc="{{ $tcc }}">
-            REPROVAR
-        </button>
-        @include('manager.components.tcc.modal_disapprove_tcc')
+            <button type="button" class="btn btn-danger text-white my-2" data-bs-toggle="modal"
+                data-bs-target="#modal-disapprove-tcc" data-tcc="{{ $tcc }}">
+                REPROVAR
+            </button>
+            @include('manager.components.tcc.modal_disapprove_tcc')
+        @elseif ($tcc->subject->is_active == true)
+            <button type="button" class="btn btn-danger text-white my-2" data-bs-toggle="modal"
+                data-bs-target="#modal-cancel-disapproval-tcc" data-tcc="{{ $tcc }}">
+                CANCELAR REPROVAÇÃO
+            </button>
+            @include('manager.components.tcc.modal_cancel_disapproval_tcc')
         @endif
     </div>
     <div class="col-12 col-sm-12 col-md-8 col-lg-6 mt-2 px-2">

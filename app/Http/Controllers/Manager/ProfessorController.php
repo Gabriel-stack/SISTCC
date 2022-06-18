@@ -18,7 +18,7 @@ class professorController extends Controller
      */
     public function create()
     {
-        $professors = Professor::paginate(10);
+        $professors = Professor::orderBy('name')->paginate(10);
 
         return view('manager.professors', compact('professors'));
     }
@@ -37,10 +37,10 @@ class professorController extends Controller
         $professor = Professor::create($data);
 
         if ($professor) {
-            return redirect()->back()->with('success', 'O orientador foi cadastrado com sucesso!');
+            return back()->with('success', 'O orientador foi cadastrado com sucesso!');
         }
 
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar cadastrar o orientador!');
+        return back()->with('fail', 'Ocorreu algum problema ao tentar cadastrar o orientador!');
     }
 
     /**
@@ -50,17 +50,17 @@ class professorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(ProfessorRequest $request)
     {
         $professor = Professor::findOrFail($request->id);
 
-        $professor->update($request->all());
+        $professor->update($request->validated());
 
         if ($professor) {
-            return redirect()->back()->with('success', 'Os dados do orientador foram alterados com sucesso!');
+            return back()->with('success', 'Os dados do orientador foram alterados com sucesso!');
         }
 
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados do orientador!');
+        return back()->with('fail', 'Ocorreu algum problema ao tentar editar os dados do orientador!');
     }
 
     public function destroy(Request $request)
@@ -68,16 +68,16 @@ class professorController extends Controller
         $professor = Professor::findOrFail($request->id);
 
         if (Tcc::where('professor_id', $professor->id)->first() || Manager::where('professor_id', $professor->id)->first()) { // Regra de exclusão de orientador.
-            return redirect()->back()->with('fail', 'O orientador não pode ser excluído!');
+            return back()->with('fail', 'O orientador não pode ser excluído!');
         }
 
         $professor->delete();
 
         if ($professor) {
-            return redirect()->back()->with('success', 'O orientador foi excluído com sucesso!');
+            return back()->with('success', 'O orientador foi excluído com sucesso!');
         }
 
-        return redirect()->back()->with('fail', 'Ocorreu algum problema ao tentar exlui o orientador!');
+        return back()->with('fail', 'Ocorreu algum problema ao tentar exlui o orientador!');
     }
 
     public function search(Request $request)

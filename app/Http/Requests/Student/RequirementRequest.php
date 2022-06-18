@@ -24,12 +24,11 @@ class RequirementRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => ['required','mimes:jpeg,jpg,png'],
-            'keywords' => ['required', 'string'],
-            'abstract' => ['required', 'string', 'max:600'],
+            'photo' => ['required','mimes:jpeg,jpg,png', 'max:2048'],
+            'keywords' => ['required', 'string', 'max:255'],
+            'abstract' => ['required', 'string'],
             'type_tcc' => ['required', 'in:artigo,cap_livro,monografia,outro'],
             'intended_date' => ['required', 'date', 'after:today'],
-            'result_ethic_commitee' => ['file', 'mimes:pdf', 'max:4096'],
             'proof_article_submission' => ['required_if:type_tcc,artigo', 'mimes:pdf', 'max:4096'],
             'consent_professor' => ['required', 'mimes:pdf', 'max:4096'],
             'file_tcc' => ['required', 'mimes:pdf', 'max:4096'],
@@ -50,7 +49,7 @@ class RequirementRequest extends FormRequest
     {
         return [
             'after:today' => 'A data deve ser posterior a hoje',
-            // 'required_with' => 'O campo :attribute é obrigatório quando o campo qualquer outro valor do membro 3 está preenchido',
+            'required_with' => 'O campo :attribute é obrigatório quando algum outro campo do membro 3 estiver preenchido',
         ];
   }
 }

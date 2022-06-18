@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\SubjectRequest;
 use App\Models\Subject;
 use App\Models\Tcc;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,6 +73,10 @@ class DashboardController extends Controller
     {
         $subject = Subject::findOrFail($request->id);
 
+        if (Carbon::now()->lt($subject->end_date)) {
+            return back()->with('fail', 'A data de fechamento deve ser posterior à data de término da turma!');
+        }
+
         $tccs = Tcc::where('subject_id', $subject->id)->get();
         foreach ($tccs as $tcc) {
             if ($tcc->situation != 'Concluído'){
@@ -80,7 +85,10 @@ class DashboardController extends Controller
             }
         }
 
-        $subject->update(['is_active' => false]);
+        $subject->update([
+            'is_active' => false,
+            'close_date' => now()
+        ]);
 
         return $subject? redirect()->route('manager.dashboard')->with('success', 'A turma foi encerrada com sucesso!')
             :back()->with('fail', 'Ocorreu algum problema ao tentar encerrar a turma!');

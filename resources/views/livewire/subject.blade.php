@@ -88,7 +88,7 @@
                                 {{ $tcc->situation }}
                             </td>
                             <td class="d-flex gap-1">
-                                @if($tcc->situation != 'Concluído')
+                                @if(!in_array($tcc->situation, ['Concluído', 'Reprovado']))
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     wire:click="tccId({{ $tcc->id }})" data-bs-target="#modal-remove-student"
                                     data-student-id="{{ $tcc->id }}">

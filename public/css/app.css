@@ -76,11 +76,11 @@ th {
 }
 
 .bi-exclamation-triangle-fill, .text-warning {
-    color: orange !important;
+    color: rgb(245, 159, 0) !important;
 }
 
 .btn-warning {
-    background-color: orange !important;
+    background-color: rgb(245, 159, 0) !important;
 }
 
 .dropdown-toggle {

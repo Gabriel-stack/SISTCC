@@ -17,7 +17,7 @@ class ProgressStudentController extends Controller
      */
     public function show($subject, $tcc)
     {
-        $tcc = Tcc::with('student', 'professor')->where('subject_id', $subject)->findOrFail($tcc);
+        $tcc = Tcc::with('student', 'professor', 'subject')->where('subject_id', $subject)->findOrFail($tcc);
         $coprofessor = Professor::find($tcc->coprofessor_id);
         return view('manager.tcc.progress', compact('tcc', 'coprofessor'));
     }
@@ -47,23 +47,27 @@ class ProgressStudentController extends Controller
 
     public function accompanimentReturn(Request $request)
     { // Executa ação de devolução de etapa
+        $request->validate(['message' => 'required|string']);
+
         $tcc = Tcc::findOrFail($request->id);
         $tcc->situation = 'devolvido';
         $tcc->message = $request->message;
         $tcc->save();
 
         return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'A etapa foi devolvida ao aluno!')
-            : redirect()->back()->with('fail', 'Ocorreu um erro ao tentar devolver a etapa ao aluno!');
+            : back()->with('fail', 'Ocorreu um erro ao tentar devolver a etapa ao aluno!');
     }
     public function rollbackStage(Request $request)
     {// Executa ação de retrocesso para a primeira etapa
+        $request->validate(['message' => 'required|string']);
+
         $tcc = Tcc::findOrFail($request->id);
         $tcc->stage = 'Etapa 1';
         $tcc->situation = 'Devolvido';
         $tcc->save();
 
         return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'A etapa foi devolvida ao aluno!')
-            : redirect()->back()->with('fail', 'Ocorreu um erro ao tentar devolver a etapa ao aluno!');
+            : back()->with('fail', 'Ocorreu um erro ao tentar devolver a etapa ao aluno!');
     }
 
     public function accompanimentValidate(Request $request)
@@ -73,7 +77,7 @@ class ProgressStudentController extends Controller
         $tcc->stage = $tcc->stage == 'Etapa 1' ? 'Etapa 2' : 'Etapa 3';
         $tcc->save();
         return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'A etapa foi validada!')
-            : redirect()->back()->with('fail', 'Ocorreu um erro ao tentar validar a etapa!');
+            : back()->with('fail', 'Ocorreu um erro ao tentar validar a etapa!');
     }
 
     public function accompanimentDisapprove(Request $request)
@@ -82,6 +86,15 @@ class ProgressStudentController extends Controller
         $tcc->situation = 'Reprovado';
         $tcc->save();
         return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'O aluno foi reprovado!')
-            : redirect()->back()->with('fail', 'Ocorreu um erro ao tentar validar a etapa!');
+            : back()->with('fail', 'Ocorreu um erro ao tentar reprovar o aluno!');
+    }
+
+    public function accompanimentCancelDisapproval(Request $request)
+    { // Executa ação de cancelar reprovação do aluno
+        $tcc = Tcc::findOrFail($request->id);
+        $tcc->situation = 'Cursando';
+        $tcc->save();
+        return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'O aluno teve a sua reprovação cancelada!')
+            : back()->with('fail', 'Ocorreu um erro ao tentar cancelar a reprovação do aluno!');
     }
 }
