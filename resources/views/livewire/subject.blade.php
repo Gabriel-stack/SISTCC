@@ -8,18 +8,18 @@
     </div>
 
     <div class="d-flex flex-wrap justify-content-end justify-content-lg-between align-items-center bg-gray-400 box-shadow rounded-2 p-4 mb-4">
-        <div class="col-12 col-sm- col-md-6 col-lg-4 d-flex justify-content-center justify-content-lg-start my-1">
-            <div>
-                <label for="student_search">Aluno</label>
-                <input wire:model="search_name" class="form-control w-auto" id="student_search" type="search"
+        <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start my-1">
+            <div class="px-2 w-100">
+                <label class="w-100" for="student_search">Aluno</label>
+                <input wire:model="search_name" class="form-control w-100" id="student_search" type="search"
                     name="student" placeholder="Pesquisar" aria-label="Search">
             </div>
         </div>
 
-        <div class="col-6 col-sm- col-md-3 col-lg-2 d-flex justify-content-center justify-content-lg-start my-1">
-            <div>
-                <label for="stage_search">Etapa</label>
-                <select wire:model="select_stage" name="stage" class="form-select w-auto" id="stage_search">
+        <div class="col-6 col-sm-3 col-md-3 col-lg-2 d-flex justify-content-center justify-content-lg-start my-1">
+            <div class="px-2 w-100">
+                <label class="w-100" for="stage_search">Etapa</label>
+                <select wire:model="select_stage" name="stage" class="form-select w-100" id="stage_search">
                     <option value="">Todas</option>
                     <option value="Etapa 1">Etapa 1</option>
                     <option value="Etapa 2">Etapa 2</option>
@@ -28,10 +28,10 @@
             </div>
         </div>
 
-        <div class="col-6 col-sm- col-md-3 col-lg-2 d-flex justify-content-center justify-content-lg-start my-1">
-            <div>
-                <label for="status_search">Situação</label>
-                <select wire:model="select_situation" name="status" class="form-select w-auto" id="status_search">
+        <div class="col-6 col-sm-3 col-md-3 col-lg-2 d-flex justify-content-center justify-content-lg-start my-1">
+            <div class="px-2 w-100">
+                <label class="w-100" for="status_search">Situação</label>
+                <select wire:model="select_situation" name="status" class="form-select w-100" id="status_search">
                     <option value="">Todos</option>
                     <option value="Cursando">Cursando</option>
                     <option value="Analise">Em análise</option>
@@ -42,10 +42,10 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-12 col-lg-4 d-flex justify-content-center justify-content-lg-start my-1">
-            <div>
-                <label for="professor_search">Orientador</label>
-                <select wire:model="select_professor" name="professor" class="form-select w-auto" id="professor_search">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center justify-content-lg-start my-1">
+            <div class="px-2 w-100">
+                <label class="w-100" for="professor_search">Orientador</label>
+                <select wire:model="select_professor" name="professor" class="form-select w-100" id="professor_search">
                     <option value="">Todos</option>
                     @forelse($professors as $professor)
                         <option value="{{ $professor->id }}">{{ $professor->name }}</option>
@@ -53,6 +53,33 @@
                         <option>Nenhum orientador cadastrado</option>
                     @endforelse
                 </select>
+            </div>
+        </div>
+
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center justify-content-lg-start my-1">
+            <div class="px-2 w-100">
+                <label class="w-100">Relatório</label>
+                <form action="{{ route('manager.report') }}" method="post" target="_blank">
+                    @csrf
+                    <input type="hidden" name="subject" value="{{ $subject->class }}">
+                    <input type="hidden" name="select_stage" value="{{ $select_stage }}">
+                    <input type="hidden" name="select_situation" value="{{ $select_situation }}">
+                    <input type="hidden" name="select_professor" value="{{ $select_professor }}">
+                    <input type="hidden" name="tccs" value="{{ json_encode($tccs) }}">
+                    <button type="submit" class="btn btn-primary text-white w-100">
+                        GERAR
+                    </button>
+                </form>
+                {{-- <a type="submit" class="btn btn-primary text-white w-100" target="_blank"
+                    href="{{ route('manager.report', [
+                        'tccs' => json_encode($tccs),
+                        'subject' => $subject->class,
+                        'select_stage' => $select_stage,
+                        'select_situation' => $select_situation,
+                        'select_professor' => $select_professor,
+                        ]) }}">
+                    GERAR
+                </a> --}}
             </div>
         </div>
     </div>

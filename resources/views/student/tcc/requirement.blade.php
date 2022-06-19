@@ -27,14 +27,15 @@
                 <div class="my-2 px-2">
                     <label for="intended_date" class="form-label">Data de defesa</label>
                     <input type="datetime-local" class="form-control" name="intended_date" id="intended_date"
-                        value="@if($tcc->intended_date) date('Y-m-d\TH:i:s', strtotime($tcc->intended_date)) @endif">
+                        value="@if ($tcc->intended_date) date('Y-m-d\TH:i:s', strtotime($tcc->intended_date)) @endif">
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="my-2 px-2">
                     <label for="type_tcc" class="form-label">Tipo de TCC</label>
                     <select class="form-select" name="type_tcc" id="type_tcc">
-                        <option class="text-muted" @if (!$tcc->proof_article_submission) disabled selected @endif>Selecione</option>
+                        <option class="text-muted" @if (!$tcc->proof_article_submission) disabled selected @endif>Selecione
+                        </option>
                         <option value="artigo" @if ($tcc->proof_article_submission) selected @endif>Artigo</option>
                         <option value="cap_livro">Capítulo de Livro</option>
                         <option value="monografia">Monografia</option>
@@ -54,9 +55,8 @@
             </div>
         </div>
 
-        <div
-            class="d-flex flex-wrap justify-content-center align-items-center bg-gray-400 box-shadow rounded-2 p-3 my-3 px-2">
-            <div class="col-12 col-sm-6 col-lg-3 p-2">
+        <div class="d-flex flex-wrap justify-content-center align-items-end bg-gray-400 box-shadow rounded-2 p-3 my-3 px-2">
+            <div class="col-12 col-sm-6 col-lg-3 my-2 p-2">
                 <label for="file_tcc" class="form-label">TCC finalizado</label>
                 <input type="file" class="form-control" name="file_tcc" id="file_tcc">
             </div>
@@ -102,29 +102,44 @@
         </div>
 
         <div class="d-flex flex-wrap align-items-baseline bg-gray-400 box-shadow rounded-2 p-3 my-3 px-2">
-            <div class="col-12">
-                <h5 class="fs-5 fw-bold px-2">Membro 1</h5>
+            <div class="col-12 d-flex justify-content-between">
+                <h5 class="col fs-5 fw-bold px-2">Membro 1</h5>
+                <div class="col d-flex flex-wrap justify-content-end align-items-center text-end px-2">
+                    <label class="fw-bold small mb-0" for="is_professor_one">Professor da Instituição: </label>
+                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_one" name="is_professor_one"  type="checkbox" checked>
+                </div>
             </div>
-            <hr>
+            <div class="col-12 d-flex justify-content-end">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 px-2">
+                    <select class="select_professor form-select mt-3" name="professor_one">
+                        <option value>Selecione</option>
+                        @foreach ($professors as $professor)
+                                @if($tcc->professor->id != $professor->id && $tcc->coprofessor != $professor->id)
+                                    <option value="{{ $professor->id }}">{{ $professor->name }}</option>
+                                @endif
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[one][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[one][name]" id="name"
-                    value="{{ json_decode($tcc->members)->one->name ?? '' }}">
+                    value="{{ json_decode($tcc->members)->one->name ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[one][titration]" class="form-label">Titulação</label>
                 <input type="text" class="form-control" name="members[one][titration]" id="members[one][titration]"
-                    value="{{ json_decode($tcc->members)->one->titration ?? '' }}">
+                    value="{{ json_decode($tcc->members)->one->titration ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[one][organ]" class="form-label">Orgão</label>
                 <input type="text" class="form-control" name="members[one][organ]" id="members[one][organ]"
-                    value="{{ json_decode($tcc->members)->one->organ ?? '' }}">
+                    value="{{ json_decode($tcc->members)->one->organ ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-2 px-2">
                 <label for="members[one][cpf]" class="form-label">CPF</label>
                 <input type="text" class="form-control cpf" name="members[one][cpf]"
-                    value="{{ json_decode($tcc->members)->one->cpf ?? '' }}">
+                    value="{{ json_decode($tcc->members)->one->cpf ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 px-2">
                 <label for="members[one][accept_member]" class="form-label">Aceite</label>
@@ -134,29 +149,44 @@
         </div>
 
         <div class="d-flex flex-wrap align-items-baseline bg-gray-400 box-shadow rounded-2 p-3 my-3 px-2">
-            <div class="col-12">
-                <h5 class="fs-5 fw-bold px-2">Membro 2</h5>
+            <div class="col-12 d-flex justify-content-between">
+                <h5 class="col fs-5 fw-bold px-2">Membro 2</h5>
+                <div class="col d-flex flex-wrap justify-content-end align-items-center text-end px-2">
+                    <label class="fw-bold small mb-0" for="is_professor_two">Professor da Instituição: </label>
+                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_two" name="is_professor_two" type="checkbox" checked>
+                </div>
             </div>
-            <hr>
+            <div class="col-12 d-flex justify-content-end">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 px-2">
+                    <select class="select_professor form-select mt-3" name="professor_two">
+                        <option value>Selecione</option>
+                        @foreach ($professors as $professor)
+                            @if($tcc->professor->id != $professor->id && $tcc->coprofessor != $professor->id)
+                                <option value="{{ $professor->id }}">{{ $professor->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[two][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[two][name]" id="members[two][name]"
-                    value="{{ json_decode($tcc->members)->two->name ?? '' }}">
+                    value="{{ json_decode($tcc->members)->two->name ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[two][titration]" class="form-label">Titulação</label>
                 <input type="text" class="form-control" name="members[two][titration]" id="members[two][titration]"
-                    value="{{ json_decode($tcc->members)->two->titration ?? '' }}">
+                    value="{{ json_decode($tcc->members)->two->titration ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[two][organ]" class="form-label">Orgão</label>
                 <input type="text" class="form-control" name="members[two][organ]" id="members[two][organ]"
-                    value="{{ json_decode($tcc->members)->two->organ ?? '' }}">
+                    value="{{ json_decode($tcc->members)->two->organ ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-2 px-2">
                 <label for="members[two][cpf]" class="form-label">CPF</label>
                 <input type="text" class="form-control cpf" name="members[two][cpf]"
-                    value="{{ json_decode($tcc->members)->two->cpf ?? '' }}">
+                    value="{{ json_decode($tcc->members)->two->cpf ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 px-2">
                 <label for="members[two][accept_member]" class="form-label">Aceite</label>
@@ -166,28 +196,45 @@
         </div>
 
         <div class="d-flex flex-wrap align-items-baseline bg-gray-400 box-shadow rounded-2 p-3 my-3 px-2">
-            <div class="col-12">
-                <h5 class="fs-5 fw-bold px-2">Membro 3 (Opcional)</h5>
+            <div class="col-12 d-flex justify-content-between">
+                <h5 class="col fs-5 fw-bold px-2">Membro 3 (Opcional)</h5>
+                <div class="col d-flex flex-wrap justify-content-end align-items-center text-end px-2">
+                    <label class="fw-bold small mb-0" for="is_professor_three">Professor da Instituição: </label>
+                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_three" name="is_professor_three" type="checkbox" checked>
+                </div>
             </div>
-            <div class="col-col-12 col-sm-12 col-md-6 my-2 px-2">
+            <div class="col-12 d-flex justify-content-end">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 px-2">
+                    <select class="select_professor form-select mt-3" name="professor_three">
+                        <option value>Selecione</option>
+                        @foreach ($professors as $professor)
+                            @if($tcc->professor->id != $professor->id)
+                                <option value="{{ $professor->id }}">{{ $professor->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    <h6 class="mb-0 mt-1 px-2 text-danger" style="font-size: 10pt; text-align: justify;">O co-orientador pode ser o membro 3!</h6>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[three][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[three][name]" id="members[three][name]"
-                    value="{{ json_decode($tcc->members)->three->name ?? '' }}">
+                    value="{{ json_decode($tcc->members)->three->name ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[three][titration]" class="form-label">Titulação</label>
-                <input type="text" class="form-control" name="members[three][titration]" id="members[three][titration]"
-                    value="{{ json_decode($tcc->members)->three->titration ?? '' }}">
+                <input type="text" class="form-control" name="members[three][titration]"
+                    id="members[three][titration]" value="{{ json_decode($tcc->members)->three->titration ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[three][organ]" class="form-label">Orgão</label>
                 <input type="text" class="form-control" name="members[three][organ]" id="members[three][organ]"
-                    value="{{ json_decode($tcc->members)->three->organ ?? '' }}">
+                    value="{{ json_decode($tcc->members)->three->organ ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-2 px-2">
                 <label for="members[three][cpf]" class="form-label">CPF</label>
                 <input type="text" class="form-control cpf" name="members[three][cpf]"
-                    value="{{ json_decode($tcc->members)->three->cpf ?? '' }}">
+                    value="{{ json_decode($tcc->members)->three->cpf ?? '' }}" disabled>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 px-2">
                 <label for="members[three][accept_member]" class="form-label">Aceite</label>
@@ -217,8 +264,53 @@
             });
             let cpfs = $('.cpf');
             cpfs.each(function(cpf) {
-                $(this).mask('000.000.000-00', {reverse: true});
+                $(this).mask('000.000.000-00', {
+                    reverse: true
+                });
             });
+
+            function setProfessor(select) {
+                select_professor = select.val();
+                let checkbox =  select.parent().parent().parent().find('input');
+                $.each(professors, function(key, professor) {
+                    if (professor.id == select_professor) {
+                        checkbox[1].value = professor.name;
+                        checkbox[2].value = professor.titration;
+                        checkbox[3].value = professor.organ;
+                        checkbox[4].value = professor.cpf;
+                        return;
+                    }
+                });
+            }
+
+            $(document).ready(function() {
+                $('.is_professor').on('change', function() {
+                    let inputs = $(this).parent().parent().parent().find('input');
+                    inputs = inputs.not(inputs[0]).not(inputs[5]);
+                    let select = $(this).parent().parent().parent().find('select');
+                    if ($(this).is(':checked')) {
+                        inputs = inputs.each(function(input) {
+                            $(this).prop('disabled', true);
+                            setProfessor(select);
+                        });
+                        $(this).parent().parent().parent().find('select').removeClass('d-none');
+                        $(this).parent().parent().parent().find('h6').removeClass('d-none');
+                    }else{
+                        inputs = inputs.each(function(input) {
+                            $(this).prop('disabled', false);
+                            $(this).val('');
+                        });
+                        $(this).parent().parent().parent().find('select').addClass('d-none');
+                        $(this).parent().parent().parent().find('h6').addClass('d-none');
+                    }
+                });
+            });
+
+            let professors = @js($professors);
+            $('.select_professor').on('change', function() {
+                setProfessor($(this));
+            });
+
         </script>
     @endsection
 @endsection

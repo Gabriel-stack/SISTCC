@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -51,6 +52,12 @@ class Student extends Authenticatable
     ];
 
 
+    public function name()
+    {
+        return Attribute::make(
+            set: fn($value) => $value = ucwords($value),
+        );
+    }
 
     public function tcc()
     {

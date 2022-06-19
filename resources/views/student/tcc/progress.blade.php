@@ -6,7 +6,7 @@
     <div class="col-12">
         @if ($tcc->situation == 'Devolvido')
             <div class="alert alert-danger text-center">
-                <h5 class="fw-bold">{{ $tcc->stage }} foi devolvida porque algo está errado!</h5>
+                <h5 class="fw-bold">{{ $tcc->stage }} foi devolvida! Acesse-a para mais detalhes.</h5>
             </div>
         @elseif ($tcc->situation == 'Cursando')
             <div class="alert alert-success text-center">
@@ -14,7 +14,7 @@
             </div>
         @elseif ($tcc->situation == 'Em análise')
             <div class="alert alert-info text-center">
-                <h5 class="fw-bold">{{ $tcc->stage }} está em processo de análise</h5>
+                <h5 class="fw-bold">{{ $tcc->stage }} está em processo de análise!</h5>
             </div>
         @endif
 
@@ -33,7 +33,7 @@
                 <a href="{{ route('student.progress.tcc', $tcc->subject_id) }}" style="font-size: 24px">
                     <i class="bi bi-arrow-right-square"></i>
                 </a>
-            @elseif ($tcc->stage != 'Etapa 1' || !in_array($tcc->situation, ['Cursando', 'Devolvido']))
+            @elseif ($tcc->stage != 'Etapa 1' || !in_array($tcc->situation, ['Cursando', 'Devolvido']) && $tcc->file_pretcc)
                 <a href="{{ route('student.accompaniment.tcc', $tcc->id) }}" style="font-size: 24px">
                     <i class="bi bi-eye"></i>
                 </a>
@@ -52,7 +52,7 @@
                 <a href="{{ route('student.progress.requirement', $tcc->subject_id) }}" style="font-size: 24px">
                     <i class="bi bi-arrow-right-square"></i>
                 </a>
-            @elseif (($tcc->stage == 'Etapa 2' && !in_array($tcc->situation, ['Cursando', 'Devolvido'])) || !in_array($tcc->stage, ['Etapa 1', 'Etapa 2']))
+            @elseif (($tcc->stage == 'Etapa 2' && !in_array($tcc->situation, ['Cursando', 'Devolvido'])) && $tcc->file_tcc || !in_array($tcc->stage, ['Etapa 1', 'Etapa 2']))
                 <a href="{{ route('student.accompaniment.requirement', $tcc->id) }}" style="font-size: 24px">
                     <i class="bi bi-eye"></i>
                 </a>
@@ -71,7 +71,7 @@
                 <a href="{{ route('student.progress.finish', $tcc->subject_id) }}" style="font-size: 24px">
                     <i class="bi bi-arrow-right-square"></i>
                 </a>
-            @elseif ($tcc->stage == 'Etapa 3' && !in_array($tcc->situation, ['Cursando', 'Devolvido']) || !in_array($tcc->stage, ['Etapa 1', 'Etapa 2', 'Etapa 3']))
+            @elseif ($tcc->stage == 'Etapa 3' && !in_array($tcc->situation, ['Cursando', 'Devolvido']) && $tcc->final_tcc)
                 <a href="{{ route('student.accompaniment.finish', $tcc->id) }}" style="font-size: 24px">
                     <i class="bi bi-eye"></i>
                 </a>

@@ -47,11 +47,11 @@
         <span class="form-control bg-gray text-dark">{{ $coprofessor->name ?? '-' }}</span>
     </div>
 
-    <div class="col-12 col-sm-4 col-lg-3 mt-2 px-2">
+    <div class="col-12 col-sm-4 col-lg-2 mt-2 px-2">
         <label>Etapa</label>
         <span class="form-control bg-gray fw-bold text-dark">{{ $tcc->stage }}</span>
     </div>
-    <div class="col-12 col-sm-4 col-lg-3 mt-2 px-2">
+    <div class="col-12 col-sm-4 col-lg-2 mt-2 px-2">
         <label>Situação</label>
         <span class="form-control bg-gray fw-bold
                 @switch ($tcc->situation)
@@ -62,29 +62,29 @@
                 @case('Em análise') text-info @break @endswitch">
             {{ $tcc->situation }}</span>
     </div>
-    <div class="col mt-2 px-2">
+    <div class="col-6 col-sm-4 col-lg-2 mt-2 px-2">
         <label class="w-100">Histórico</label>
-        <a class="form-control w-auto btn btn-warning text-white" target="_blank"
+        <a class="form-control btn btn-warning text-white w-100" target="_blank"
             href="{{route('file', substr($tcc->student->historic, 9))}}">
-            VISUALIZAR
+            BAIXAR
         </a>
     </div>
     @if ($tcc->stage == 'Etapa 3')
-    <div class="col mt-2 px-2">
+    <div class="col-6 col-sm-4 col-lg-2 mt-2 px-2">
         <label class="w-100">Ata</label>
-        <a type="button" class="btn btn-primary text-white" target="_blank" href="{{ route('manager.ata', $tcc) }}">
+        <a type="button" class="btn btn-primary text-white w-100" target="_blank" href="{{ route('manager.ata', $tcc) }}">
             GERAR
         </a>
     </div>
-    <div class="col mt-2 px-2">
+    <div class="col-6 col-sm-4 col-lg-2 mt-2 px-2">
         <label class="w-100">Barema</label>
-        <a type="button" class="btn btn-primary text-white" target="_blank" href="{{ route('manager.barema', $tcc) }}">
+        <a type="button" class="btn btn-primary text-white w-100" target="_blank" href="{{ route('manager.barema', $tcc) }}">
             GERAR
         </a>
     </div>
-    <div class="col mt-2 px-2">
+    <div class="col-6 col-sm-4 col-lg-2 mt-2 px-2">
         <label class="w-100">Declarações</label>
-        <a type="button" class="btn btn-primary text-white" target="_blank"
+        <a type="button" class="btn btn-primary text-white w-100" target="_blank"
             href="{{ route('manager.declaracao', $tcc) }}">
             GERAR
         </a>

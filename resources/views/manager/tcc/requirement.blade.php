@@ -11,7 +11,7 @@
         <div class="col-12 col-md-6 col-lg-3">
             <div class="my-2 px-2 d-flex flex-column">
                 <label class="form-label w-100">Foto 3x4</label>
-                <img src="{{ asset("storage" . substr($tcc->photo, 6)) }}" alt="" width="113px" height="151px">
+                <img src="{{ asset("storage" . substr($tcc->photo, 6)) }}" alt="foto" width="113px" height="151px">
             </div>
             <div class="my-2 px-2">
                 <label class="form-label w-100">Data de defesa</label>
@@ -34,8 +34,8 @@
         </div>
     </div>
     <div
-        class="d-flex flex-wrap justify-content-center align-items-center bg-gray-400 box-shadow rounded-2 p-3 my-3 px-2">
-        <div class="col-12 col-sm-6 col-lg-3 p-2">
+        class="d-flex flex-wrap justify-content-center align-items-end bg-gray-400 box-shadow rounded-2 p-3 my-3 px-2">
+        <div class="col-12 col-sm-6 col-lg-3 my-2 p-2">
             <label class="form-label w-100">TCC finalizado</label>
             <a class="btn btn-warning text-white" target="_blank" href="{{ route('file', substr($tcc->file_tcc, 4)) }}">
                 VISUALIZAR
@@ -124,7 +124,7 @@
         </div>
         @if ($tcc->stage == 'Etapa 2' && $tcc->situation == 'Em análise')
             <div>
-                <button type="button" class="btn btn-warning text-white me-2 my-3" data-bs-toggle="modal"
+                <button type="button" class="btn btn-danger text-white me-2 my-3" data-bs-toggle="modal"
                     data-bs-target="#modal-return-tcc" data-tcc="{{ $tcc }}">
                     DEVOLVER
                 </button>
@@ -135,6 +135,14 @@
                 </button>
                 @include('manager.components.tcc.modal_validate_tcc')
             </div>
+        @endif
+        @if ($tcc->stage == 'Etapa 3' && $tcc->situation != 'Reprovado' && $tcc->subject->is_active == true)
+            @php $stage = 'Etapa 2'; @endphp
+            <button type="button" class="btn btn-danger text-white my-3" data-bs-toggle="modal"
+                data-bs-target="#modal-rollback-tcc" data-tcc="{{ $tcc }}">
+                DEVOLVER
+            </button>
+            @include('manager.components.tcc.modal_rollback_tcc')
         @endif
     </div>
 @endsection

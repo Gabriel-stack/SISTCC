@@ -47,7 +47,10 @@ class ProgressStudentController extends Controller
 
     public function accompanimentReturn(Request $request)
     { // Executa ação de devolução de etapa
-        $request->validate(['message' => 'required|string']);
+        $request->validate([
+            'message' => 'required|string',
+            'id' => 'required|numeric|exists:tccs,id',
+        ]);
 
         $tcc = Tcc::findOrFail($request->id);
         $tcc->situation = 'devolvido';
@@ -59,11 +62,16 @@ class ProgressStudentController extends Controller
     }
     public function rollbackStage(Request $request)
     {// Executa ação de retrocesso para a primeira etapa
-        $request->validate(['message' => 'required|string']);
+        $request->validate([
+            'message' => 'required|string',
+            'id' => 'required|numeric|exists:tccs,id',
+            'stage' => 'required|in:Etapa 1,Etapa 2,Etapa 3',
+        ]);
 
         $tcc = Tcc::findOrFail($request->id);
-        $tcc->stage = 'Etapa 1';
+        $tcc->stage = $request->stage;
         $tcc->situation = 'Devolvido';
+        $tcc->message = $request->message;
         $tcc->save();
 
         return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'A etapa foi devolvida ao aluno!')
@@ -92,7 +100,16 @@ class ProgressStudentController extends Controller
     public function accompanimentCancelDisapproval(Request $request)
     { // Executa ação de cancelar reprovação do aluno
         $tcc = Tcc::findOrFail($request->id);
-        $tcc->situation = 'Cursando';
+        switch ($tcc->stage) {
+            case 'Etapa 1':
+                $tcc->file_pretcc ? $tcc->situation = 'Em análise' : $tcc->situation = 'Cursando';
+                break;
+            case 'Etapa 2':
+                $tcc->file_tcc ? $tcc->situation = 'Em análise' : $tcc->situation = 'Cursando';
+                break;
+            case 'Etapa 3':
+                $tcc->final_tcc ? $tcc->situation = 'Em análise' : $tcc->situation = 'Cursando';
+        }
         $tcc->save();
         return $tcc ? redirect()->route('manager.show', [$tcc->subject_id, $tcc->id])->with('success', 'O aluno teve a sua reprovação cancelada!')
             : back()->with('fail', 'Ocorreu um erro ao tentar cancelar a reprovação do aluno!');

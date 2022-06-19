@@ -12,6 +12,7 @@
                     @csrf
 
                     <input class="d-none" id="rollback-id" type="hidden" name="id" value="{{ $tcc->id }}" required>
+                    <input class="d-none" id="stage" type="hidden" name="stage" value="{{ $stage }}" required>
                     <h5 class="fs-5 text-start mb-2">Informe o motivo da devolução:</h5>
                     <div>
                         <textarea class="form-control" name="message" id="message" cols="20" rows="5"></textarea>

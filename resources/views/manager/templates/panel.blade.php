@@ -12,7 +12,9 @@
     <nav class="navbar navbar-dark fixed-top" style="background-color: #319470">
         <div class="container-fluid justify-content-between">
             <div style="width: 120px;">
-                @include('components.application-logo')
+                <a href="{{ route('manager.dashboard') }}">
+                    @include('components.application-logo')
+                </a>
             </div>
 
             <div class="dropdown-center">

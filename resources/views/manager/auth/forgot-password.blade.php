@@ -3,13 +3,18 @@
 @section('title', 'Recuperar senha')
 
 @section('content')
+    <style>
+        body {
+            background-color: rgb(229, 229, 229) !important;
+        }
+    </style>
     <div class="d-flex h-100 flex-column justify-content-center align-items-center">
         <div class="p-4 m-2 rounded bg-white" id="box">
             <div class="mx-auto mb-4" style="max-width: 300px;">
                 @include('components.application-logo')
             </div>
 
-            <div class="small">
+            <div class="small mb-3">
                 Digite seu e-mail e enviaremos um link para redefinir sua senha.
             </div>
 
@@ -28,14 +33,14 @@
             <form class="d-flex flex-column" method="POST"
                 action="{{ route('manager.password.email') }}">
                 @csrf
-                <div class="col-12 my-3">
+                <div class="col-12 mb-3">
                     <label for="email">Email</label>
                     <input id="email" class="w-100 form-control" type="email" name="email" value="{{ old('email') }}"
                         required autofocus>
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-success w-100">
-                        Confirmar
+                        CONFIRMAR
                     </button>
                 </div>
                 <!-- Access Aluno -->

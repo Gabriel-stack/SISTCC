@@ -32,7 +32,7 @@ class TccController extends Controller
     public function createTcc($subject_id)
     {
         $professors = Professor::all();
-        $tcc = Tcc::where('student_id', Auth::user()->id)->where('subject_id', $subject_id)->first();;
+        $tcc = Tcc::with('professor')->where('student_id', Auth::user()->id)->where('subject_id', $subject_id)->first();;
         abort_if(!$tcc->subject->is_active || $tcc->stage != 'Etapa 1' ||
             $tcc->stage == 'Etapa 1' &&
             !in_array($tcc->situation, ['Cursando', 'Devolvido']), 403, 'Ação não permitida');
@@ -74,11 +74,13 @@ class TccController extends Controller
             $tcc->stage == 'Etapa 2' &&
             !in_array($tcc->situation, ['Cursando', 'Devolvido']), 403, 'Ação não permitida');
 
-        return view('student.tcc.requirement', compact('subject_id', 'tcc'));
+        $professors = Professor::orderBy('name')->get();
+        return view('student.tcc.requirement', compact('subject_id', 'tcc', 'professors'));
     }
 
     public function storeRequirement(RequirementRequest $request)
     {
+        dd($request->all());
         $tcc = Tcc::where('student_id', Auth::user()->id)
             ->where('subject_id', $request->subject)
             ->first();
@@ -86,8 +88,15 @@ class TccController extends Controller
         if ($tcc->ethics_committee) {
             $request->validate(['result_ethic_committee'=> 'required|file|mimes:pdf|max:4096']);
         }
+        $selecteds_professors = collect([$request->professor_one, $request->professor_two, $request->professor_three]);
 
-        $data = $request->validated();
+        $selecteds_professors = $selecteds_professors->filter(function ($item) {
+            return $item != null;
+        })->each(function ($item) {
+            return $item = Professor::findOrfail($item);
+        });
+        dd($selecteds_professors);
+        $data = $request->all();
 
 
         $this->deleteFiles([

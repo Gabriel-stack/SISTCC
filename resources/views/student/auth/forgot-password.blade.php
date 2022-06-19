@@ -9,9 +9,11 @@
                 @include('components.application-logo')
             </div>
 
-            <div class="small">
+            <div class="small mb-3">
                 Digite seu e-mail e enviaremos um link para redefinir sua senha.
             </div>
+
+            @include('components.success')
 
             @include('components.auth-session-status')
 
@@ -28,14 +30,14 @@
             <form class="d-flex flex-column" method="POST"
                 action="{{ route('student.password.email') }}">
                 @csrf
-                <div class="col-12 my-3">
+                <div class="col-12 mb-3">
                     <label for="email">Email</label>
                     <input id="email" class="w-100 form-control" type="email" name="email" value="{{ old('email') }}"
                         required autofocus>
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-success w-100">
-                        Confirmar
+                        CONFIRMAR
                     </button>
                 </div>
                 <!-- Access Aluno -->

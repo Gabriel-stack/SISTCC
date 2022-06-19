@@ -9,9 +9,11 @@
 
 <!-- Estilizar páginas de acompanhamento aluno e professor. -->
 
-Gerar declaração de participação dos membros da banca.
+<!-- bug da foto -->
 
-Gerar relatório da turma em pdf com base em filtros.
+<!-- Gerar declaração de participação dos membros da banca. -->
+
+<!-- Gerar relatório da turma em pdf com base em filtros. -->
 
 <!-- Aplicar máscaras nos formulários. -->
 
@@ -21,10 +23,16 @@ Adicionar selects no cadastro de requerimento para o aluno poder selecionar um p
 
 Estilizar a paginação das tabelas (fazer a publicação da paginação).
 
+Criar e-mail para o sistema.
+
+Adicionar botão de download da foto enviada no requerimento para geração de convite de defesa.
+
+Converter ata, barema e declaração para doc.
+
+<!-- Adicionar validação no front-end. -->
+
 <!-- Consertar problemas de e-mail para recuperação de senha (estilizar mensagem enviada para o e-mail). -->
 Enviar e-mail de validação no cadastro de aluno.
-
-Adicionar validação no front-end.
 
 Adicionar opção de atribuir cargo a outro professor para assumir a disciplina (criar tabela de cursos e adaptar o sistema para mais várias disciplinas com a exibição específica apenas para o professor/coordenador do curso responsável).
 
@@ -37,10 +45,6 @@ Gerar convite de defesa de TCC.
 <!-- apagar arquivos do usuario caso seja excluído da turma. -->
 
 <!-- Adicionar botão para desreprovar um aluno. -->
-
-erro de permissão 
-
-bug da foto
 
 <!-- Inserir validação na devolução de etapa. -->
 

@@ -30,8 +30,8 @@
         </div>
     </div>
     <div
-        class="d-flex flex-wrap justify-content-center align-items-center bg-gray-400 box-shadow rounded-2 p-3 my-3 px-2">
-        <div class="col-12 col-sm-6 col-lg-3 p-2">
+        class="d-flex flex-wrap justify-content-center align-items-end bg-gray-400 box-shadow rounded-2 p-3 my-3 px-2">
+        <div class="col-12 col-sm-6 col-lg-3 my-2 p-2">
             <label class="form-label w-100">TCC finalizado</label>
             <a class="btn btn-warning text-white" target="_blank" href="{{ route('file', substr($tcc->file_tcc, 4)) }}">
                 VISUALIZAR

@@ -20,6 +20,7 @@ use App\Http\Controllers\Manager\Pdf\{
     AtaController,
     BaremaController,
     DeclaracaoController,
+    ReportController,
 };
 
 use App\Http\Livewire\Subject;
@@ -102,6 +103,7 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
         });
     });
 
+    Route::post('report/download', ReportController::class)->name('report');
     Route::get('barema/{tcc}/download', BaremaController::class)->name('barema');
     Route::get('ata/{tcc}/download', AtaController::class)->name('ata');
     Route::get('declaracao/{tcc}/download', DeclaracaoController::class)->name('declaracao');
@@ -134,7 +136,6 @@ Route::middleware(['auth:professor', 'prevent-back-history'])->prefix('professor
                 Route::post('cancel_disapproval', 'accompanimentCancelDisapproval')->name('cancel_disapproval');
             });
         });
-
     });
 
 

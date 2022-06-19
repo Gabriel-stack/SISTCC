@@ -9,7 +9,7 @@ body {
     height: 100%;
 }
 
-h5, h4, p {
+h5, h4, p, ul {
     margin: 0;
 }
 

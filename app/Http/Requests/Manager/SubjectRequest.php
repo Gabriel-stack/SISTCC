@@ -35,6 +35,7 @@ class SubjectRequest extends FormRequest
     {
         return [
             'required' => 'O campo :attribute é obrigatório',
+            'unique' => 'O campo nome da turma já foi utilizado em turmas anteriormente',
         ];
     }
 }

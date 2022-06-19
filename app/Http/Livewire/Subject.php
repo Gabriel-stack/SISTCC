@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Nette\Utils\Json;
+use PDF;
 
 class Subject extends Component
 {
@@ -19,6 +20,8 @@ class Subject extends Component
     protected $queryString = [
         'page' => ['except' => 1],
     ];
+
+    public $tcc_id;
     public $subject;
     public $professor;
 
@@ -36,19 +39,7 @@ class Subject extends Component
 
     public function render()
     {
-        $tccs = Tcc::with('student', 'professor')->orderBy(Student::select('name')->whereColumn('students.id', 'tccs.student_id'))
-            ->where('subject_id', $this->subject->id)
-            ->when($this->search_name, function ($query) {
-                return $query->whereHas('student', function ($query) {
-                    return $query->where('name', 'like', '%' . $this->search_name . '%');
-                });
-            })->when($this->select_situation, function ($query) {
-                return $query->where('situation', 'like', '%' . $this->select_situation . '%');
-            })->when($this->select_stage, function ($query) {
-                return $query->where('stage', 'like', '%' . $this->select_stage . '%');
-            })->when($this->select_professor, function ($query) {
-                return $query->where('professor_id', 'like', $this->select_professor);
-            })->paginate(10);
+        $tccs = $this->getTccs();
 
         return view('livewire.subject', [
             'tccs' => $tccs,
@@ -57,8 +48,22 @@ class Subject extends Component
         ]);
     }
 
-
-    public $tcc_id;
+    private function getTccs()
+    {
+        return Tcc::with('student', 'professor')->orderBy(Student::select('name')->whereColumn('students.id', 'tccs.student_id'))
+        ->where('subject_id', $this->subject->id)
+        ->when($this->search_name, function ($query) {
+            return $query->whereHas('student', function ($query) {
+                return $query->where('name', 'like', '%' . $this->search_name . '%');
+            });
+        })->when($this->select_situation, function ($query) {
+            return $query->where('situation', 'like', '%' . $this->select_situation . '%');
+        })->when($this->select_stage, function ($query) {
+            return $query->where('stage', 'like', '%' . $this->select_stage . '%');
+        })->when($this->select_professor, function ($query) {
+            return $query->where('professor_id', 'like', $this->select_professor);
+        })->paginate(10);
+    }
 
     public function tccId($tcc_id)
     {
