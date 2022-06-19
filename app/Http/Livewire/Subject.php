@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Nette\Utils\Json;
-use PDF;
 
 class Subject extends Component
 {

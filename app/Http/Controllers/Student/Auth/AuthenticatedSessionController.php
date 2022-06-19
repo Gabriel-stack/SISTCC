@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Student\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Student\LoginRequest;
-use App\Models\Student;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,9 +46,9 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken();
 
         return redirect()->route('student.login');
     }

@@ -213,7 +213,7 @@
                             @endif
                         @endforeach
                     </select>
-                    <h6 class="mb-0 mt-1 px-2 text-danger" style="font-size: 10pt; text-align: justify;">O co-orientador pode ser o membro 3!</h6>
+                    <h6 class="mb-0 mt-1 px-2 text-danger" style="font-size: 10pt; text-align: justify;">O membro 3 pode ser o co-orientador!</h6>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">

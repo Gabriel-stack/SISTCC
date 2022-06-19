@@ -138,15 +138,16 @@
             </tbody>
         </table>
     </div>
-    <div class="d-flex flex-wrap justify-content-between my-3">
+    <div class="d-flex flex-wrap justify-content-between my-3 gap-1">
         <div>
             <a class="btn btn-secondary text-white" href="{{ route('manager.dashboard') }}">VOLTAR</a>
         </div>
-        @if (isset($filters))
-            {{ $tccs->appends($filters)->links() }}
-        @else
-            {{ $tccs->links() }}
-        @endif
+        <div class="d-none d-sm-block">
+            {{ $tccs->onEachSide(1)->links('vendor.livewire.bootstrap') }}
+        </div>
+        <div class="d-block d-sm-none">
+            {{ $tccs->onEachSide(1)->links('vendor.livewire.simple-bootstrap') }}
+        </div>
     </div>
     @section('scripts')
         <script>

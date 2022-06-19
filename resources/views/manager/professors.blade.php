@@ -90,14 +90,24 @@
             </tbody>
         </table>
     </div>
-    <div class="d-flex flex-wrap justify-content-between py-3">
+    <div class="d-flex flex-wrap justify-content-between py-3 gap-1">
         <div>
             <a class="btn btn-secondary text-white" href="{{ route('manager.dashboard') }}">VOLTAR</a>
         </div>
         @if (isset($filters))
-            {{ $professors->appends($filters)->links() }}
+            <div class="d-none d-sm-block">
+                {{ $professors->appends($filters)->onEachSide(1)->links('vendor.pagination.bootstrap-4') }}
+            </div>
+            <div class="d-block d-sm-none">
+                {{ $professors->appends($filters)->onEachSide(1)->links('vendor.pagination.simple-bootstrap-4') }}
+            </div>
         @else
-            {{ $professors->links() }}
+            <div class="d-none d-sm-block">
+                {{ $professors->onEachSide(1)->links('vendor.pagination.bootstrap-4') }}
+            </div>
+            <div class="d-block d-sm-none">
+                {{ $professors->onEachSide(1)->links('vendor.pagination.simple-bootstrap-4') }}
+            </div>
         @endif
     </div>
 @endsection

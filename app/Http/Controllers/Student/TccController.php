@@ -80,7 +80,7 @@ class TccController extends Controller
 
     public function storeRequirement(RequirementRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $tcc = Tcc::where('student_id', Auth::user()->id)
             ->where('subject_id', $request->subject)
             ->first();
@@ -95,7 +95,7 @@ class TccController extends Controller
         })->each(function ($item) {
             return $item = Professor::findOrfail($item);
         });
-        dd($selecteds_professors);
+        // dd($selecteds_professors);
         $data = $request->all();
 
 

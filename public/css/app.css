@@ -23,7 +23,7 @@ label {
 }
 
 .bg-gray-400 {
-    background-color: #FCFCFC
+    background-color: #FCFCFC;
 }
 
 .box-shadow {
@@ -87,9 +87,23 @@ th {
     box-shadow: none !important;
 }
 
+/* Paginação */
 
-@media screen and (min-width: 560px) {
-    .offcanvas {
-        width: 400px;
-    }
+.page-link {
+    color: rgb(245, 159, 0) !important;
+    box-shadow: 2px 5px 2px 0 rgb(0 0 0 / 17%) !important;
+    background-color: #FCFCFC !important;
+    border-radius: 8px!important;
+    font-weight: bold !important;
+    margin: 0 2px !important;
+}
+
+.page-link:hover {
+    background-color: #f0f0f0 !important;
+}
+
+.active > .page-link {
+    background-color: rgb(245, 159, 0) !important;
+    color: white !important;
+    border: 1px solid #dee2e6 !important;
 }

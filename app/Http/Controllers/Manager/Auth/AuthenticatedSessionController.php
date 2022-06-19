@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Manager\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\LoginRequest;
-use App\Models\Professor;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -47,10 +45,9 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('professor')->logout();
 
-        dd($request->user->session()->all());
-        $request->user->session()->invalidate();
+        // $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken();
 
         return redirect()->route('manager.login');
     }

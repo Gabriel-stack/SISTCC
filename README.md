@@ -21,30 +21,36 @@
 
 Adicionar selects no cadastro de requerimento para o aluno poder selecionar um professor já cadastrado no sistema para ser um membro da banca.
 
-Estilizar a paginação das tabelas (fazer a publicação da paginação).
+<!-- Estilizar a paginação das tabelas (fazer a publicação da paginação). -->
 
-Criar e-mail para o sistema.
+<!-- Criar e-mail para o sistema. -->
 
-Adicionar botão de download da foto enviada no requerimento para geração de convite de defesa.
+Consertar erro de acesso quando o aluno envia a etapa 2.
+
+Adicionar botão de download da foto enviada no requerimento para geração de convite de defesa (falta criar um controlador e uma rota).
+
+Adicionar popouver nos botões para identificar a sua ação;
 
 Converter ata, barema e declaração para doc.
 
 <!-- Adicionar validação no front-end. -->
 
+Adicionar botão com modal para para exibição de mensagem de e-mail para membros da banca.
+
 <!-- Consertar problemas de e-mail para recuperação de senha (estilizar mensagem enviada para o e-mail). -->
 Enviar e-mail de validação no cadastro de aluno.
+
+Adicionar sistema de preenchimento de campos nas páginas que são devolvidas (está faltando apenas os arquivos).
 
 Adicionar opção de atribuir cargo a outro professor para assumir a disciplina (criar tabela de cursos e adaptar o sistema para mais várias disciplinas com a exibição específica apenas para o professor/coordenador do curso responsável).
 
 Adicionar professor visitante (professor que foi retirado do cargo de professor titular da disciplina agora terá acesso limitado, mas ainda poderá visualizar e baixar os arquivos relacionados as turmas em que lecionou).
 
-Adicionar sistema de preenchimento de campos nas páginas que são devolvidas (está faltando apenas os arquivos).
-
 Gerar convite de defesa de TCC.
 
 <!-- apagar arquivos do usuario caso seja excluído da turma. -->
 
-<!-- Adicionar botão para desreprovar um aluno. -->
+<!-- Adicionar botão para cancelar reprovação de aluno. -->
 
 <!-- Inserir validação na devolução de etapa. -->
 
