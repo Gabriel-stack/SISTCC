@@ -74,10 +74,10 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
     });
 
     // painel de Progresso
-    Route::prefix('subject')->controller(TccController::class)->middleware('prevent-subject-access')->group(function () {
-        Route::get('{subject}', 'index')->name('progress');
+    Route::prefix('subject')->controller(TccController::class)->group(function () {
+        Route::get('{subject}', 'index')->name('progress')->middleware('prevent-subject-access');
 
-        Route::name('progress.')->group(function () {
+        Route::name('progress.')->middleware('prevent-subject-access')->group(function () {
             Route::get('{subject}/tcc', 'createTcc')->name('tcc');
             Route::post('{subject}/tcc', 'storeTcc')->name('tcc.store');
             Route::get('{subject}/requirement', 'createRequirement')->name('requirement');
@@ -87,10 +87,10 @@ Route::middleware(['auth', 'prevent-back-history'])->prefix('student')->name('st
         });
 
         // Acompanhamento
-        Route::name('accompaniment.')->group(function () {
-            Route::get('{subject}/accompaniment/tcc', 'accompanimentTcc')->name('tcc');
-            Route::get('{subject}/accompaniment/requirement', 'accompanimentRequirement')->name('requirement');
-            Route::get('{subject}/accompaniment/finish', 'accompanimentFinish')->name('finish');
+        Route::name('accompaniment.')->middleware('prevent-accompaniment-access')->group(function () {
+            Route::get('{tcc}/accompaniment/tcc', 'accompanimentTcc')->name('tcc');
+            Route::get('{tcc}/accompaniment/requirement', 'accompanimentRequirement')->name('requirement');
+            Route::get('{tcc}/accompaniment/finish', 'accompanimentFinish')->name('finish');
         });
     });
 

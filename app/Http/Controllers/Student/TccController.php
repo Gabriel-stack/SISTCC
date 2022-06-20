@@ -80,7 +80,22 @@ class TccController extends Controller
 
     public function storeRequirement(RequirementRequest $request)
     {
-        // dd($request->all());
+        dd($request->all());
+        // $selecteds_professors = collect(['one' => $request->is_professor_one, 'two' => $request->is_professor_two, 'three' => $request->is_professor_three]);
+        // $selecteds_professors = $selecteds_professors->except(2)->each(function($item, $key) use ($request) {
+        //     if($item == 'on'){
+        //         $request->validate([
+        //             'members.'.$key.'.name' => 'required|exists:professors,name',
+        //             'members.'.$key.'.titration' => 'required|exists:professors,titration',
+        //             'members.'.$key.'.organ' => 'required|exists:professors,organ',
+        //             'members.'.$key.'.cpf' => 'required|exists:professors,cpf',
+        //             'members.'.$key.'.accept_member' => 'required|file|mimes:pdf|max:4096',
+        //         ]);
+        //     }   
+        // });
+        // dd($selecteds_professors);
+        // // if($selecteds_professors->is
+
         $tcc = Tcc::where('student_id', Auth::user()->id)
             ->where('subject_id', $request->subject)
             ->first();
@@ -88,14 +103,8 @@ class TccController extends Controller
         if ($tcc->ethics_committee) {
             $request->validate(['result_ethic_committee'=> 'required|file|mimes:pdf|max:4096']);
         }
-        $selecteds_professors = collect([$request->professor_one, $request->professor_two, $request->professor_three]);
+        
 
-        $selecteds_professors = $selecteds_professors->filter(function ($item) {
-            return $item != null;
-        })->each(function ($item) {
-            return $item = Professor::findOrfail($item);
-        });
-        // dd($selecteds_professors);
         $data = $request->all();
 
 

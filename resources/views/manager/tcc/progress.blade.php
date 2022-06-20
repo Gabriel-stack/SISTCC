@@ -16,7 +16,7 @@
                 REPROVAR
             </button>
             @include('manager.components.tcc.modal_disapprove_tcc')
-        @elseif ($tcc->subject->is_active == true)
+        @elseif ($tcc->subject->is_active == true && $tcc->situation == 'Reprovado')
             <button type="button" class="btn btn-danger text-white my-2" data-bs-toggle="modal"
                 data-bs-target="#modal-cancel-disapproval-tcc" data-tcc="{{ $tcc }}">
                 CANCELAR REPROVAÇÃO

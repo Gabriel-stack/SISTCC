@@ -2,13 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Http\Controllers\Manager\professorController;
 use App\Models\Manager;
 use App\Models\Professor;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Tcc;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -43,7 +47,8 @@ class DatabaseSeeder extends Seeder
             'street' => 'Rua dos Bobos',
             'zip_code' => '44444-444',
         ]);
-        $professor = Professor::factory()->count(30)->create();
+        
+        $professor = Professor::factory(30)->create();
 
         Manager::updateOrcreate([
             'professor_id' => 1,
@@ -62,7 +67,6 @@ class DatabaseSeeder extends Seeder
         $manager->professor_id = $professor->random()->id;
         $manager->save();
 
-    //    Subject::factory()->count(1)->create();
-
+       Subject::factory()->count(1)->create();
     }
 }

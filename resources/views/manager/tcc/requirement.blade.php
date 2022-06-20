@@ -15,7 +15,7 @@
             </div>
             <div class="col-6 col-md-8 col-lg-12 my-2 px-2">
                 <label class="form-label w-100">Foto 3x4</label>
-                <a class="btn btn-warning text-white w-100" target="_blank" href="{{ route('file', substr($tcc->photo, 4)) }}">
+                <a class="btn btn-warning text-white w-100" target="_blank" href="{{ route('file', substr($tcc->photo, 21)) }}">
                     BAIXAR
                 </a>
             </div>

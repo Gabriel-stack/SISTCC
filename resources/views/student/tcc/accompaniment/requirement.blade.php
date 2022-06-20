@@ -4,29 +4,37 @@
 
 @section('container')
     <div class="d-flex flex-wrap align-items-baseline bg-gray-400 box-shadow rounded-2 p-3 mb-3">
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="my-2 px-2 d-flex flex-column">
+        <div class="col-12 col-md-6 col-lg-2 d-flex flex-wrap">
+            <div class="col-8 my-2 px-2">
                 <label class="form-label w-100">Foto 3x4</label>
-                <img src="{{ asset("storage" . substr($tcc->photo, 6)) }}" alt="" width="113px" height="151px">
+                <img src="{{ asset("storage" . substr($tcc->photo, 6)) }}" alt="foto" width="113px" height="151px">
             </div>
+            <div class="col-6 col-md-8 col-lg-12 my-2 px-2">
+                <label class="form-label w-100">Foto 3x4</label>
+                <a class="btn btn-warning text-white w-100" target="_blank" href="{{ route('file', substr($tcc->photo, 21)) }}">
+                    BAIXAR
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
             <div class="my-2 px-2">
                 <label class="form-label w-100">Data de defesa</label>
                 <span class="fw-normal form-control bg-gray">{{ @datebr($tcc->intended_date) }}</span>
             </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
             <div class="my-2 px-2">
                 <label class="form-label w-100">Tipo de TCC</label>
                 <span class="fw-normal form-control bg-gray">{{ $tcc->type_tcc }}</span>
             </div>
-            <div class="my-2 px-2">
+        </div>
+        <div class="col-12 col-lg-7 d-flex flex-column px-2">
+            <div class="my-2">
+                <label class="form-label w-100">Resumo</label>
+                <textarea class="p-2 w-100" cols="30" rows="6" disabled>{{ $tcc->abstract }}</textarea>
+            </div>
+            <div class="mb-2">
                 <label class="form-label w-100">Palavras-chave</label>
                 <span class="fw-normal form-control bg-gray">{{ $tcc->keywords }}</span>
             </div>
-        </div>
-        <div class="col-12 col-lg-6 d-flex flex-column px-2">
-            <label class="form-label w-100">Resumo</label>
-            <textarea class="p-2" cols="30" rows="4" disabled>{{ $tcc->abstract }}</textarea>
         </div>
     </div>
     <div

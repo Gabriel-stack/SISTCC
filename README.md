@@ -25,11 +25,11 @@ Adicionar selects no cadastro de requerimento para o aluno poder selecionar um p
 
 <!-- Criar e-mail para o sistema. -->
 
-Consertar erro de acesso quando o aluno envia a etapa 2.
+<!-- Consertar erro de acesso quando o aluno envia a etapa 2. -->
 
-Adicionar botão de download da foto enviada no requerimento para geração de convite de defesa (falta criar um controlador e uma rota).
+<!-- Adicionar botão de download da foto enviada no requerimento para geração de convite de defesa. -->
 
-Adicionar popouver nos botões para identificar a sua ação;
+Adicionar popouver nos botões para identificar a sua ação.
 
 Converter ata, barema e declaração para doc.
 

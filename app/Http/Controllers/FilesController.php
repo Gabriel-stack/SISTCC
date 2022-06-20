@@ -16,9 +16,10 @@ class FilesController extends Controller
      */
     public function __invoke(Request $request)
     {
-
         if(Storage::exists('tcc/'. $request->file)){
             return response()->file(storage_path('app/tcc/'.$request->file));
+        }elseif(Storage::exists('public/student/photo/'. $request->file)){
+            return response()->download(storage_path('app/public/student/photo/'.$request->file));
         }
         return response()->file(storage_path('app/historic/'.$request->file));
     }
