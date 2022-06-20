@@ -106,8 +106,7 @@
                 <h5 class="col fs-5 fw-bold px-2">Membro 1</h5>
                 <div class="col d-flex flex-wrap justify-content-end align-items-center text-end px-2">
                     <label class="fw-bold small mb-0" for="is_professor_one">Professor da Instituição: </label>
-                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_one" name="members[one][type]"  type="checkbox" 
-                        @if(json_decode($tcc->members)->one->type) checked @endif>
+                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_one" name="is_professor_one"  type="checkbox">
                 </div>
             </div>
             <div class="col-12 d-flex justify-content-end">
@@ -125,22 +124,22 @@
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[one][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[one][name]" id="name"
-                    value="{{ json_decode($tcc->members)->one->name ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->one->name ?? '' }}">
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[one][titration]" class="form-label">Titulação</label>
                 <input type="text" class="form-control" name="members[one][titration]" id="members[one][titration]"
-                    value="{{ json_decode($tcc->members)->one->titration ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->one->titration ?? '' }}">
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[one][organ]" class="form-label">Orgão</label>
                 <input type="text" class="form-control" name="members[one][organ]" id="members[one][organ]"
-                    value="{{ json_decode($tcc->members)->one->organ ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->one->organ ?? '' }}">
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-2 px-2">
                 <label for="members[one][cpf]" class="form-label">CPF</label>
                 <input type="text" class="form-control cpf" name="members[one][cpf]"
-                    value="{{ json_decode($tcc->members)->one->cpf ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->one->cpf ?? '' }}">
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 px-2">
                 <label for="members[one][accept_member]" class="form-label">Aceite</label>
@@ -154,8 +153,7 @@
                 <h5 class="col fs-5 fw-bold px-2">Membro 2</h5>
                 <div class="col d-flex flex-wrap justify-content-end align-items-center text-end px-2">
                     <label class="fw-bold small mb-0" for="is_professor_two">Professor da Instituição: </label>
-                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_two" name="members[two][type]" type="checkbox" 
-                        {if({ json_decode($tcc->members)->two->type) checked @endif>
+                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_two" name="is_professor_two" type="checkbox">
                 </div>
             </div>
             <div class="col-12 d-flex justify-content-end">
@@ -173,22 +171,22 @@
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[two][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[two][name]" id="members[two][name]"
-                    value="{{ json_decode($tcc->members)->two->name ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->two->name ?? '' }}">
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[two][titration]" class="form-label">Titulação</label>
                 <input type="text" class="form-control" name="members[two][titration]" id="members[two][titration]"
-                    value="{{ json_decode($tcc->members)->two->titration ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->two->titration ?? '' }}">
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[two][organ]" class="form-label">Orgão</label>
                 <input type="text" class="form-control" name="members[two][organ]" id="members[two][organ]"
-                    value="{{ json_decode($tcc->members)->two->organ ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->two->organ ?? '' }}">
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-2 px-2">
                 <label for="members[two][cpf]" class="form-label">CPF</label>
                 <input type="text" class="form-control cpf" name="members[two][cpf]"
-                    value="{{ json_decode($tcc->members)->two->cpf ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->two->cpf ?? '' }}">
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 px-2">
                 <label for="members[two][accept_member]" class="form-label">Aceite</label>
@@ -202,8 +200,7 @@
                 <h5 class="col fs-5 fw-bold px-2">Membro 3 (Opcional)</h5>
                 <div class="col d-flex flex-wrap justify-content-end align-items-center text-end px-2">
                     <label class="fw-bold small mb-0" for="is_professor_three">Professor da Instituição: </label>
-                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_three" name="members[three][type]" type="checkbox" 
-                        @if(json_decode($tcc->members)->three->type) checked @endif>
+                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_three" name="is_professor_three" type="checkbox" >
                 </div>
             </div>
             <div class="col-12 d-flex justify-content-end">
@@ -222,22 +219,22 @@
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[three][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[three][name]" id="members[three][name]"
-                    value="{{ json_decode($tcc->members)->three->name ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->three->name ?? '' }}">
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[three][titration]" class="form-label">Titulação</label>
                 <input type="text" class="form-control" name="members[three][titration]"
-                    id="members[three][titration]" value="{{ json_decode($tcc->members)->three->titration ?? '' }}" readonly>
+                    id="members[three][titration]" value="{{ json_decode($tcc->members)->three->titration ?? '' }}">
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[three][organ]" class="form-label">Orgão</label>
                 <input type="text" class="form-control" name="members[three][organ]" id="members[three][organ]"
-                    value="{{ json_decode($tcc->members)->three->organ ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->three->organ ?? '' }}">
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-2 px-2">
                 <label for="members[three][cpf]" class="form-label">CPF</label>
                 <input type="text" class="form-control cpf" name="members[three][cpf]"
-                    value="{{ json_decode($tcc->members)->three->cpf ?? '' }}" readonly>
+                    value="{{ json_decode($tcc->members)->three->cpf ?? '' }}">
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 px-2">
                 <label for="members[three][accept_member]" class="form-label">Aceite</label>

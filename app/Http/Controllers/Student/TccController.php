@@ -8,6 +8,7 @@ use App\Http\Requests\Student\TccRequest;
 use App\Models\Professor;
 use App\Models\Tcc;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Nette\Utils\Json;
@@ -80,21 +81,19 @@ class TccController extends Controller
 
     public function storeRequirement(RequirementRequest $request)
     {
-        dd($request->all());
-        // $selecteds_professors = collect(['one' => $request->is_professor_one, 'two' => $request->is_professor_two, 'three' => $request->is_professor_three]);
-        // $selecteds_professors = $selecteds_professors->except(2)->each(function($item, $key) use ($request) {
-        //     if($item == 'on'){
-        //         $request->validate([
-        //             'members.'.$key.'.name' => 'required|exists:professors,name',
-        //             'members.'.$key.'.titration' => 'required|exists:professors,titration',
-        //             'members.'.$key.'.organ' => 'required|exists:professors,organ',
-        //             'members.'.$key.'.cpf' => 'required|exists:professors,cpf',
-        //             'members.'.$key.'.accept_member' => 'required|file|mimes:pdf|max:4096',
-        //         ]);
-        //     }   
-        // });
-        // dd($selecteds_professors);
-        // // if($selecteds_professors->is
+        
+        $selecteds_professors = collect(['one' => $request->is_professor_one, 'two' => $request->is_professor_two]);
+        $selecteds_professors = $selecteds_professors->each(function($item, $key) use ($request) {
+            if($item){
+                 $request->validate([
+                    'members.'.$key.'.name' => 'required|exists:professors,name',
+                    'members.'.$key.'.titration' => 'required|exists:professors,titration',
+                    'members.'.$key.'.organ' => 'required|exists:professors,organ',
+                    'members.'.$key.'.cpf' => 'required|exists:professors,cpf',
+                    'members.'.$key.'.accept_member' => 'required|file|mimes:pdf|max:4096',
+                ]);
+            }  
+        });
 
         $tcc = Tcc::where('student_id', Auth::user()->id)
             ->where('subject_id', $request->subject)
@@ -105,8 +104,7 @@ class TccController extends Controller
         }
         
 
-        $data = $request->all();
-
+        $data = $request->validated();
 
         $this->deleteFiles([
             $tcc->consent_professor, $tcc->file_tcc, $tcc->result_ethic_committee,
