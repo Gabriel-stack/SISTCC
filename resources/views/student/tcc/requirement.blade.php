@@ -27,19 +27,18 @@
                 <div class="my-2 px-2">
                     <label for="intended_date" class="form-label">Data de defesa</label>
                     <input type="datetime-local" class="form-control" name="intended_date" id="intended_date"
-                        value="@if ($tcc->intended_date) date('Y-m-d\TH:i:s', strtotime($tcc->intended_date)) @endif">
+                        value="@if($tcc->intended_date){{ date('Y-m-d\TH:i:s', strtotime($tcc->intended_date)) }}@endif">
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="my-2 px-2">
                     <label for="type_tcc" class="form-label">Tipo de TCC</label>
                     <select class="form-select" name="type_tcc" id="type_tcc">
-                        <option class="text-muted" @if (!$tcc->proof_article_submission) disabled selected @endif>Selecione
-                        </option>
-                        <option value="artigo" @if ($tcc->proof_article_submission) selected @endif>Artigo</option>
-                        <option value="cap_livro">Capítulo de Livro</option>
-                        <option value="monografia">Monografia</option>
-                        <option value="outro">Outro</option>
+                        <option class="text-muted" @if (!$tcc->type_tcc) disabled selected @endif>Selecione</option>
+                        <option value="artigo" @if($tcc->type_tcc == 'artigo') selected @endif>Artigo</option>
+                        <option value="cap_livro" @if($tcc->type_tcc == 'cap_livro') selected @endif>Capítulo de Livro</option>
+                        <option value="monografia" @if($tcc->type_tcc == 'monografia') selected @endif>Monografia</option>
+                        <option value="outro" @if($tcc->type_tcc == 'outro') selected @endif>Outro</option>
                     </select>
 
                 </div>
@@ -106,12 +105,14 @@
                 <h5 class="col fs-5 fw-bold px-2">Membro 1</h5>
                 <div class="col d-flex flex-wrap justify-content-end align-items-center text-end px-2">
                     <label class="fw-bold small mb-0" for="is_professor_one">Professor da Instituição: </label>
-                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_one" name="is_professor_one"  type="checkbox">
+                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_one" name="is_professor_one" type="checkbox"
+                        @if($tcc->type_tcc && json_decode($tcc->members)->one->type == 'interno') checked @endif>
                 </div>
             </div>
             <div class="col-12 d-flex justify-content-end">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 px-2">
-                    <select class="select_professor form-select mt-3" name="professor_one">
+                    <select class="select_professor form-select mt-3
+                        @if($tcc->type_tcc && json_decode($tcc->members)->one->type == 'externo' || !$tcc->type_tcc) d-none @endif" name="professor_one">
                         <option value>Selecione</option>
                         @foreach ($professors as $professor)
                                 @if($tcc->professor->id != $professor->id && $tcc->coprofessor != $professor->id)
@@ -124,22 +125,26 @@
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[one][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[one][name]" id="name"
-                    value="{{ json_decode($tcc->members)->one->name ?? '' }}">
+                value="{{ json_decode($tcc->members)->one->name ?? '' }}"
+                @if($tcc->type_tcc && json_decode($tcc->members)->one->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[one][titration]" class="form-label">Titulação</label>
                 <input type="text" class="form-control" name="members[one][titration]" id="members[one][titration]"
-                    value="{{ json_decode($tcc->members)->one->titration ?? '' }}">
+                    value="{{ json_decode($tcc->members)->one->titration ?? '' }}"
+                    @if($tcc->type_tcc && json_decode($tcc->members)->one->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[one][organ]" class="form-label">Orgão</label>
                 <input type="text" class="form-control" name="members[one][organ]" id="members[one][organ]"
-                    value="{{ json_decode($tcc->members)->one->organ ?? '' }}">
+                    value="{{ json_decode($tcc->members)->one->organ ?? '' }}"
+                    @if($tcc->type_tcc && json_decode($tcc->members)->one->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-2 px-2">
                 <label for="members[one][cpf]" class="form-label">CPF</label>
                 <input type="text" class="form-control cpf" name="members[one][cpf]"
-                    value="{{ json_decode($tcc->members)->one->cpf ?? '' }}">
+                    value="{{ json_decode($tcc->members)->one->cpf ?? '' }}"
+                    @if($tcc->type_tcc && json_decode($tcc->members)->one->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 px-2">
                 <label for="members[one][accept_member]" class="form-label">Aceite</label>
@@ -153,12 +158,14 @@
                 <h5 class="col fs-5 fw-bold px-2">Membro 2</h5>
                 <div class="col d-flex flex-wrap justify-content-end align-items-center text-end px-2">
                     <label class="fw-bold small mb-0" for="is_professor_two">Professor da Instituição: </label>
-                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_two" name="is_professor_two" type="checkbox">
+                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_two" name="is_professor_two" type="checkbox"
+                        @if($tcc->type_tcc && json_decode($tcc->members)->two->type == 'interno') checked @endif>
                 </div>
             </div>
             <div class="col-12 d-flex justify-content-end">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 px-2">
-                    <select class="select_professor form-select mt-3" name="professor_two">
+                    <select class="select_professor form-select mt-3
+                        @if($tcc->type_tcc && json_decode($tcc->members)->two->type == 'externo' || !$tcc->type_tcc) d-none @endif" name="professor_two">
                         <option value>Selecione</option>
                         @foreach ($professors as $professor)
                             @if($tcc->professor->id != $professor->id && $tcc->coprofessor != $professor->id)
@@ -171,22 +178,26 @@
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[two][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[two][name]" id="members[two][name]"
-                    value="{{ json_decode($tcc->members)->two->name ?? '' }}">
+                    value="{{ json_decode($tcc->members)->two->name ?? '' }}"
+                    @if($tcc->type_tcc && json_decode($tcc->members)->two->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[two][titration]" class="form-label">Titulação</label>
                 <input type="text" class="form-control" name="members[two][titration]" id="members[two][titration]"
-                    value="{{ json_decode($tcc->members)->two->titration ?? '' }}">
+                    value="{{ json_decode($tcc->members)->two->titration ?? '' }}"
+                    @if($tcc->type_tcc && json_decode($tcc->members)->two->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[two][organ]" class="form-label">Orgão</label>
                 <input type="text" class="form-control" name="members[two][organ]" id="members[two][organ]"
-                    value="{{ json_decode($tcc->members)->two->organ ?? '' }}">
+                    value="{{ json_decode($tcc->members)->two->organ ?? '' }}"
+                    @if($tcc->type_tcc && json_decode($tcc->members)->two->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-2 px-2">
                 <label for="members[two][cpf]" class="form-label">CPF</label>
                 <input type="text" class="form-control cpf" name="members[two][cpf]"
-                    value="{{ json_decode($tcc->members)->two->cpf ?? '' }}">
+                    value="{{ json_decode($tcc->members)->two->cpf ?? '' }}"
+                    @if($tcc->type_tcc && json_decode($tcc->members)->two->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 px-2">
                 <label for="members[two][accept_member]" class="form-label">Aceite</label>
@@ -200,12 +211,14 @@
                 <h5 class="col fs-5 fw-bold px-2">Membro 3 (Opcional)</h5>
                 <div class="col d-flex flex-wrap justify-content-end align-items-center text-end px-2">
                     <label class="fw-bold small mb-0" for="is_professor_three">Professor da Instituição: </label>
-                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_three" name="is_professor_three" type="checkbox" >
+                    <input class="is_professor form-check-input m-0 ms-2" id="is_professor_three" name="is_professor_three" type="checkbox"
+                        @if($tcc->type_tcc && isset(json_decode($tcc->members)->three) && json_decode($tcc->members)->three->type == 'interno') checked @endif>
                 </div>
             </div>
             <div class="col-12 d-flex justify-content-end">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 px-2">
-                    <select class="select_professor form-select mt-3" name="professor_three">
+                    <select class="select_professor form-select mt-3
+                        @if($tcc->type_tcc && isset(json_decode($tcc->members)->three) && json_decode($tcc->members)->three->type == 'externo' || !$tcc->type_tcc) d-none @endif" name="professor_three">
                         <option value>Selecione</option>
                         @foreach ($professors as $professor)
                             @if($tcc->professor->id != $professor->id)
@@ -219,22 +232,26 @@
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[three][name]" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="members[three][name]" id="members[three][name]"
-                    value="{{ json_decode($tcc->members)->three->name ?? '' }}">
+                    value="{{ json_decode($tcc->members)->three->name ?? '' }}"
+                    @if($tcc->type_tcc && isset(json_decode($tcc->members)->three) && json_decode($tcc->members)->three->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[three][titration]" class="form-label">Titulação</label>
                 <input type="text" class="form-control" name="members[three][titration]"
-                    id="members[three][titration]" value="{{ json_decode($tcc->members)->three->titration ?? '' }}">
+                    id="members[three][titration]" value="{{ json_decode($tcc->members)->three->titration ?? '' }}"
+                    @if($tcc->type_tcc && isset(json_decode($tcc->members)->three) && json_decode($tcc->members)->three->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-12 col-md-6 my-2 px-2">
                 <label for="members[three][organ]" class="form-label">Orgão</label>
                 <input type="text" class="form-control" name="members[three][organ]" id="members[three][organ]"
-                    value="{{ json_decode($tcc->members)->three->organ ?? '' }}">
+                    value="{{ json_decode($tcc->members)->three->organ ?? '' }}"
+                    @if($tcc->type_tcc && isset(json_decode($tcc->members)->three) && json_decode($tcc->members)->three->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-2 px-2">
                 <label for="members[three][cpf]" class="form-label">CPF</label>
                 <input type="text" class="form-control cpf" name="members[three][cpf]"
-                    value="{{ json_decode($tcc->members)->three->cpf ?? '' }}">
+                    value="{{ json_decode($tcc->members)->three->cpf ?? '' }}"
+                    @if($tcc->type_tcc && isset(json_decode($tcc->members)->three) && json_decode($tcc->members)->three->type == 'interno') readonly @endif>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 px-2">
                 <label for="members[three][accept_member]" class="form-label">Aceite</label>

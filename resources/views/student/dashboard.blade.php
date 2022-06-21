@@ -19,8 +19,8 @@
                         method="post">
                         @csrf
                         <p class="text-center mt-2 w-100">Peça para seu professor o código da turma e digite-o aqui.</p>
-                        <input class="form-control mt-2 w-auto" type="text" name="code">
-                        <button type="submit" class="btn btn-success text-center ms-2 mt-2">
+                        <input class="form-control my-2 w-auto" type="text" name="code">
+                        <button type="submit" class="btn btn-success text-center ms-2 my-2">
                             <i class="bi bi-send"></i>
                         </button>
                     </form>

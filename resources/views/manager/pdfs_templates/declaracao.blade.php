@@ -71,7 +71,7 @@
             <ul style="margin-left: 40px;">
                 <li>Professor(a) <strong>{{ $tcc->professor->name }}</strong> (Orientador(a))</li>
                 @foreach ($members as $member)
-                    <li>Professor(a) <strong>{{ $member->name }}</strong> (Examinador interno)</li>
+                    <li>Professor(a) <strong>{{ $member->name }}</strong> (Examinador {{ $member->type }}  )</li>
                 @endforeach
             </ul>
         </div>

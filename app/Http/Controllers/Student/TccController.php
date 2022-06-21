@@ -81,7 +81,7 @@ class TccController extends Controller
 
     public function storeRequirement(RequirementRequest $request)
     {
-        
+
         $selecteds_professors = collect(['one' => $request->is_professor_one, 'two' => $request->is_professor_two]);
         $selecteds_professors = $selecteds_professors->each(function($item, $key) use ($request) {
             if($item){
@@ -92,7 +92,7 @@ class TccController extends Controller
                     'members.'.$key.'.cpf' => 'required|exists:professors,cpf',
                     'members.'.$key.'.accept_member' => 'required|file|mimes:pdf|max:4096',
                 ]);
-            }  
+            }
         });
 
         $tcc = Tcc::where('student_id', Auth::user()->id)
@@ -102,7 +102,7 @@ class TccController extends Controller
         if ($tcc->ethics_committee) {
             $request->validate(['result_ethic_committee'=> 'required|file|mimes:pdf|max:4096']);
         }
-        
+
 
         $data = $request->validated();
 
@@ -122,9 +122,14 @@ class TccController extends Controller
         $data_members = $request->members;
         if (in_array(null, $data_members['three'])) unset($data_members['three']);
         foreach ($request->members as $key => $member) {
+            if($tcc->members){
+                if (Arr::has(Json::decode($tcc->members, Json::FORCE_ARRAY), $key)) {
+                    $this->deleteFiles([Json::decode($tcc->members, Json::FORCE_ARRAY)[$key]['accept_member']]);
+                }
+            }
             if ($key != 'three' || $key == 'three' && !empty($member['accept_member'])) {
-                $this->deleteFiles([$member['accept_member']]);
                 $data_members[$key]['accept_member'] = $member['accept_member']->store('tcc');
+                $request['is_professor_'. $key] ? $data_members[$key]['type'] = 'interno' : $data_members[$key]['type'] = 'externo';
             }
         }
         $data['members'] = Json::encode($data_members);
@@ -167,7 +172,7 @@ class TccController extends Controller
     private function deleteFiles($files)
     {
         foreach ($files as $file) {
-            if ($file) Storage::delete($file);
+            if($file) Storage::delete($file);
         }
     }
 

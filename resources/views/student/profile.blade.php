@@ -18,12 +18,12 @@
                     <form action="{{ route('student.profile.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-7 mt-4">
+                            <div class="col-12 col-sm-7 mt-4">
                                 <label for="name">Nome</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     value="{{ Auth::user()->name }}">
                             </div>
-                            <div class="col-5 mt-4">
+                            <div class="col-12 col-sm-5 mt-4">
                                 <label for="phone">Telefone</label>
                                 <input type="text" class="form-control" id="phone" name="phone"
                                     value="{{Auth::user()->phone}}" required>
