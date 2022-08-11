@@ -13,7 +13,6 @@
         @include('components.fail')
         @include('components.auth-validation-errors')
     </div>
-
     <form class="d-flex flex-wrap justify-content-center mb-4" action="{{ route('student.progress.finish.store', $tcc->subject_id) }}"
         method="POST" enctype="multipart/form-data">
         @csrf
