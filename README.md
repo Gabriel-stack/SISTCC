@@ -1,64 +1,61 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+#SISTEMA DE TRABALHO DE CONCLUSÃO DE CURSO
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<!-- Aplicar validações nos formulários das etapas. -->
+<!-- Validar os campos de membro opcional. -->
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<!-- Aplicar exibição de arquivos enviados para o sistema (histórico do aluno). -->
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<!-- Estilizar páginas de acompanhamento aluno e professor. -->
 
-## Learning Laravel
+<!-- bug da foto -->
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<!-- Gerar declaração de participação dos membros da banca. -->
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<!-- Gerar relatório da turma em pdf com base em filtros. -->
 
-## Laravel Sponsors
+<!-- Aplicar máscaras nos formulários. -->
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<!-- Possibilitar o professor fazer a devolução da primeira etapa quando o aluno estiver na segunda etapa. -->
 
-### Premium Partners
+Adicionar selects no cadastro de requerimento para o aluno poder selecionar um professor já cadastrado no sistema para ser um membro da banca.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+<!-- Estilizar a paginação das tabelas (fazer a publicação da paginação). -->
 
-## Contributing
+<!-- Criar e-mail para o sistema. -->
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<!-- Consertar erro de acesso quando o aluno envia a etapa 2. -->
 
-## Code of Conduct
+<!-- Adicionar botão de download da foto enviada no requerimento para geração de convite de defesa. -->
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Adicionar popouver nos botões para identificar a sua ação.
 
-## Security Vulnerabilities
+Converter ata, barema e declaração para doc.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<!-- Adicionar validação no front-end. -->
 
-## License
+Adicionar botão com modal para para exibição de mensagem de e-mail para membros da banca.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<!-- Consertar problemas de e-mail para recuperação de senha (estilizar mensagem enviada para o e-mail). -->
+Enviar e-mail de validação no cadastro de aluno.
+
+Adicionar sistema de preenchimento de campos nas páginas que são devolvidas (está faltando apenas os arquivos).
+
+Adicionar opção de atribuir cargo a outro professor para assumir a disciplina (criar tabela de cursos e adaptar o sistema para mais várias disciplinas com a exibição específica apenas para o professor/coordenador do curso responsável).
+
+Adicionar professor visitante (professor que foi retirado do cargo de professor titular da disciplina agora terá acesso limitado, mas ainda poderá visualizar e baixar os arquivos relacionados as turmas em que lecionou).
+
+Gerar convite de defesa de TCC.
+
+<!-- apagar arquivos do usuario caso seja excluído da turma. -->
+
+<!-- Adicionar botão para cancelar reprovação de aluno. -->
+
+<!-- Inserir validação na devolução de etapa. -->
+
+<!-- Ajustar logo (em especial no mobile). -->
+
+<!-- Adicionar olho para visualizar senha. (restante do sistema) -->
+
+<!-- Na página de gestão de alunos, organizar a exibição dos alunos em ordem alfabética. -->

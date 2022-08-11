@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,18 +19,17 @@ class Student extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'status',
         'name',
         'email',
         'password',
+        'registration',
+        'historic',
         'phone',
-        'semester_origin',
-        'attended_count_tcc',
         'state',
         'city',
         'district',
         'street',
-        'zipcode',
+        'zip_code',
     ];
 
     /**
@@ -50,4 +50,17 @@ class Student extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function name()
+    {
+        return Attribute::make(
+            set: fn($value) => $value = ucwords($value),
+        );
+    }
+
+    public function tcc()
+    {
+        return $this->hasMany(Tcc::class);
+    }
 }

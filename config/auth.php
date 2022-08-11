@@ -70,7 +70,7 @@ return [
         ],
         'professors' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Professor::class,
+            'model' => App\Models\Manager::class,
         ],
 
         // 'users' => [

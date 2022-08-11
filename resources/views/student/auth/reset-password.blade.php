@@ -1,48 +1,58 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('title', 'Redefinir senha')
 
-        <form method="POST" action="{{ route('student.password.update') }}">
-            @csrf
-
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+@section('content')
+    <div class="d-flex h-100 flex-column justify-content-center align-items-center">
+        <div class="p-4 m-2 rounded bg-white" id="box">
+            <div class="mx-auto mb-4" style="max-width: 300px;">
+                @include('components.application-logo')
             </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
+            <div class="small mb-3">
+                Digite seu e-mail, a nova senha e confirme a senha.
             </div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+            @include('components.auth-session-status')
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="list-disc list-inside small text-danger">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+            <form class="d-flex flex-column" method="POST" action="{{ route('student.password.update') }}">
+                @csrf
+                <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                <div class="col-12 mb-3">
+                    <label for="email">Email</label>
+                    <input id="email" class="w-100 form-control" type="email" name="email" value="{{ old('email', $request->email) }}"
+                        required autofocus>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="password">Senha</label>
+                    <input id="password" class="w-100 form-control" type="password" name="password" value="{{ old('password', $request->password) }}"
+                        required autofocus>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="password_confirmation">Confirmar senha</label>
+                    <input id="password_confirmation" class="w-100 form-control" type="password" name="password_confirmation" value="{{ old('password_confirmation', $request->password_confirmation) }}"
+                        required autofocus>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success w-100">
+                        ALTERAR SENHA
+                    </button>
+                </div>
+                <!-- Access Student -->
+                <div class="d-flex justify-content-between mt-3">
+                    <a class="text-decoration-none" href="{{ route('student.login') }}">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection

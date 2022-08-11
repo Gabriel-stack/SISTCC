@@ -1,36 +1,50 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@section('title', 'Recuperar senha')
+
+@section('content')
+    <div class="d-flex h-100 flex-column justify-content-center align-items-center">
+        <div class="p-4 m-2 rounded bg-white" id="box">
+            <div class="mx-auto mb-4" style="max-width: 300px;">
+                @include('components.application-logo')
+            </div>
+
+            <div class="small mb-3">
+                Digite seu e-mail e enviaremos um link para redefinir sua senha.
+            </div>
+
+            @include('components.success')
+
+            @include('components.auth-session-status')
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="list-disc list-inside small text-danger">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form class="d-flex flex-column" method="POST"
+                action="{{ route('student.password.email') }}">
+                @csrf
+                <div class="col-12 mb-3">
+                    <label for="email">Email</label>
+                    <input id="email" class="w-100 form-control" type="email" name="email" value="{{ old('email') }}"
+                        required autofocus>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success w-100">
+                        CONFIRMAR
+                    </button>
+                </div>
+                <!-- Access Aluno -->
+                <div class="d-flex justify-content-between mt-3">
+                    <a class="text-decoration-none" href="{{ route('student.login') }}">Voltar</a>
+                </div>
+            </form>
         </div>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('student.password.email') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+@endsection
